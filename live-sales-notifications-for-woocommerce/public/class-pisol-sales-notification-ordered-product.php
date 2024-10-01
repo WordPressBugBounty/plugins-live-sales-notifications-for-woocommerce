@@ -11,6 +11,7 @@ class pi_sn_ordered_products {
 
 	public $pi_sn_remove_out_of_stock;
 	public $order_time;
+	public $max_popup;
 	
 	function __construct(){
 		$this->max_popup = get_option("pi_sn_max_product_show",10);

@@ -173,8 +173,8 @@ class pisol_sales_notification_review{
     }
 
     function savePreference(){
-            $nonce = isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '' ;
-            $preference = isset($_GET['preference']) ? $_GET['preference'] : 'later';
+            $nonce = isset($_GET['_wpnonce']) ? sanitize_text_field( $_GET['_wpnonce'] ) : '' ;
+            $preference = isset($_GET['preference']) ? sanitize_text_field( $_GET['preference'] ) : 'later';
 
             if(!isset($_GET['_wpnonce']) || !wp_verify_nonce($nonce,"pi_save_review_preference_{$this->slug}")){
                 wp_die(esc_html('Link has expired'), '', array('response' => 403));

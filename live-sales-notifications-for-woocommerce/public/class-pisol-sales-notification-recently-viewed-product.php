@@ -21,6 +21,8 @@ class pi_sn_recently_viewed_product{
         global $woocommerce;
         $viewed_products = ! empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();
         $products = array_map("wc_get_product",$viewed_products);
+        //needed to remove empty values from array
+        $products = array_filter( $products );
         if(is_array($products) && count($products) > 0){
           shuffle($products);
           foreach($products as $product){

@@ -537,11 +537,9 @@ class pisol_class_form_sn_v3_7{
 
         $sanitize_text_allow_basic_html_field_types = ['text_html'];
         
-        $sanitize_text_field_types = ['select', 'text', 'multiselect', 'color', 'hidden', 'switch', 'switch_category'];
+        $sanitize_text_field_types = ['select', 'text', 'multiselect', 'color', 'hidden', 'switch', 'switch_category', 'number'];
 
         $sanitize_textarea_field_types = ['textarea'];
-
-        $sanitize_number_field_types = ['number'];
 
         if(isset($setting['type']) && in_array($setting['type'], $sanitize_text_field_types)){
             return 'sanitize_text_field';
@@ -549,10 +547,6 @@ class pisol_class_form_sn_v3_7{
 
         if(isset($setting['type']) && in_array($setting['type'], $sanitize_textarea_field_types)){
             return 'sanitize_textarea_field';
-        }
-
-        if(isset($setting['type']) && in_array($setting['type'], $sanitize_number_field_types)){
-            return 'sanitize_numeric_values';
         }
 
         if(isset($setting['type']) && in_array($setting['type'], $sanitize_text_allow_basic_html_field_types)){

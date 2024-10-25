@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              piwebsolution.com
- * @since             2.2.99
+ * @since             2.3.0
  * @package           Pisol_Sales_Notification
  *
  * @wordpress-plugin
  * Plugin Name:       Live Sales Notifications for WooCommerce
  * Plugin URI:        https://www.piwebsolution.com/documentation-for-live-sales-notifications-for-woocommerce-plugin/
  * Description:       Showing live sales notification, encourages your visitors to buy from you as they can see how others are also buying from you
- * Version:           2.2.99
+ * Version:           2.3.0
  * Author:            PI Websolution
  * Author URI:        piwebsolution.com
  * License:           GPL-2.0+
@@ -70,7 +70,7 @@ define('PI_SALES_NOTIFICATION_DELETE_SETTING', false);
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PISOL_SALES_NOTIFICATION_VERSION', '2.2.99' );
+define( 'PISOL_SALES_NOTIFICATION_VERSION', '2.3.0' );
 
 /**
  * The code that runs during plugin activation.
@@ -110,8 +110,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-pisol-sales-notification.p
 
 function pisol_lsnw_plugin_link( $links ) {
 	$links = array_merge( array(
-        '<a href="' . admin_url( '/admin.php?page=pisol-sales-notification' )  . '">' . __( 'Settings','pisol-sales-notification' ) . '</a>',
-        '<a style="color:#0a9a3e; font-weight:bold;" target="_blank" href="' . esc_url(PI_SALES_NOTIFICATION_BUY_URL) . '">' . __( 'Buy PRO Version','pisol-sales-notification' ) . '</a>'
+        '<a href="' . esc_url( admin_url( '/admin.php?page=pisol-sales-notification' ))  . '">' . esc_html__( 'Settings','pisol-sales-notification' ) . '</a>',
+        '<a style="color:#0a9a3e; font-weight:bold;" target="_blank" href="' . esc_url(PI_SALES_NOTIFICATION_BUY_URL) . '">' . esc_html__( 'Buy PRO Version','pisol-sales-notification' ) . '</a>'
 	), $links );
 	return $links;
 }

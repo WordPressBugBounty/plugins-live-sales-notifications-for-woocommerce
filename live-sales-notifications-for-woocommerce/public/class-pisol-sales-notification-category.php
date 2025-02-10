@@ -23,12 +23,13 @@ class pi_sn_selected_category{
     return is_array($categories) ? $categories : array();
   }
 
-  static function getProductFromCategory($cat_id){
+  function getProductFromCategory($cat_id, $max_products){
     $products = new WP_Query( array(
       'post_type'   => 'product',
       'post_status' => 'publish',
-      'posts_per_page'=> -1,
+      'posts_per_page'=> $max_products,
       'fields'      => 'ids',
+      'orderby'        => 'rand',
       'tax_query'   => array(
           'relation' => 'AND',
           array(
@@ -51,13 +52,13 @@ class pi_sn_selected_category{
     if (false === $products) {
       $products = array();
       foreach($categories as $category){
-        $products_list = self::getProductFromCategory((int)$category);
+        $products_list = $this->getProductFromCategory((int)$category, $this->max_popup);
         if(is_array($products_list)){
         $products = array_merge($products, $products_list);
         }
       }
       $products = array_unique($products);
-      set_transient($cache_key, $products, DAY_IN_SECONDS * 2);
+      set_transient($cache_key, $products, 300);
     }
     
     shuffle($products);

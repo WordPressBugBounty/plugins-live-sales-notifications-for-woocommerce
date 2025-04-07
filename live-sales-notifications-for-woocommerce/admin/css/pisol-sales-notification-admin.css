@@ -43,3 +43,10 @@ text-align:center;
 #bootstrap-wrapper .plugin-card{
 	width:100%;
 }
+
+#preview{
+    bottom:20px;
+    right:20px;
+    position:fixed;
+    display:flex !important;
+}

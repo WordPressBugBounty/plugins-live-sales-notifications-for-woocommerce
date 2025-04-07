@@ -102,9 +102,9 @@ class Class_Pi_Sales_Notification_Design{
 
             array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Layout",'pisol-sales-notification'), 'type'=>"setting_category"),
 
-            array('field'=>'pi_sn_popup_width', 'label'=>__('Popup width','pisol-sales-notification'),'type'=>'number', 'default'=>40, 'min'=>0, 'max'=>100, 'step'=>1,   'desc'=>__('Popup width in % of browser width','pisol-sales-notification')),
+            array('field'=>'pi_sn_popup_width', 'label'=>__('Popup width','pisol-sales-notification'),'type'=>'number', 'default'=>30, 'min'=>0, 'max'=>100, 'step'=>1,   'desc'=>__('Popup width in % of browser width','pisol-sales-notification')),
 
-            array('field'=>'pi_sn_image_width', 'label'=>__('Popup image width','pisol-sales-notification'),'type'=>'number', 'default'=>25, 'min'=>0, 'max'=>50, 'step'=>1,   'desc'=>__('This sets the image with as % of popup width','pisol-sales-notification')),
+            array('field'=>'pi_sn_image_width', 'label'=>__('Popup image width','pisol-sales-notification'),'type'=>'number', 'default'=>20, 'min'=>0, 'max'=>50, 'step'=>1,   'desc'=>__('This sets the image with as % of popup width','pisol-sales-notification')),
 
             array('field'=>'pi_sn_image_width_mobile', 'label'=>__('Popup image width for mobile','pisol-sales-notification'),'type'=>'number', 'default'=>25, 'min'=>0, 'max'=>50, 'step'=>1,   'desc'=>__('This sets the image with as % of popup width for mobile devices','pisol-sales-notification')),
 

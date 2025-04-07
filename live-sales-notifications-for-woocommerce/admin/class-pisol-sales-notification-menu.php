@@ -96,7 +96,7 @@ class Pi_Sales_Menu{
 
     function promotion(){
         ?>
-        <div class="col-12 col-sm-12 col-md-4 pt-3">
+        <div class="col-12 col-sm-12 col-md-4 pt-3 mb-4 pb-3">
             <div class="bg-primary text-light text-center mb-3">
                 <a class="" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">
                 <?php new pisol_promotion('live_sales_notification_installation_date'); ?>

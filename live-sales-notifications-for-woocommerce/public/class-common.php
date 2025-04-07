@@ -74,6 +74,30 @@ class pisol_sn_common{
         return $formated_product;
     }
 
+    static function get_preview_product(){
+        $date_format = get_option('pi_sn_date_format', 'Y/m/d');
+        $time_format = get_option('pi_sn_time_format', 'g:i a');
+        $date = date($date_format);
+        $time = date($time_format);
+        $formated_product = array(
+            'product_id'=> 0,
+            'product' => __('Product Name','pisol-sales-notification'),
+            'image' => '',
+            'link' => '#',
+            'first_name' => 'John',
+            'city'=> 'New York',
+            'state' => 'NY',
+            'country' => 'USA',
+            'time'=> $time,
+            'time_passed'=> 'just now',
+            'date'=> $date,
+            'price'=> '$99.99',
+            'stock_left'=> 2,
+            'quantity'=> 10
+        );
+        return $formated_product;
+    }
+
     static function productLink($product){
         if($product->is_type('external')){
             $link = $product->get_product_url();

@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              piwebsolution.com
- * @since             2.3.14
+ * @since             2.3.16
  * @package           Pisol_Sales_Notification
  *
  * @wordpress-plugin
  * Plugin Name:       Live Sales Notifications for WooCommerce
  * Plugin URI:        https://www.piwebsolution.com/documentation-for-live-sales-notifications-for-woocommerce-plugin/
  * Description:       Showing live sales notification, encourages your visitors to buy from you as they can see how others are also buying from you
- * Version:           2.3.14
+ * Version:           2.3.16
  * Author:            PI Websolution
  * Author URI:        piwebsolution.com
  * License:           GPL-2.0+
@@ -71,7 +71,7 @@ define( 'PISOL_SALES_NOTIFICATION_WOOCOMMERCE_PLUGIN_URL',  plugin_dir_url( __FI
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PISOL_SALES_NOTIFICATION_VERSION', '2.3.14' );
+define( 'PISOL_SALES_NOTIFICATION_VERSION', '2.3.16' );
 
 /**
  * The code that runs during plugin activation.

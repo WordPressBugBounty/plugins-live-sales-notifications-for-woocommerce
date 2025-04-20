@@ -211,4 +211,7 @@ class Class_Pi_Sales_Notification_Design{
     
 }
 
-new Class_Pi_Sales_Notification_Design($this->plugin_name);
+
+add_action('init', function(){
+    new Class_Pi_Sales_Notification_Design($this->plugin_name);
+});

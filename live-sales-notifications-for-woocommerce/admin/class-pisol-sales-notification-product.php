@@ -356,7 +356,10 @@ class Class_Pi_Sales_Notification_Product{
    
 }
 
-new Class_Pi_Sales_Notification_Product($this->plugin_name);
+
+add_action('init', function(){
+    new Class_Pi_Sales_Notification_Product($this->plugin_name);
+});
 
 /**
  *

@@ -192,4 +192,7 @@ class Class_Pi_Sales_Notification_Text{
     
 }
 
-new Class_Pi_Sales_Notification_Text($this->plugin_name);
+
+add_action('init', function(){
+    new Class_Pi_Sales_Notification_Text($this->plugin_name);
+});

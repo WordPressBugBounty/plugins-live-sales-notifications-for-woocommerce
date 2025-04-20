@@ -111,4 +111,6 @@ class Class_Pi_Sales_Notification_Control{
     
 }
 
-new Class_Pi_Sales_Notification_Control($this->plugin_name);
+add_action('init', function(){
+    new Class_Pi_Sales_Notification_Control($this->plugin_name);
+});

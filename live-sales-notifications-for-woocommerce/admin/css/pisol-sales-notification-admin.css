@@ -50,3 +50,11 @@ text-align:center;
     position:fixed;
     display:flex !important;
 }
+
+.tab-icon{
+	width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+    display: inline-block;
+}

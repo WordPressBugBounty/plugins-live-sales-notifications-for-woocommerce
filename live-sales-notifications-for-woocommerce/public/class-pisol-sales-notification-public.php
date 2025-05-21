@@ -315,8 +315,27 @@ class Pisol_Sales_Notification_Public extends stdClass{
 
 	function getOrders(){
 		$orders = $this->popupsContent($this->settings);
+		$orders = $this->add_gttranslator($orders);
+		$orders = apply_filters('pisol_sn_orders_for_popup', $orders);
 		echo json_encode($orders);
 		die;
+	}
+
+	/**
+	 * Add GT translator support for website gtranslate.io
+	 * reference : https://docs.gtranslate.io/en/articles/1349949-how-to-enable-json-format-translation
+	 */
+	function add_gttranslator($orders){
+		if(empty($orders) || !is_array($orders)) return $orders;
+
+		foreach($orders as $key => $order){
+			$orders[$key]['gt_translate_keys'] = [
+            	["key" => "desc", "format" => "html"],
+            	["key" => "stock_left", "format" => "text"],
+            	["key" => "time_passed", "format" => "text"],
+        	];
+		}
+		return $orders;
 	}
 
 	function popupRunnerGeneralSetting($settings = array()){

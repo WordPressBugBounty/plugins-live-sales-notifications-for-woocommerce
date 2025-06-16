@@ -14,6 +14,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-pisol-sales-n
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/plugins.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-preview.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-order-tag-promotion.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-analytics.php';
 
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-common.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-control.php';

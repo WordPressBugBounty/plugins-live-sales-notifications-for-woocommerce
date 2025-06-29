@@ -105,32 +105,6 @@
 		$("#pi_sn_order_status").selectWoo();
 		/* End product selection tab */
 
-		function hideProFeature() {
-			var load_status = localStorage.getItem('pisol-sales_notification-pro-feature-state');
-			if (load_status == '' || load_status == undefined || load_status == 'show') {
-				jQuery("#hid-pro-feature").html('Hide Pro feature');
-				jQuery(".free-version, #promotion-sidebar, .hide-pro").fadeIn();
-			} else {
-				jQuery("#hid-pro-feature").html('Show Pro feature');
-				jQuery(".free-version, #promotion-sidebar, .hide-pro").fadeOut();
-			}
-
-			jQuery("#hid-pro-feature").on("click", function () {
-				var state = localStorage.getItem('pisol-sales_notification-pro-feature-state');
-				if (state == '' || state == undefined || state == 'show') {
-					localStorage.setItem('pisol-sales_notification-pro-feature-state', 'hidden');
-					jQuery("#hid-pro-feature").html('Show Pro feature');
-					jQuery(".free-version, #promotion-sidebar, .hide-pro").fadeOut();
-				} else {
-					localStorage.setItem('pisol-sales_notification-pro-feature-state', 'show');
-					jQuery("#hid-pro-feature").html('Hide Pro feature');
-					jQuery(".free-version, #promotion-sidebar, .hide-pro").fadeIn();
-				}
-			});
-		}
-
-		hideProFeature();
-
 	});
 
 	function virtual_name_location(selected) {

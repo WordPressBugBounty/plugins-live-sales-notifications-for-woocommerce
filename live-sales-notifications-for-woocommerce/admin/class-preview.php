@@ -16,7 +16,7 @@ class Pi_Sales_Notification_Preview extends stdClass{
     }
 
     function preview() {
-        if((isset($_GET['page']) && $_GET['page'] == 'pisol-sales-notification')){
+        if((isset($_GET['page']) && $_GET['page'] == 'pisol-sales-notification' && isset($_GET['tab']) && $_GET['tab'] == 'design')) {
             $this->render_preview();
         }
     }

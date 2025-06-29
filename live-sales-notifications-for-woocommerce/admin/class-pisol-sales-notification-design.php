@@ -90,7 +90,7 @@ class Class_Pi_Sales_Notification_Design{
         $this->settings = array(
             array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Positions",'pisol-sales-notification'), 'type'=>"setting_category"),
 
-            array('field'=>'pi_sn_popup_position', 'label'=>__('Popup position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-left-bottom', 'value'=>array('pi-left-bottom'=>__('Left Bottom','pisol-sales-notification'), 'pi-right-bottom'=>__('Right Bottom','pisol-sales-notification'),'pi-left-top'=>__('Left Top','pisol-sales-notification'), 'pi-right-top'=>__('Right Top','pisol-sales-notification')),  'desc'=>__('Set popup position on the page','pisol-sales-notification')),
+            array('field'=>'pi_sn_popup_position', 'label'=>__('Popup position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-right-bottom', 'value'=>array('pi-left-bottom'=>__('Left Bottom','pisol-sales-notification'), 'pi-right-bottom'=>__('Right Bottom','pisol-sales-notification'),'pi-left-top'=>__('Left Top','pisol-sales-notification'), 'pi-right-top'=>__('Right Top','pisol-sales-notification')),  'desc'=>__('Set popup position on the page','pisol-sales-notification')),
 
             array('field'=>'pi_sn_image_position', 'label'=>__('Image position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-image-left', 'value'=>array('pi-image-left'=>__('Left','pisol-sales-notification'), 'pi-image-right'=>__('Right','pisol-sales-notification')),  'desc'=>__('Set image position on left or right of description','pisol-sales-notification')),
 
@@ -108,7 +108,7 @@ class Class_Pi_Sales_Notification_Design{
 
             array('field'=>'pi_sn_image_width_mobile', 'label'=>__('Popup image width for mobile','pisol-sales-notification'),'type'=>'number', 'default'=>25, 'min'=>0, 'max'=>50, 'step'=>1,   'desc'=>__('This sets the image with as % of popup width for mobile devices','pisol-sales-notification')),
 
-            array('field'=>'pi_sn_border_radius', 'label'=>__('Border radius','pisol-sales-notification'),'type'=>'number', 'default'=>5, 'min'=>0, 'step'=>1,   'desc'=>__('Border radius of popup','pisol-sales-notification')),
+            array('field'=>'pi_sn_border_radius', 'label'=>__('Border radius','pisol-sales-notification'),'type'=>'number', 'default'=>60, 'min'=>0, 'step'=>1,   'desc'=>__('Border radius of popup','pisol-sales-notification')),
 
             array('field'=>'pi_sn_border_radius_image', 'label'=>__('Border radius of Image','pisol-sales-notification'),'type'=>'number', 'default'=>0, 'min'=>0, 'step'=>1,   'desc'=>__('Border radius of product image inside the popup','pisol-sales-notification')),
 
@@ -187,7 +187,7 @@ class Class_Pi_Sales_Notification_Design{
 
     function tab(){
         ?>
-        <a class="  pi-side-menu  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : 'bg-secondary'); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+        <a class="  <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-art"></span> <?php echo esc_html( $this->tab_name ); ?>
         </a>
         <?php
@@ -203,7 +203,7 @@ class Class_Pi_Sales_Notification_Design{
                 new pisol_class_form_sn_v3_7($setting, $this->setting_key);
             }
         ?>
-        <input type="submit" class="mt-3 btn btn-primary btn-sm" value="Save Option" />
+        <input type="submit" class="my-3 btn btn-primary btn-md" value="Save Option" />
         </form>
        <?php
     }

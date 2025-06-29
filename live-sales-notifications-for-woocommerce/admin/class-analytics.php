@@ -131,6 +131,14 @@ class Pi_Sales_Notification_Analytics{
                     $(popup).hide();
                 }
             });
+
+            jQuery(document).on("change", "#pi-deact-form-'.esc_attr($this->plugin_slug).' input[name=\'reason_radio\']", function () {
+                if (jQuery(this).val() === "Other") {
+                    jQuery("#pi-deact-form-'.esc_attr($this->plugin_slug).' textarea").show();
+                } else {
+                    jQuery("#pi-deact-form-'.esc_attr($this->plugin_slug).' textarea").hide();
+                }
+            });
         });
         ';
 
@@ -178,8 +186,15 @@ class Pi_Sales_Notification_Analytics{
             <div class="pi-deactivation-modal-<?php echo esc_attr($this->plugin_slug); ?>">
                 <a href="javascript:void(0);" id="pi-deactivator-close-<?php echo esc_attr($this->plugin_slug); ?>" class="pi-deact-close-<?php echo esc_attr($this->plugin_slug); ?>" style="position: absolute; top: 10px; right: 10px; z-index: 10001;">&times;</a>
                 <form id="pi-deact-form-<?php echo esc_attr($this->plugin_slug); ?>" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                    <h3>Help us to improve:</h3>
-                    <textarea id="pi-deact-reason" name="message" style="width:100%" rows="4" placeholder="Let us know the reason for deactivation"></textarea>
+                    <h3>Help us to improve by giving reason for deactivation:</h3>
+                    <div style="margin-bottom:10px;">
+                        <label style="margin-bottom:10px; display:block;"><input type="radio" name="reason_radio" value="Was looking for something else"> Was looking for something else</label>
+                        <label style="margin-bottom:10px; display:block;"><input type="radio" name="reason_radio" value="I found a better plugin"> I found a better plugin</label>
+                        <label style="margin-bottom:10px; display:block;"><input type="radio" name="reason_radio" value="The plugin broke my site"> The plugin broke my site</label>
+                        <label style="margin-bottom:10px; display:block;"><input type="radio" name="reason_radio" value="The plugin is not working as expected"> The plugin is not working as expected</label>
+                        <label style="margin-bottom:10px; display:block;"><input type="radio" name="reason_radio" value="Other"> Other (please specify below)</label>
+                    </div>
+                    <textarea id="pi-deact-reason-<?php echo esc_attr($this->plugin_slug); ?>" name="message" style="width:100%; display:none;" rows="4" placeholder="Let us know the reason for deactivation"></textarea>
                     <?php
                         // Hidden fields
                         echo '<input type="hidden" name="action" value="pi_handle_deactivation_' . esc_attr($this->plugin_slug) . '">';
@@ -203,6 +218,14 @@ class Pi_Sales_Notification_Analytics{
 
         $plugin_slug = sanitize_text_field($_POST['plugin_slug'] ?? '');
         $message = sanitize_textarea_field($_POST['message'] ?? '');
+        $reason = sanitize_text_field($_POST['reason_radio'] ?? '');
+        // Combine reason and message, prioritizing reason if message is empty
+        if (!empty($reason) && !empty($message)) {
+            $message = $reason . ': ' . $message;
+        } elseif (!empty($reason)) {
+            $message = $reason;
+        }
+
         $action_type = sanitize_text_field($_POST['action_type'] ?? '');
 
         if (is_multisite() && is_plugin_active_for_network($this->plugin_path)) {

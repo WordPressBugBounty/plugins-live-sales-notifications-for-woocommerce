@@ -24,8 +24,8 @@ class Class_Pi_Sales_Notification_Product{
         $this->plugin_name = $plugin_name;
 
         $this->settings = array(
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Which products to show in popup",'pisol-sales-notification'), 'type'=>"setting_category"),
-            array('field'=>'pi_sn_product_selection', 'label'=>__('Select product from','pisol-sales-notification'),'type'=>'select', 'default'=>"recently-viewed-products", 'value'=>$this->product_selection_method,  'desc'=>__('Using this you can set which product will be shown in the notification popup','pisol-sales-notification')),
+            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Which products to show in live sales popup",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'pi_sn_product_selection', 'label'=>__('Select product from','pisol-sales-notification'),'type'=>'select', 'default'=>"selected-categories", 'value'=>$this->product_selection_method,  'desc'=>__('Using this you can set which product will be shown in the notification popup','pisol-sales-notification')),
             array('field'=>'pi_sn_custom_first_name'),
             array('field'=>'pi_sn_custom_location'),
             array('field'=>'pi_sn_selected_product'),
@@ -77,7 +77,7 @@ class Class_Pi_Sales_Notification_Product{
 
     function tab(){
         ?>
-        <a class="  pi-side-menu  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : 'bg-secondary'); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+        <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-products"></span> <?php echo esc_html( $this->tab_name ); ?>
         </a>
         <?php
@@ -244,7 +244,7 @@ class Class_Pi_Sales_Notification_Product{
                 
             </div>
         </div>
-        <input type="submit" class="mt-3 btn btn-primary btn-sm" value="Save Option" />
+        <input type="submit" class="my-3 btn btn-primary btn-md" value="Save Option" />
         </form>
        <?php
     }

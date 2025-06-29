@@ -171,7 +171,7 @@ class pisol_class_form_sn_v3_7{
         $setting_col = 12 - $title_col;
         if($this->setting['type'] != 'hidden'){
         ?>
-        <div id="row_<?php echo esc_attr($this->setting['field']); ?>"  class="row py-4 border-bottom align-items-center <?php echo esc_attr($this->pro); ?> <?php echo !empty($this->setting['class']) ? esc_attr($this->setting['class']) : ''; ?>">
+        <div id="row_<?php echo esc_attr($this->setting['field']); ?>"  class="pisol-form-element-row row py-4 border-bottom align-items-center <?php echo esc_attr($this->pro); ?> <?php echo !empty($this->setting['class']) ? esc_attr($this->setting['class']) : ''; ?>">
             <div class="col-12 col-md-<?php echo esc_attr($title_col); ?>">
             <?php echo wp_kses($label, $this->allowed_tags); ?>
             <?php echo wp_kses($desc != "" ? $desc.'<br>': "", $this->allowed_tags); ?>

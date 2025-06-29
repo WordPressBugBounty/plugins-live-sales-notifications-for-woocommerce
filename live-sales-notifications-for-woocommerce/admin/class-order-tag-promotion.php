@@ -10,7 +10,7 @@ class Class_Pi_Sales_Order_Tag_Promotion{
 
     private $this_tab = 'order_tag_promotion';
 
-    private $tab_name = "Get Telegram Notification of Order";
+    private $tab_name = "Telegram Notification";
 
     private $setting_key = 'pi_sn_telegram_notification';
     
@@ -33,7 +33,7 @@ class Class_Pi_Sales_Order_Tag_Promotion{
         }
 
 
-        add_action($this->plugin_name.'_tab', array($this,'tab'),2);
+        add_action($this->plugin_name.'_tab', array($this,'tab'),200);
 
     }
 
@@ -43,7 +43,7 @@ class Class_Pi_Sales_Order_Tag_Promotion{
             return;
         }
         ?>
-        <a class="  pi-side-menu  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : 'bg-secondary'); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+        <a class="  <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <img src="<?php echo esc_url( plugins_url( 'img/telegram-icon.svg', __FILE__ ) ); ?>" class="tab-icon">  <?php echo esc_html( $this->tab_name ); ?>
         </a>
         <?php

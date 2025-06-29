@@ -11,7 +11,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-#bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper :root {
+:root {
 	--blue: #007bff;
 	--indigo: #6610f2;
 	--purple: #6f42c1;
@@ -49,7 +49,7 @@
 }
 
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper html {
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--font-family-sans-serif);
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent;
@@ -246,7 +246,7 @@
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper label {
 	display: inline-block;
 	margin-bottom: 0.5rem;
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--font-family-sans-serif);
 }
 
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper button {
@@ -397,7 +397,7 @@
 	margin-bottom: .5rem;
 	font-weight: 700;
 	line-height: 1.2;
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--font-family-sans-serif);
 	color: #1a4562 !important;
 }
 
@@ -471,7 +471,7 @@
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper small {
 	font-size: 90%;
 	font-weight: 400;
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--font-family-sans-serif);
 }
 
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper .mark,
@@ -11179,7 +11179,7 @@
 	border-bottom: 1px solid #fff;
 	font-weight: bold;
 	font-size: 11px;
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--font-family-sans-serif);
 }
 
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper .pi-side-menu:hover {
@@ -11253,9 +11253,9 @@
 
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper .pi-shadow {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-	position: relative;
 	z-index: 1;
 	border-radius:10px;
+	background: linear-gradient(135deg, #1a4562, #2f6c8c, #1a4562);
 }
 
 @media (max-width:1124px) {
@@ -11460,4 +11460,49 @@
 /** color picker fix with new bootstrap selector */
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper .wp-picker-holder * {
 	box-sizing: content-box;
+}
+
+#pisol-side-menu{
+	background: linear-gradient(135deg, #1a4562, #2f6c8c, #1a4562);
+	color:#fff;
+	padding:10px 0px;
+	border-radius:10px;
+	margin-top:20px;
+	display:flex;
+	flex-direction: column;
+	color:#fff;
+	gap:15px;
+}
+
+.pi-sticky{
+	position: sticky;
+	margin-top:0px;
+	top: 60px;
+}
+
+
+#pisol-side-menu a{
+	color:#fff !important;
+	padding:5px 10px;
+	transition:all 0.3s ease;
+	letter-spacing: 1.1px;
+	font-size:12px;
+}
+
+#pisol-side-menu a:hover, #pisol-side-menu a.active{
+	text-decoration: none !important;
+	color: #ccc !important;
+	font-weight:bold;
+}
+
+#pisol-side-menu a.bg-primary, #pisol-side-menu a.bg-secondary{
+	background: transparent !important;
+	border:0 !important
+}
+
+.pisol-form-element-row small{
+	color:#1a4562;
+	opacity:0.7;
+	margin-top:10px;
+	display:block;
 }

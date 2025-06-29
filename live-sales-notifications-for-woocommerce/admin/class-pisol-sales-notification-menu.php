@@ -64,8 +64,7 @@ class Pi_Sales_Menu{
                                     <a href="https://www.piwebsolution.com/" target="_blank"><img class="img-fluid ml-2" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>img/pi-web-solution.png"></a>
                             </div>
                             <div class="col-12 col-sm-10 text-right small d-flex align-items-center justify-content-end">
-                            <a href="javascript:void(0)" class="btn btn-primary btn-sm mr-2" id="hid-pro-feature">Hide Pro Feature</a>
-                                <a class="btn btn-danger btn-sm text-uppercase mr-2" href="<?php echo  esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">GET PRO FOR <?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?></a>
+                                <a id="pi-special-button" href="<?php echo  esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">GET PRO VERSION</a>
                             </div>
                         </div>
                         </div>
@@ -73,13 +72,23 @@ class Pi_Sales_Menu{
             </div>
             <div class="pisol-row">
                 <div class="col-12">
-                <div class="bg-light border pl-3 pr-3 pb-3 pt-0">
+                <div class="bg-light border pl-3 pr-3 pt-0">
                     <div class="pisol-row">
-                        <div class="col-12 col-md-2 px-0 border-right">
+                        <div class="col-12 col-md-4  col-lg-2 border-right">
+                            <div id="pisol-side-menu" class="rounded">
                                 <?php do_action($this->plugin_name.'_tab'); ?>
-                                <a class=" pi-side-menu bg-secondary " href="https://www.piwebsolution.com/documentation-for-live-sales-notifications-for-woocommerce-plugin/" target="_blank">
+                                <a class="" href="https://www.piwebsolution.com/documentation-for-live-sales-notifications-for-woocommerce-plugin/" target="_blank">
                                 <span class="dashicons dashicons-media-document"></span> Documentation
                                 </a>
+                            </div>
+                            <div class="promotion mt-4">
+                                <div class="bg-primary text-light text-center mb-3">
+                                    <a class="" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">
+                                    <?php new pisol_promotion('live_sales_notification_installation_date'); ?>
+                                    </a>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="col ">
                         <?php do_action($this->plugin_name.'_tab_content'); ?>
@@ -96,48 +105,43 @@ class Pi_Sales_Menu{
 
     function promotion(){
         ?>
-        <div class="col-12 col-sm-12 col-md-4 pt-3 mb-4 pb-3">
-            <div class="bg-primary text-light text-center mb-3">
-                <a class="" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">
-                <?php new pisol_promotion('live_sales_notification_installation_date'); ?>
-                </a>
-            </div>
-
-           <div class="pi-shadow">
-            <div class="pi-top-content text-left">
-                <img id="pi-promotion-banner" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>img/bg.svg">
-                <div class="p-2 text-center text-light bg-dark h6 mb-0">7 DAYS MONEY BACK GUARANTEE</div>
-                <h2 id="pi-banner-tagline" class="text-light">Limited time offer <?php echo esc_html( PI_SALES_NOTIFICATION_PRICE ); ?></h2>
-            </div>
+        <div class="col-3 border-left">
+           <div class="pi-shadow p-3 mt-3 rounded">
+            <h2 id="pi-banner-tagline" class="mb-0" style="color:#ccc !important;">⭐️⭐️⭐️⭐️⭐️ <br><br> Trusted by <span style="color:#fff;">60,000+</span> WooCommerce Stores <br> – Users love it</h2>
                 <div class="inside mt-2">
-                    <ul class="text-left pisol-pro-feature-list">
-                        <li class="border-top py-2"><strong class="text-primary">Privacy protection</strong> Give Option to the customer to exclude their info from the live feed</li>
-                        <li class="border-top py-2">
-                        Show visitor's country in fake sales popups for trust and <strong class="text-primary">higher purchase probability.</strong>
-                        </li>
-                        <li class="border-top py-2">Don't show <strong class="text-primary">Out of stock product</strong></li>
-                        <li class="border-top py-2">Have a different <strong class="text-primary">animation</strong> for opening and closing of the popup</li>
-                        <li class="border-top py-2">Option to set the <strong class="text-primary">mobile breakpoint</strong> width</li>
-                        <li class="border-top py-2">Change sales <strong class="text-primary">Date & Time Format</strong></li>
-                        <li class="border-top py-2"><strong class="text-primary">Multi-language</strong> support, translate popup message for different languages</li>
-                        <li class="border-top py-2">Works with <strong class="text-primary">WPML, Polylang</strong> and many more.</li>
-                        <li class="border-top py-2">Add audio file to alert when the popup opens</li>
-                        <li class="border-top py-2"><strong class="text-primary">Control</strong> on which page you want to show the popup</li>
-                        <li class="border-top py-2">Free version shows 1-day old orders in the popup, <strong class="text-primary">PRO you can configure how old order to show</strong></li>
-                        <li class="border-top py-2">Set <strong class="text-primary">background image</strong> for the popup from setting</li>
-                        <li class="border-top py-2">Admin can also <strong class="text-primary">exclude</strong> any order from appearing in the live sales feed</li>
-                        <li class="border-top py-2"><strong class="text-primary">Dismiss popup</strong> option to the user</li>
-                        <li class="border-top py-2"><strong class="text-primary">Stock remaining</strong> detail to urge the buyer to buy now, E.g: Only 2 Left</li>
-                        <li class="border-top py-2">Show how long back the <strong class="text-primary">order was placed, E.g: 1 day ago</strong></li>
-                        <li class="border-top py-2">Add a <strong class="text-primary">place holder image</strong> for the product image</li>
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                        <li class="h6 font-weight-bold"><b>✅ Privacy & Control</b></li>
+                        <li class="h6">✓ Hide specific orders</li>
+                        <li class="h6">✓ Customer opt-out</li>
+                        <li class="h6">✓ Page targeting</li>
+                        <li class="h6">✓ Dismiss option</li>
                     </ul>
-                    <div class="py-4 text-center">
-                        <a class="btn btn-primary" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">Get Pro Version</a>
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                        <li class="h6 font-weight-bold"><b>🎨 Customization</b></li>
+                        <li class="h6">✓ Custom animation</li>
+                        <li class="h6">✓ Background image</li>
+                        <li class="h6">✓ Placeholder image</li>
+                        <li class="h6">✓ Audio alert</li>
+                    </ul>
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                        <li class="h6 font-weight-bold"><b>📈 Boost Sales</b></li>
+                        <li class="h6">✓ Show visitor country</li>
+                        <li class="h6">✓ Stock remaining alert</li>
+                        <li class="h6">✓ Time since order placed</li>
+                    </ul>
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                        <li class="h6 font-weight-bold"><b>📅 Flexible Order Feed</b></li>
+                        <li class="h6">✓ Set order age</li>
+                        <li class="h6">✓ Exclude out-of-stock</li>
+                    </ul>
+                    <h4 class="pi-bottom-banner">💰 Just <?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?></h4>
+                    <h4 class="pi-bottom-banner">🔥 Unlock all 25+ features and grow your sales!</h4>
+                    <div class="mt-2 text-center">
+                        <a class="btn btn-primary" id="prime-button" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">🔓 Unlock Pro Now – Limited Time Price!</a>
                     </div>
                 </div>
             </div>
-            
-        </div>
+    </div>
         <?php
     }
 

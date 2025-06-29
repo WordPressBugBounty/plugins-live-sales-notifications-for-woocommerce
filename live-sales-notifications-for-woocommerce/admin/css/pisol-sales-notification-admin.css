@@ -19,7 +19,8 @@
 }
 
 .pisol-pro-feature-list li{
-    padding:15px;
+    padding:3px 0px;
+    color:var(--dark);
 }
 
 #bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper  .pisol-pro-feature-list li:first-child{
@@ -33,10 +34,8 @@
 }
 
 h2#pi-banner-tagline{
-padding:10px;
-background:#ee6443;
 color:#fff !important;
-font-size:1.5rem !important;
+font-size:1.3rem !important;
 text-align:center;
 }
 
@@ -57,4 +56,48 @@ text-align:center;
     vertical-align: middle;
     margin-right: 8px;
     display: inline-block;
+}
+
+#bootstrap-wrapper.pisol-setting-wrapper.pisol-container-wrapper h4.pi-bottom-banner{
+	font-size: 18px;
+	margin-bottom:10px;
+	text-align: center;
+    color:#FFF !important;
+}
+
+#prime-button{
+    font-size:14px !important
+}
+
+h2#pi-banner-tagline{
+    padding: 10px;
+    color: #fff !important;
+    font-size: 17px !important;
+    line-height: 1.3rem;
+    text-align: center;
+}
+
+#pi-special-button{
+	background: linear-gradient(135deg, #ee6443, #ff7a59, #ee6443) !important;
+	color: var(--light) !important;
+	padding: 7px 15px;
+	border-radius: 20px;
+	text-decoration: none;
+	font-weight: bold;
+	display: inline-block;
+	transition: background 0.3s ease;
+	letter-spacing: 1.2px;
+	margin-right:20px;
+    text-decoration: none;
+
+	&:hover {
+    	background: linear-gradient(135deg, #d95434, #ff6a45, #d95434) !important;
+         text-decoration: none;
+	}
+}
+
+.pi-bottom-block{
+    display: flex;
+    justify-content: space-between;
+    margin-top:10px;
 }

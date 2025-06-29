@@ -58,10 +58,15 @@ class pisol_sn_common{
 
         self::getOptions();
         $thumbnail = wp_get_attachment_image_src($product->get_image_id( ), 'thumbnail');
+        $image =  isset($thumbnail[0]) ? $thumbnail[0] : wp_get_attachment_url($product->get_image_id( ));
+        if(empty($image)){
+            $image = wc_placeholder_img_src();
+        }
+        
         $formated_product = array(
             'product_id'=> $product->get_id(),
             'product' => self::getTitle($product->get_id()),
-            'image' => isset($thumbnail[0]) ? $thumbnail[0] : wp_get_attachment_url($product->get_image_id( )),
+            'image' => $image,
             'link' => $link,
             'first_name' => $order->get_billing_first_name(),
             'city'=> $order->get_billing_city(),

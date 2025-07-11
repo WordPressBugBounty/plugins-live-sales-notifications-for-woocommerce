@@ -17,7 +17,7 @@
         close_image: "",
         dismiss: false,
         mobile: true,
-        mobile_size: 968,
+        mobile_size: 767,
         border_radius: 0,
         link_in_tab: false,
         audio_alert_enabled: false,

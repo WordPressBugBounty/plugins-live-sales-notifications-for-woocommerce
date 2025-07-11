@@ -168,6 +168,7 @@ class pisol_class_form_sn_v3_7{
     }
 
     function bootstrap($label, $field, $desc = "", $links = "", $title_col = 5){
+        $title_col = 5;
         $setting_col = 12 - $title_col;
         if($this->setting['type'] != 'hidden'){
         ?>

@@ -176,7 +176,7 @@ class Class_Pi_Sales_Notification_Product{
             <div class="col-12">
                 
                     <label for="pi_sn_custom_first_name" class="h6">Virtual first name</label><br>
-                    <small>This name will be used, when you decide to show virtual sales, Enter one name on one line</small>
+                    <small class="font-italic" >This name will be used, when you decide to show virtual sales, Enter one name on one line</small>
                     <textarea name="pi_sn_custom_first_name" id="pi_sn_custom_first_name" class="form-control" style="height:200px !important;" placeholder="John&#10;Smith&#10;Adrianus&#10;Dirk&#10;Aldert"><?php echo esc_html($vname); ?></textarea>
                 
             </div>
@@ -185,8 +185,8 @@ class Class_Pi_Sales_Notification_Product{
             <div class="col-6">
                 
                     <label for="pi_sn_use_geolocation" class="h6">Use visitor country in the fake sales popup instead of random virtual location (So visitor will think people from his location also buy this product and they are more likely to buy)</label><br>
-                    <small>In the fake sales notification customer location will be shown as the visitors country</small><br>
-                    <small>If you use this option then you can only use short code {country} and {state} in the message, {city} short code will not work</small>
+                    <small class="font-italic">In the fake sales notification customer location will be shown as the visitors country</small><br>
+                    <small class="font-italic">If you use this option then you can only use short code {country} and {state} in the message, {city} short code will not work</small>
                     
                 
             </div>
@@ -201,7 +201,7 @@ class Class_Pi_Sales_Notification_Product{
             <div class="col-12">
                 
                     <label for="pi_sn_custom_location" class="h6">Virtual location</label><br>
-                    <small>One location on one line eg: city, state, country if you dont have state then this will be like this <br>e.g: city , , country, if you dont have city then e.g: , state, country</small>
+                    <small  class="font-italic">One location on one line eg: city, state, country if you dont have state then this will be like this <br>e.g: city , , country, if you dont have city then e.g: , state, country</small>
                     <textarea name="pi_sn_custom_location" id="pi_sn_custom_location" class="form-control" style="height:200px !important;" placeholder="City, State, Country&#10;New York City, New York, USA&#10;Bernau, Freistaat Bayern, Germany"><?php echo esc_html($vlocation); ?></textarea>
                 
             </div>
@@ -239,7 +239,7 @@ class Class_Pi_Sales_Notification_Product{
                 <div class="col-12 col-md-12">
                     <label for="pi_sn_order_status" class="h6">How many notification to show (make sure number is grater then 1)</label>
                     <input type="number" min="1" step="1" id="pi_sn_max_product_show" name="pi_sn_max_product_show" value="<?php echo esc_attr( $pi_sn_max_product_show ); ?>"  class="form-control">
-                    <small>For virtual orders this many notification will be created, but for original orders if it is less then this number no virtual order will be created</small>
+                    <small class="font-italic">For virtual orders this many notification will be created, but for original orders if it is less then this number no virtual order will be created</small>
                 </div>
                 
             </div>

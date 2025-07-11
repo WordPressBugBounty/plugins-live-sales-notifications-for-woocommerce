@@ -109,27 +109,27 @@ class Pi_Sales_Menu{
            <div class="pi-shadow p-3 mt-3 rounded">
             <h2 id="pi-banner-tagline" class="mb-0" style="color:#ccc !important;">⭐️⭐️⭐️⭐️⭐️ <br><br> Trusted by <span style="color:#fff;">60,000+</span> WooCommerce Stores <br> – Users love it</h2>
                 <div class="inside mt-2">
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
                         <li class="h6 font-weight-bold"><b>✅ Privacy & Control</b></li>
                         <li class="h6">✓ Hide specific orders</li>
                         <li class="h6">✓ Customer opt-out</li>
                         <li class="h6">✓ Page targeting</li>
                         <li class="h6">✓ Dismiss option</li>
                     </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
                         <li class="h6 font-weight-bold"><b>🎨 Customization</b></li>
                         <li class="h6">✓ Custom animation</li>
                         <li class="h6">✓ Background image</li>
                         <li class="h6">✓ Placeholder image</li>
                         <li class="h6">✓ Audio alert</li>
                     </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
                         <li class="h6 font-weight-bold"><b>📈 Boost Sales</b></li>
                         <li class="h6">✓ Show visitor country</li>
                         <li class="h6">✓ Stock remaining alert</li>
                         <li class="h6">✓ Time since order placed</li>
                     </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3">
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
                         <li class="h6 font-weight-bold"><b>📅 Flexible Order Feed</b></li>
                         <li class="h6">✓ Set order age</li>
                         <li class="h6">✓ Exclude out-of-stock</li>

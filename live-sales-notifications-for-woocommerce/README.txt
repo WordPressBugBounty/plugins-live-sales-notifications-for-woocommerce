@@ -1,14 +1,14 @@
-=== Live sales notification for WooCommerce, Recent sales notification WooCommerce, Fake sales notification for WooCommerce  ===
+=== Live sales notification for WooCommerce  ===
 Contributors: rajeshsingh520
 Donate link: piwebsolution.com
 Tags: recent sales notification, fake notification, WooCommerce notification,  sales notification, live sales feed, boost sales  
 Requires at least: 3.0.1
 Tested up to: 6.8
 License: GPLv2 or later
-Stable tag: 2.3.23
+Stable tag: 2.3.24
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Fake sales alert for WooCommerce or WooCommerce Live sales notification for WooCommerce, Boost sales by encourage your visitors to buy when they see your live new order notification, sales pop 
+Fake sales alert for WooCommerce or Live sales notification for WooCommerce, Boost sales by encourage your visitors to buy when they see your live new order notification, sales pop 
 
 == Description ==
 

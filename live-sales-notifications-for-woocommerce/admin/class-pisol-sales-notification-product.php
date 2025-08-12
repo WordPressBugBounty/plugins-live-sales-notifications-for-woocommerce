@@ -24,7 +24,7 @@ class Class_Pi_Sales_Notification_Product{
         $this->plugin_name = $plugin_name;
 
         $this->settings = array(
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Which products to show in live sales popup",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Which products to show in live sales popup",'pisol-sales-notification'), 'type'=>"setting_category"),
             array('field'=>'pi_sn_product_selection', 'label'=>__('Select product from','pisol-sales-notification'),'type'=>'select', 'default'=>"selected-categories", 'value'=>$this->product_selection_method,  'desc'=>__('Using this you can set which product will be shown in the notification popup','pisol-sales-notification')),
             array('field'=>'pi_sn_custom_first_name'),
             array('field'=>'pi_sn_custom_location'),
@@ -101,7 +101,7 @@ class Class_Pi_Sales_Notification_Product{
             }
         ?>
         <div id="orders">
-            <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
                 <div class="col-12">
                 <h2 class="mt-0 mb-0 text-light font-weight-light h4">Order related options</h2>
                 </div>
@@ -123,7 +123,7 @@ class Class_Pi_Sales_Notification_Product{
         </div>
         
         <div id="selected-products">
-            <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
                 <div class="col-12">
                 <h2 class="mt-0 mb-0 text-light font-weight-light h4">Select product to show in popup</h2>
                 </div>
@@ -144,7 +144,7 @@ class Class_Pi_Sales_Notification_Product{
             </div>
         </div>
         <div id="selected-categories">
-            <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
                 <div class="col-12">
                 <h2 class="mt-0 mb-0 text-light font-weight-light h4">Select category to show product</h2>
                 </div>
@@ -167,7 +167,7 @@ class Class_Pi_Sales_Notification_Product{
             </div>
         </div>
         <div id="virtual-name-location">
-        <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+        <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
             <div class="col-12">
             <h2 class="mt-0 mb-0 text-light font-weight-light h4">Virtual First name and Location</h2>
             </div>
@@ -208,7 +208,7 @@ class Class_Pi_Sales_Notification_Product{
         </div>
         </div>
         <div id="order-timing">
-            <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
                 <div class="col-12">
                 <h2 class="mt-0 mb-0 text-light font-weight-light h4">How much old order should be shown</h2>
                 </div>
@@ -230,7 +230,7 @@ class Class_Pi_Sales_Notification_Product{
             </div>
         </div>
         <div id="max-notification">
-            <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
                 <div class="col-12">
                 <h2 class="mt-0 mb-0 text-light font-weight-light h4">How many notification to show on one page</h2>
                 </div>

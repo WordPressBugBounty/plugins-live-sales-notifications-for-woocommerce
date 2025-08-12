@@ -88,19 +88,19 @@ class Class_Pi_Sales_Notification_Design{
         $this->animation = $this->creatingArray($this->animation);
         $this->close_animation = $this->creatingArray($this->close_animation);
         $this->settings = array(
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Positions",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Positions",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_popup_position', 'label'=>__('Popup position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-right-bottom', 'value'=>array('pi-left-bottom'=>__('Left Bottom','pisol-sales-notification'), 'pi-right-bottom'=>__('Right Bottom','pisol-sales-notification'),'pi-left-top'=>__('Left Top','pisol-sales-notification'), 'pi-right-top'=>__('Right Top','pisol-sales-notification')),  'desc'=>__('Set popup position on the page','pisol-sales-notification')),
 
             array('field'=>'pi_sn_image_position', 'label'=>__('Image position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-image-left', 'value'=>array('pi-image-left'=>__('Left','pisol-sales-notification'), 'pi-image-right'=>__('Right','pisol-sales-notification')),  'desc'=>__('Set image position on left or right of description','pisol-sales-notification')),
 
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Background color",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Background color",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_background_color', 'label'=>__('Background color','pisol-sales-notification'),'type'=>'color', 'default'=>"#ffffff",   'desc'=>__('Background color of the popup','pisol-sales-notification')),
 
             array('field'=>'pi_sn_background_image', 'label'=>__('Background image','pisol-sales-notification'),'type'=>'image', 'default'=>'', 'desc'=>__('This image will be used inside the popup','pisol-sales-notification'),'pro'=>true),
 
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Layout",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Layout",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_popup_width', 'label'=>__('Popup width','pisol-sales-notification'),'type'=>'number', 'default'=>30, 'min'=>0, 'max'=>100, 'step'=>1,   'desc'=>__('Popup width in % of browser width','pisol-sales-notification')),
 
@@ -118,25 +118,25 @@ class Class_Pi_Sales_Notification_Design{
 
             array('field'=>'pi_sn_link_in_tab', 'label'=>__('Open product link in new tab','pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>__('Open the product link in new tab','pisol-sales-notification')),
 
-            array('field'=>'title', 'class'=> 'hide-pro bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Animation",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'hide-pro bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Animation",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_open_animation', 'label'=>__('Message opening animation','pisol-sales-notification'),'type'=>'select', 'default'=>'fadeIn', 'value'=>$this->animation,  'desc'=>__('This animation is used when sales notification message opens','pisol-sales-notification'),'pro'=>true),
 
             array('field'=>'pi_sn_close_animation', 'label'=>__('Message closing animation','pisol-sales-notification'),'type'=>'select', 'default'=>'fadeOut', 'value'=>$this->close_animation,  'desc'=>__('This animation is used when sales notification message closes','pisol-sales-notification'),'pro'=>true),
 
-            array('field'=>'title', 'class'=> 'hide-pro bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Product image options",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'hide-pro bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Product image options",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_alternate_product_image', 'label'=>__('Product image','pisol-sales-notification'),'type'=>'image', 'default'=>'', 'desc'=>__('This image will be used in place of product image when there is no product image set, or force to use this image by using the below setting','pisol-sales-notification'),'pro'=>true),
 
             array('field'=>'pi_force_alternate_image', 'label'=>__('Always use this image in place of product image','pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>__('When enable this image will be shown in place of the product image','pisol-sales-notification'),'pro'=>true),
 
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Close option",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Close option",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_close_button', 'label'=>__('Show close button','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Using this button visitor can close the popup','pisol-sales-notification')),
 
             array('field'=>'pi_sn_close_image', 'label'=>__('Image used as close button','pisol-sales-notification'),'type'=>'image', 'default'=>'', 'desc'=>__('This image is used as close button image, in the popup','pisol-sales-notification')),
 
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Audio alert",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Audio alert",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_enable_audio_alert', 'label'=>__('Enable audio alert','pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>__('This will create an audio alert when a sales popup comes up, Audio feature is not stable as it depend on browser and user permission','pisol-sales-notification')),
             

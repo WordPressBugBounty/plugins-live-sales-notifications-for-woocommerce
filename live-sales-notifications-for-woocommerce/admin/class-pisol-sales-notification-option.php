@@ -22,6 +22,9 @@ class Class_Pi_Sales_Notification_Option{
         $this->plugin_name = $plugin_name;
 
         $this->settings = array(
+
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Popup setting",'pisol-sales-notification'), 'type'=>"setting_category"),
+
             array('field'=>'pi_sn_enabled', 'label'=>__('Enable sales notification','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Enable sales notification or disable it','pisol-sales-notification')),
 
             array('field'=>'pi_sn_enabled_mobile', 'label'=>__('Enable sales notification on mobile','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Enable sales notification or disable it for mobile','pisol-sales-notification')),
@@ -39,7 +42,7 @@ class Class_Pi_Sales_Notification_Option{
             array('field'=>'pi_fake_stock_quantity', 'label'=>__('Fake stock quantity','pisol-sales-notification'),'type'=>'number', 'default'=>2, 'min'=>1, 'step'=>1,   'desc'=>__('If you don\'t use stock management then it will show this quantity for those products','pisol-sales-notification'), 'pro'=>true),
             
             
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Timing of popup",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Timing of popup",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_popup_loop', 'label'=>__('Loop through ','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Repeat popup once all loaded popups are shown once','pisol-sales-notification')),
 
@@ -52,7 +55,7 @@ class Class_Pi_Sales_Notification_Option{
             array('field'=>'pi_max_notification_count', 'label'=>__('Number of times a popup will be shown to customer in single session'),'type'=>'number', 'default'=> '', 'min'=>0, 'step'=>1,   'desc'=>__('It keeps the count of popup shown to a customer in a single session, if you want to show popup only 3 times then set it to 3, if you want to show it unlimited time then leave it empty, session of the customer end when they close the browser tab')),
 
             
-            array('field'=>'title', 'class'=> 'hide-pro bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Other settings",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'hide-pro bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Other settings",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_remove_out_of_stock', 'label'=>__('Don\'t show out of stock product in popup','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Using this you can remove out of stock product from coming in popup','pisol-sales-notification'), 'pro'=>true),
 

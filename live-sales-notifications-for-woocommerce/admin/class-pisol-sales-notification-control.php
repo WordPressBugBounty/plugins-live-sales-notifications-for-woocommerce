@@ -25,7 +25,7 @@ class Class_Pi_Sales_Notification_Control{
 
             array('field'=>'pi_sn_show_all', 'label'=>__('Show popup on all pages of website', 'pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>'', 'pro'=>true),
 
-            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Show popup on selected page", 'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Show popup on selected page", 'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_show_front_page', 'label'=>__('Show on front page of the site (is_front_page)', 'pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>'', 'pro'=>true),
 
@@ -41,7 +41,7 @@ class Class_Pi_Sales_Notification_Control{
 
             array('field'=>'pi_sn_show_is_product_tag', 'label'=>__('Show on product tag page (is_product_tag)', 'pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>'', 'pro'=>true),
 
-            array('field'=>'title2', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__('Disable notification on this page', 'pisol-sales-notification'), 'type'=>'setting_category'),
+            array('field'=>'title2', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__('Disable notification on this page', 'pisol-sales-notification'), 'type'=>'setting_category'),
 
             array('field'=>'pi_sn_disable_for_page_pro', 'label'=>__('Disable the notification on page', 'pisol-sales-notification'),'type'=>'text', 'default'=>'',   'desc'=>__('Add ID of the pages separated by comma E.g: 23, 33,44', 'pisol-sales-notification'), 'pro'=>true),
             

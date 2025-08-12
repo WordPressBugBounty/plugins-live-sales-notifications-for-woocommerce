@@ -82,7 +82,7 @@ class Pi_Sales_Menu{
                                 </a>
                             </div>
                             <div class="promotion mt-4">
-                                <div class="bg-primary text-light text-center mb-3">
+                                <div class="bg-dark2 text-light text-center mb-3">
                                     <a class="" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">
                                     <?php new pisol_promotion('live_sales_notification_installation_date'); ?>
                                     </a>
@@ -129,13 +129,14 @@ class Pi_Sales_Menu{
                         <li class="h6">✓ Stock remaining alert</li>
                         <li class="h6">✓ Time since order placed</li>
                     </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
+                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2 mb-3">
                         <li class="h6 font-weight-bold"><b>📅 Flexible Order Feed</b></li>
                         <li class="h6">✓ Set order age</li>
                         <li class="h6">✓ Exclude out-of-stock</li>
                     </ul>
+                    <br>
                     <h4 class="pi-bottom-banner">💰 Just <?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?></h4>
-                    <h4 class="pi-bottom-banner">🔥 Unlock all 25+ features and grow your sales!</h4>
+                    <h4 class="pi-bottom-banner">🔥 Unlock all features and grow your sales!</h4>
                     <div class="mt-2 text-center">
                         <a class="btn btn-primary" id="prime-button" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">🔓 Unlock Pro Now – Limited Time Price!</a>
                     </div>

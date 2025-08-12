@@ -98,7 +98,7 @@ class Class_Pi_Sales_Notification_Translate{
         </script>
         <form method="post" action="options.php"  class="pisol-setting-form exclude-quick-save">
         <?php settings_fields( $this->setting_key ); ?>
-        <div class="row py-4 border-bottom align-items-center bg-primary text-light">
+        <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
             <div class="col-12">
             <h2 class="mt-0 mb-0 text-light font-weight-light h4">Add translation for popup message <br><strong>(Only Works in PRO)</strong></h2>
             </div>

@@ -77,7 +77,7 @@ class Pi_Sales_Menu{
                         <div class="col-12 col-md-4  col-lg-2 border-right">
                             <div id="pisol-side-menu" class="rounded">
                                 <?php do_action($this->plugin_name.'_tab'); ?>
-                                <a class="" href="https://www.piwebsolution.com/documentation-for-live-sales-notifications-for-woocommerce-plugin/" target="_blank">
+                                <a class="" href="https://www.piwebsolution.com/user-documentation-live-sales-notification-for-woocommerce/" target="_blank">
                                 <span class="dashicons dashicons-media-document"></span> Documentation
                                 </a>
                             </div>

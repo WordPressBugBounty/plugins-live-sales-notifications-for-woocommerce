@@ -5,16 +5,16 @@ Tags: recent sales notification, fake notification, WooCommerce notification,  s
 Requires at least: 3.0.1
 Tested up to: 6.8
 License: GPLv2 or later
-Stable tag: 2.3.29
+Stable tag: 2.3.30
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Fake sales alert for WooCommerce or Live sales notification for WooCommerce, Boost sales by encourage your visitors to buy when they see your live new order notification, sales pop 
+Fake sales alert for WooCommerce or Live sales notification for WooCommerce, Boost sales by encourage your visitors to buy when they see your live new order notification, sales popup 
 
 == Description ==
 
 Show recent sales notifications with ease! This free plugin adds a recent sales popup to your WooCommerce store, boosting trust with live sales alerts and real-time conversion triggers.
 
-[Try the Demo](http://woo-restaurant.com "Live sales notification for WooCommerce") | [Documentation](https://www.piwebsolution.com/documentation-for-live-sales-notifications-for-WooCommerce-plugin/ "Documentation for live order notification for WooCommerce")
+[Try the Demo](http://woo-restaurant.com "Live sales notification for WooCommerce") | [Documentation](https://www.piwebsolution.com/user-documentation-live-sales-notification-for-woocommerce/ "Documentation for live order notification for WooCommerce")
 
 Here are some of the important features of the Live sales notification for WooCommerce:
 
@@ -74,7 +74,7 @@ You can control complete look and feel of the notification from plugin setting
 * Utilize the **visitor's actual country** in fake sales popups to create a sense of familiarity and trust, increasing the likelihood of their purchase.
 
 == Screenshots ==
-1. Popups made using Live sales notification woocommerce plugin
+1. Popups made using Live sales notification WooCommerce plugin
 2. Design option for the Live sales notification for WooCommerce plugin
 3. Configure custom message for the Live sales notification
 4. Translate message in different language in PRO
@@ -153,8 +153,8 @@ Yes, you can show the visitor's actual country in fake sales popups to create a 
 * UI improved in Live sales notification for WooCommerce plugin
 
 = 2.3.21 =
-* analytics added for woocommerce live sales notification plugin
-* Sales notification woocommerce Plugin Tested for WC 9.9.3
+* analytics added for WooCommerce live sales notification plugin
+* Sales notification WooCommerce Plugin Tested for WC 9.9.3
 
 = 2.3.20 =
 * Added support for gtranslate.io

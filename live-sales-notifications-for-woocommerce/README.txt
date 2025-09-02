@@ -5,7 +5,7 @@ Tags: recent sales notification, fake notification, WooCommerce notification,  s
 Requires at least: 3.0.1
 Tested up to: 6.8
 License: GPLv2 or later
-Stable tag: 2.3.30
+Stable tag: 2.3.31
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Fake sales alert for WooCommerce or Live sales notification for WooCommerce, Boost sales by encourage your visitors to buy when they see your live new order notification, sales popup 

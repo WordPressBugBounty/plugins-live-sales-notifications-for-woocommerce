@@ -82,8 +82,8 @@ class pisol_sn_common{
     static function get_preview_product(){
         $date_format = get_option('pi_sn_date_format', 'Y/m/d');
         $time_format = get_option('pi_sn_time_format', 'g:i a');
-        $date = date($date_format);
-        $time = date($time_format);
+        $date = wp_date($date_format);
+        $time = wp_date($time_format);
         $formated_product = array(
             'product_id'=> 0,
             'product' => __('Product Name','pisol-sales-notification'),

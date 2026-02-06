@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 /**
  * Promotion 
  * Version 1.0.0
@@ -16,7 +17,7 @@ if(!class_exists('pisol_promotion')){
 
      function logic(){
         $day_passed = $this->daysPassed();
-        $today = date('d, M Y');
+        $today = wp_date('d, M Y');
         switch($day_passed){
             case 0:
             $this->add("OFFER ENDS ON", $today, "10%", "DISC10" );
@@ -40,7 +41,7 @@ if(!class_exists('pisol_promotion')){
 
      function getInstallationDate(){
         $install_date = get_option($this->variable_name,"");
-        $today = date('Y-m-d');
+        $today = wp_date('Y-m-d');
         if($install_date == "" || $install_date == false || $install_date == "1"){
             update_option($this->variable_name, $today);
             return $today;
@@ -51,7 +52,7 @@ if(!class_exists('pisol_promotion')){
 
      function daysPassed(){
         $date = $this->getInstallationDate();
-        $today = date('Y-m-d');
+        $today = wp_date('Y-m-d');
         $date_obj = date_create($date);
         $today_obj = date_create($today);
         $diff = date_diff($today_obj, $date_obj);
@@ -59,7 +60,7 @@ if(!class_exists('pisol_promotion')){
      }
 
      function isWeekEnd(){
-        $day = date('N', strtotime(date('Y/m/d')));
+        $day = wp_date('N', strtotime(wp_date('Y/m/d')));
         if($day >= 6){
             return true;
         }

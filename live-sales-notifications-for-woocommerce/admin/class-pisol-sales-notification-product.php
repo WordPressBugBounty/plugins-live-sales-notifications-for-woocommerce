@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class Class_Pi_Sales_Notification_Product{
 

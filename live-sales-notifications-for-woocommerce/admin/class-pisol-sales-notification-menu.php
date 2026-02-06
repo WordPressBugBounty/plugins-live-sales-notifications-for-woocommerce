@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class Pi_Sales_Menu{
 
@@ -18,8 +19,8 @@ class Pi_Sales_Menu{
     function plugin_menu(){
         
         $this->menu = add_menu_page(
-            __( 'Sales Notification'),
-            __( 'Sales Notification'),
+            __( 'Sales Notification','pisol-sales-notification' ),
+            __( 'Sales Notification','pisol-sales-notification' ),
             'manage_options',
             'pisol-sales-notification',
             array($this, 'menu_option_page'),
@@ -148,7 +149,7 @@ class Pi_Sales_Menu{
     }
 
     function isWeekend() {
-        return (date('N', strtotime(date('Y/m/d'))) >= 6);
+        return (wp_date('N', strtotime(wp_date('Y/m/d'))) >= 6);
     }
 
     function removeConflictCausingScripts(){

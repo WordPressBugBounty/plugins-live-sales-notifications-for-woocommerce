@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class Class_Pi_Sales_Notification_Text{
 
@@ -123,37 +124,37 @@ class Class_Pi_Sales_Notification_Text{
     function time_format(){
         $date = array();
         
-        $date['g:i a'] = date('g:i a');
-        $date['g:i A'] = date('g:i A');
-        $date['H:i'] = date('H:i');
-        $date['H:i a'] = date('H:i a');
-        $date['H:i A'] = dAte('H:i A');
+        $date['g:i a'] = wp_date('g:i a');
+        $date['g:i A'] = wp_date('g:i A');
+        $date['H:i'] = wp_date('H:i');
+        $date['H:i a'] = wp_date('H:i a');
+        $date['H:i A'] = wp_date('H:i A');
         return $date;
     }
 
     function date_format(){
         $date = array();
 
-        $date['Y/m/d'] = date('Y/m/d'); 
-        $date['d/m/Y'] = date('d/m/Y');
-        $date['m/d/y'] = date('m/d/y');
-        $date['Y-m-d'] = date('Y-m-d'); 
-        $date['d-m-Y'] = date('d-m-Y');
-        $date['m-d-y'] = date('m-d-y');
-        $date['Y.m.d'] = date('Y.m.d'); 
-        $date['d.m.Y'] = date('d.m.Y');
-        $date['m.d.y'] = date('m.d.y');
-        $date["M j, Y"] = date("M j, Y");
-        $date["jS \of F"] = date("jS \of F");
-        $date["jS F"] = date("jS F");
-        $date["j. F"] = date("j. F");
-        $date["j F"] = date("j F");
-        $date["l j. F"] = date("l j. F");
-        $date["l, F j"] = date("l, F j");
-        $date["l j F"] = date("l j F");
-        $date["F jS"] = date("F jS");
-        $date["jS M"] = date("jS M");
-        $date["M jS"] = date("M jS");
+        $date['Y/m/d'] = wp_date('Y/m/d'); 
+        $date['d/m/Y'] = wp_date('d/m/Y');
+        $date['m/d/y'] = wp_date('m/d/y');
+        $date['Y-m-d'] = wp_date('Y-m-d'); 
+        $date['d-m-Y'] = wp_date('d-m-Y');
+        $date['m-d-y'] = wp_date('m-d-y');
+        $date['Y.m.d'] = wp_date('Y.m.d'); 
+        $date['d.m.Y'] = wp_date('d.m.Y');
+        $date['m.d.y'] = wp_date('m.d.y');
+        $date["M j, Y"] = wp_date("M j, Y");
+        $date["jS \of F"] = wp_date("jS \of F");
+        $date["jS F"] = wp_date("jS F");
+        $date["j. F"] = wp_date("j. F");
+        $date["j F"] = wp_date("j F");
+        $date["l j. F"] = wp_date("l j. F");
+        $date["l, F j"] = wp_date("l, F j");
+        $date["l j F"] = wp_date("l j F");
+        $date["F jS"] = wp_date("F jS");
+        $date["jS M"] = wp_date("jS M");
+        $date["M jS"] = wp_date("M jS");
         return $date;
     }
 
@@ -168,7 +169,7 @@ class Class_Pi_Sales_Notification_Text{
 
     function tab(){
         ?>
-        <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+        <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field(wp_unslash($_GET['page'])).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-buddicons-pm"></span> <?php echo esc_html( $this->tab_name); ?> 
         </a>
         <?php

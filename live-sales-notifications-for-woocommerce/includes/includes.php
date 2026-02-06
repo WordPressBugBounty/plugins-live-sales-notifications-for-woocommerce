@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/pisol.class.form.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/pisol.class.promotion.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/review.php';

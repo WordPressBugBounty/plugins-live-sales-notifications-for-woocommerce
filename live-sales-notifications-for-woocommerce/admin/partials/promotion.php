@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div style="padding: 20px; background: #fff; border: 1px solid #ddd; border-radius: 8px;" class="my-3">
   <h2>Get Real-Time Order Alerts on Telegram 📲</h2>
   <p>

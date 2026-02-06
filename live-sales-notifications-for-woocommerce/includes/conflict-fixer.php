@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class pisol_live_sales_free_conflict_fixer{
     function __construct(){

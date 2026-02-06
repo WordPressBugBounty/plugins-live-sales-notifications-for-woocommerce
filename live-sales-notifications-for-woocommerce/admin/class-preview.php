@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class Pi_Sales_Notification_Preview extends stdClass{
     static $instance = null;

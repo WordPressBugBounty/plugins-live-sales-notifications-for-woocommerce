@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class pisol_sn_fake_order{
     private $first_name;
@@ -69,9 +70,9 @@ class pisol_sn_fake_order{
         $present = time();
         $till = strtotime($this->order_time); // 1 day from present time
 
-        $random_time = rand($till, $present);
+        $random_time = wp_rand($till, $present);
 
-        $this->time = date('Y/m/d H:i:s',  $random_time);
+        $this->time = wp_date('Y/m/d H:i:s',  $random_time);
     }
 
     

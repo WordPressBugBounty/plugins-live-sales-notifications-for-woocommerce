@@ -49,24 +49,25 @@ class Pi_Sales_Notification_Analytics{
 
         $notice = '<div class="notice notice-error is-dismissible">';
         $notice .= '<h4>Help to Improve ' . esc_html($this->plugin_name) . ' plugin</h4>';
-        $notice .= '<p>'.__("Hi, your support can make a big difference!", 'conditional-discount-rule-woocommerce').'</p>';
-        $notice .= '<p>'.__("We collect only technical data — including the plugin version, WordPress version, WooCommerce version, and site url — solely to improve compatibility and enhance plugin features.", 'conditional-discount-rule-woocommerce').'</p>';
+        $notice .= '<p>'.__("Hi, your support can make a big difference!", 'pisol-sales-notification').'</p>';
+        $notice .= '<p>'.__("We collect only technical data — including the plugin version, WordPress version, WooCommerce version, and site url — solely to improve compatibility and enhance plugin features.", 'pisol-sales-notification').'</p>';
 
         $notice .= '<p style="display: flex; justify-content: space-between; margin-top: 10px;">';
 
         $notice .= sprintf(
             '<a href="%s" class="button">%s</a>',
             esc_url(admin_url('admin-post.php?enable=0&action=' . $this->enable_tracking_action)),
-            __('I Don\'t Help', 'conditional-discount-rule-woocommerce')
+            __('I Don\'t Help', 'pisol-sales-notification')
         );
         $notice .= sprintf(
             '<a href="%s" class="button button-primary" style="margin-right:20px; padding-left:30px; padding-right:30px;">%s</a>',
             esc_url(admin_url('admin-post.php?enable=1&action=' . $this->enable_tracking_action)),
-            __('I Will Help', 'conditional-discount-rule-woocommerce')
+            __('I Will Help', 'pisol-sales-notification')
         );
         
         $notice .= '</p>';
         $notice .= '</div>';
+        //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $notice;
         
     }
@@ -213,7 +214,7 @@ class Pi_Sales_Notification_Analytics{
 
     public function handle_deactivation_form() {
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'pi_deactivate_nonce_' . $this->plugin_slug)) {
-            wp_die(__('Security check failed', 'conditional-discount-rule-woocommerce'));
+            wp_die(esc_html__('Security check failed', 'pisol-sales-notification'));
         }
 
         $plugin_slug = sanitize_text_field($_POST['plugin_slug'] ?? '');
@@ -232,7 +233,7 @@ class Pi_Sales_Notification_Analytics{
             if (is_super_admin()) {
                 deactivate_plugins($this->plugin_path, false, true); // network-wide
             } else {
-                wp_die(__('You do not have permission to deactivate a network plugin.', 'conditional-discount-rule-woocommerce'));
+                wp_die(esc_html__('You do not have permission to deactivate a network plugin.', 'pisol-sales-notification'));
             }
         } else {
             deactivate_plugins($this->plugin_path); // normal

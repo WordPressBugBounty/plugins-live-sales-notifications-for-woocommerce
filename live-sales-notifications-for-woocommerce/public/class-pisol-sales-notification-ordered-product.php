@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class pi_sn_ordered_products {
 	private $products = array();
 	private $popups = array();
@@ -45,6 +46,12 @@ class pi_sn_ordered_products {
 	function getProductsObj(){
 		
 		foreach($this->orders as $order){
+
+			$exclude_order = $order->get_meta( 'pisol_exclude_order', true );
+			if($exclude_order == 'on' || $exclude_order == 1){
+				continue;
+			}
+
 			$items = $order->get_items();
 			
 			if(count($this->products) >= $this->max_popup ){

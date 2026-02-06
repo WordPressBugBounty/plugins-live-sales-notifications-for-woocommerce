@@ -44,7 +44,8 @@
                 type: 'POST',
                 dataType: "json",
                 data: {
-                    action: 'pisol_live_orders'
+                    action: 'pisol_live_orders',
+                    _nonce: settings._nonce
                 },
                 url: settings.wc_ajax_url.toString().replace('%%endpoint%%', action),
                 success: function (msg) {

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 /*
 v1.0.6
 */
@@ -144,17 +145,17 @@ class pisol_sales_notification_review{
         $notice .= '<img style="max-width:90px; height:auto;" src="'.plugin_dir_url( __FILE__ ).'review-icon.svg" alt="pi web solution">';
         $notice .= '<div style="margin-left:20px;">';
         /* translators: Plugin title */
-        $notice .= '<p>'.sprintf(__("Hi there, You've been using <strong>%s</strong> on your site for a few days <br>- I hope it's been helpful. If you're enjoying my plugin, would you mind rating it 5-stars to help spread the word?"), $this->title).'</p>';
+        $notice .= '<p>'.sprintf(__("Hi there, You've been using <strong>%s</strong> on your site for a few days <br>- I hope it's been helpful. If you're enjoying my plugin, would you mind rating it 5-stars to help spread the word?", 'pisol-sales-notification'), $this->title).'</p>';
         $notice .= '<ul class="pi-flex" style="margin-top:15px;
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 20px;
         text-align: center;">';
-        $notice .= '<li><a val="later" class="pi-active-btn pisol-review-btn" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'later',  '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("Remind me later").'</a></li>';
-        $notice .= '<li><a  class="pi-active-btn pisol-review-btn" style="font-weight:bold;" val="given" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'now','_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'" target="_blank">'.__("Review Here").'</a></li>';
-        $notice .= '<li><a  class="pi-passive-btn pisol-review-btn" val="never" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'never', '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("I would not").'</a></li>';	 
+        $notice .= '<li><a val="later" class="pi-active-btn pisol-review-btn" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'later',  '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("Remind me later", 'pisol-sales-notification').'</a></li>';
+        $notice .= '<li><a  class="pi-active-btn pisol-review-btn" style="font-weight:bold;" val="given" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'now','_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'" target="_blank">'.__("Review Here", 'pisol-sales-notification').'</a></li>';
+        $notice .= '<li><a  class="pi-passive-btn pisol-review-btn" val="never" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'never', '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("I would not",'pisol-sales-notification').'</a></li>';	 
         if($this->buy_url && $this->price){   
             /* translators: Price */    
-            $notice .= '<li><a target="_blank" class="pi-buy-now-btn pisol-review-btn" val="never" href="'.esc_url($this->buy_url).'&utm_ref=review_reminder">'.sprintf(__("BUY PRO FOR %s"), $this->price).'</a></li>';	
+            $notice .= '<li><a target="_blank" class="pi-buy-now-btn pisol-review-btn" val="never" href="'.esc_url($this->buy_url).'&utm_ref=review_reminder">'.sprintf(__("BUY PRO FOR %s", 'pisol-sales-notification'), $this->price).'</a></li>';	
         }        
         $notice .= '</ul>';
         $notice .= '</div>';
@@ -198,12 +199,17 @@ class pisol_sales_notification_review{
                     break;
             }
             update_option($this->saved_value, $values);
-            wp_redirect($redirect);
+            add_filter('allowed_redirect_hosts', function( $hosts ) {
+                $hosts[] = 'wordpress.org';               // main site
+                return array_unique($hosts);
+            });
+            wp_safe_redirect($redirect);
+            exit;
     }
 
     function getInstallationDate(){
         $get_install_date = get_option($this->activation_date);
-        if(empty($get_install_date) || !$this->validateDate($get_install_date)){
+        if(empty($get_install_date) || !$this->validateDate($get_install_date, 'Y/m/d')){
             $now = current_time( "Y/m/d" );
             add_option( $this->activation_date, $now );
             return $now;
@@ -213,6 +219,8 @@ class pisol_sales_notification_review{
 
     function validateDate($date, $format = 'Y/m/d'){
         if ( empty($date) ) return false;
+
+        $format = isset($format) ? $format : 'Y/m/d'; // default format
         
         $d = DateTime::createFromFormat($format, $date);
         // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.

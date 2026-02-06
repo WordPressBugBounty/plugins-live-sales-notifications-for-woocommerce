@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
  * The public-facing functionality of the plugin.
@@ -42,6 +43,10 @@ class Pisol_Sales_Notification_Public extends stdClass{
 
 	public $settings = array();
 
+	const FIELD_ID = 'pisol/live-sales-exclude';
+
+	const LEGACY_META_KEY = 'pisol_exclude_order';
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -61,6 +66,19 @@ class Pisol_Sales_Notification_Public extends stdClass{
 		add_action('wp_ajax_pisol_live_orders', array($this,'getOrders') );
 		add_action('wp_ajax_nopriv_pisol_live_orders', array($this,'getOrders') );
 		add_action('wc_ajax_pisol_live_orders', array($this,'getOrders') );
+
+		if(get_option('pi_sn_exclusion_option',1) == 1){
+			add_filter( 'woocommerce_billing_fields' , array($this,'excludeFromLiveFeed') );
+			add_action( 'woocommerce_checkout_update_order_meta', array($this,'update_order_meta'),10,2 );
+
+			/**
+			 * Block based checkout page support
+			 */
+			add_action( 'woocommerce_init', [ $this, 'register_field' ] );
+
+			// Keep old integrations working: copy value into your legacy meta.
+			add_action( 'woocommerce_set_additional_field_value', [ $this, 'mirror_to_legacy_meta' ], 10, 4 );
+		}
 	}
 
 	public static function getSettings(){
@@ -314,6 +332,8 @@ class Pisol_Sales_Notification_Public extends stdClass{
 	}
 
 	function getOrders(){
+		check_ajax_referer( 'pi_sn_live_orders_nonce', '_nonce' );
+		
 		$orders = $this->popupsContent($this->settings);
 		$orders = $this->add_gttranslator($orders);
 		$orders = apply_filters('pisol_sn_orders_for_popup', $orders);
@@ -360,7 +380,8 @@ class Pisol_Sales_Notification_Public extends stdClass{
 				'audio_alert_enabled' => (empty($settings['pi_sn_enable_audio_alert']) ? false : true),
 				'audio_url'=> $this->audio_url(),
 				'ajax_url'=>admin_url( 'admin-ajax.php' ),
-				'max_notification_count'=> (int)get_option('pi_max_notification_count', '')
+				'max_notification_count'=> (int)get_option('pi_max_notification_count', ''),
+				'_nonce'=> wp_create_nonce('pi_sn_live_orders_nonce'),
 			);
 			return $setting;
 	}
@@ -438,5 +459,60 @@ class Pisol_Sales_Notification_Public extends stdClass{
 	}
 
 
-	
+	function excludeFromLiveFeed($fields){
+		$msg = get_option('pi_sn_exclusion_option_message',"Don't show my information in live sales feed");
+		$fields['pisol_exclude_order'] = array(
+			'label' => $msg,
+			'type'=>'checkbox'
+		);
+		return $fields;
+	}
+
+	function update_order_meta($order_id, $data){
+		$order = wc_get_order( $order_id );
+
+        if(empty($order)) return;
+
+        if ( isset( $_POST['pisol_exclude_order'] ) ) {
+			$order->update_meta_data( 'pisol_exclude_order', 'on' );
+			$order->save();
+        }
+    }
+
+	public function register_field() {
+		if ( ! function_exists( 'woocommerce_register_additional_checkout_field' ) ) {
+			return; // Woo too old or Blocks not available.
+		}
+
+		$msg = get_option('pi_sn_exclusion_option_message',"Don't show my information in live sales feed");
+
+		woocommerce_register_additional_checkout_field( [
+			'id'            => self::FIELD_ID,               // must be "namespace/field"
+			'label'         => $msg,
+			'optionalLabel' => $msg,
+			'location'      => 'order',                       // contact | address | order
+			'type'          => 'checkbox',                    // text | select | checkbox
+			'required'      => false,                         // set true if you want to force opt-out
+			'attributes'    => [
+				'autocomplete' => 'off',
+				'aria-describedby' => 'pisol-live-sales-exclude-help',
+			],
+		] );
+	}
+
+	public function mirror_to_legacy_meta( $key, $value, $group, $wc_object ) {
+		if ( self::FIELD_ID !== $key ) {
+			return;
+		}
+		// Only mirror on orders (group 'other' during checkout).
+		if ( $wc_object instanceof WC_Order ) {
+			$checked = ( $value === '1' || $value === 1 || $value === true );
+			if ( $checked ) {
+				$wc_object->update_meta_data( self::LEGACY_META_KEY, 'on' );
+			} else {
+				$wc_object->delete_meta_data( self::LEGACY_META_KEY );
+			}
+			$wc_object->save();
+		}
+	}
 }

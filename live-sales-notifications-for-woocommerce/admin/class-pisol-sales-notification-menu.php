@@ -14,6 +14,8 @@ class Pi_Sales_Menu{
         add_action($this->plugin_name.'_promotion', array($this,'promotion'));
 
         add_action( 'admin_enqueue_scripts', array($this,'removeConflictCausingScripts'), 1000 );
+
+        add_action('updated_option', [$this, 'clearSettingsCache'], 10, 1);
     }
 
     function plugin_menu(){
@@ -171,5 +173,11 @@ class Pi_Sales_Menu{
             </button>
         </form>
         <?php
+    }
+
+    function clearSettingsCache($option) {
+        if (strpos($option, 'pi_sn_') === 0) {
+            delete_transient('pi_sn_settings_cache');
+        }
     }
 }

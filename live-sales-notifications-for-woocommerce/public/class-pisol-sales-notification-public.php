@@ -58,6 +58,7 @@ class Pisol_Sales_Notification_Public extends stdClass{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		
 		$this->settings = self::getSettings();
 
 		remove_action('template_redirect', 'wc_track_product_view', 20);
@@ -82,6 +83,12 @@ class Pisol_Sales_Notification_Public extends stdClass{
 	}
 
 	public static function getSettings(){
+		$key = 'pi_sn_settings_cache';
+		$message_cache = get_transient($key);
+		if ( false !== $message_cache ) {
+			return $message_cache;
+		}
+
 		$settings = array();
 
 		/**
@@ -166,11 +173,12 @@ class Pisol_Sales_Notification_Public extends stdClass{
 		/**
 		 * Product selection method 
 		 */
-		$settings['pi_sn_product_selection'] = get_option('pi_sn_product_selection','recently-viewed-products');
+		$settings['pi_sn_product_selection'] = get_option('pi_sn_product_selection','selected-categories');
 
 		/* Audio */
 		$settings['pi_sn_enable_audio_alert'] = get_option('pi_sn_enable_audio_alert',0);
 
+		set_transient('pi_sn_settings_cache', $settings, 24 * HOUR_IN_SECONDS);
 		return $settings;
 	}
 

@@ -15,29 +15,41 @@ class pi_sn_ordered_products {
 	public $max_popup;
 	
 	function __construct(){
-		$this->max_popup = get_option("pi_sn_max_product_show",10);
+		static $cache = null;
 
-		$this->order_status = get_option("pi_sn_order_status",array('wc-completed'));
+		if ($cache === null) {
+			$cache = [
+				'pi_sn_max_product_show' => get_option("pi_sn_max_product_show", 10),
+				'pi_sn_order_status' => get_option("pi_sn_order_status", ['wc-completed']),
+				'pi_sn_time_unit' => get_option("pi_sn_time_unit", "day"),
+				'pi_sn_time_value' => (int) get_option("pi_sn_time_value", 1),
+				'pi_sn_remove_out_of_stock' => get_option('pi_sn_remove_out_of_stock', 1),
+			];
+		}
 		
-		$this->pi_sn_time_unit = get_option("pi_sn_time_unit","day"); // day, week, hour
-		$this->pi_sn_time_value = get_option("pi_sn_time_value",1);
+		$this->max_popup = $cache['pi_sn_max_product_show'];
 
-		$this->pi_sn_remove_out_of_stock = get_option('pi_sn_remove_out_of_stock',1);
+		$this->order_status = $cache['pi_sn_order_status'];
+		
+		$this->pi_sn_time_unit = $cache['pi_sn_time_unit']; // day, week, hour
+		$this->pi_sn_time_value = $cache['pi_sn_time_value'];
+
+		$this->pi_sn_remove_out_of_stock = $cache['pi_sn_remove_out_of_stock'];
 
 		$this->order_time = "-".$this->pi_sn_time_value." ".$this->pi_sn_time_unit;
-
+		
 		$this->getOrders();
 		$this->getProductsObj();
 		$this->createMessage();
 	}
 
 	function getOrders(){
-		
 		$args = array(
 			'status'=> $this->order_status,
 			'orderby' => 'date',
 			'order' => 'DESC',
 			'date_created' => '>' . ( strtotime($this->order_time) ),
+			'field' => 'ids',
 		);
 		$this->orders = wc_get_orders($args);
 		return shuffle($this->orders);
@@ -45,7 +57,8 @@ class pi_sn_ordered_products {
 
 	function getProductsObj(){
 		
-		foreach($this->orders as $order){
+		foreach($this->orders as $order_id){
+			$order = wc_get_order($order_id);
 
 			$exclude_order = $order->get_meta( 'pisol_exclude_order', true );
 			if($exclude_order == 'on' || $exclude_order == 1){

@@ -28,10 +28,14 @@ class pisol_sn_fake_order{
      * This provide first_name from custom names given by user
      */
     function getCustomFirstNames(){
-        $names_string = get_option('pi_sn_custom_first_name',"John\r\nSmith\r\nAdrianus\r\nDirk\r\nAldert");
-        if(empty($names_string)){
-            $names_string = "John\r\nSmith\r\nAdrianus\r\nDirk\r\nAldert";
+        static $names_string = null;
+        if ($names_string === null) {
+            $names_string = get_option('pi_sn_custom_first_name',"John\r\nSmith\r\nAdrianus\r\nDirk\r\nAldert");
+            if(empty($names_string)){
+                $names_string = "John\r\nSmith\r\nAdrianus\r\nDirk\r\nAldert";
+            }
         }
+
         $names_array = explode(PHP_EOL,$names_string);
         $selected_index = trim(array_rand($names_array));
         $name = $names_array[$selected_index];
@@ -42,10 +46,14 @@ class pisol_sn_fake_order{
      * This provide location from location stored by user
      */
     function getCustomLocation(){
-        $location_string = get_option('pi_sn_custom_location',"New York City, New York, USA\r\nBernau, Freistaat Bayern, Germany");
-        if($location_string == ""){
-            $location_string = "New York City, New York, USA\r\nBernau, Freistaat Bayern, Germany";
+        static $location_string = null;
+        if ($location_string === null) {
+            $location_string = get_option('pi_sn_custom_location',"New York City, New York, USA\r\nBernau, Freistaat Bayern, Germany");
+            if(empty($location_string)){
+                $location_string = "New York City, New York, USA\r\nBernau, Freistaat Bayern, Germany";
+            }
         }
+        
         $locations_array = explode(PHP_EOL,$location_string);
         foreach( $locations_array as $location_array){
             $locations[] = explode(",",$location_array);
@@ -63,8 +71,18 @@ class pisol_sn_fake_order{
     }
 
     function setTime(){
-        $this->pi_sn_time_unit = get_option("pi_sn_time_unit","day"); // day, week, hour
-        $this->pi_sn_time_value = get_option("pi_sn_time_value",1);
+        static $cache = null;
+
+        if ($cache === null) {
+            $cache = [
+                'unit'  => get_option('pi_sn_time_unit', 'day'),
+                'value' => (int) get_option('pi_sn_time_value', 1),
+            ];
+        }
+
+        $this->pi_sn_time_unit  = $cache['unit'];
+        $this->pi_sn_time_value = $cache['value'];
+
         $this->order_time = "-".$this->pi_sn_time_value." ".$this->pi_sn_time_unit;
 
         $present = time();

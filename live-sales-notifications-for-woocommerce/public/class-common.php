@@ -31,12 +31,18 @@ class pisol_sn_common{
     }
 
     public static function getMessage(){
+        static $message_cache = null;
+        if($message_cache !== null){
+            return $message_cache;
+        }
+
         $message = get_option('pi_sn_sales_message','{product_link} was purchased by {first_name} from {country}');
         $language_specific_message =  self::getLanguageMessage();
         if($language_specific_message){
             $message = $language_specific_message;
         }
-        return $message;
+        $message_cache = $message;
+        return $message_cache;
     }
 
     public static function getLanguageMessage(){

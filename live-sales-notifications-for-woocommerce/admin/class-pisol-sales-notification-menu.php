@@ -94,6 +94,7 @@ class Pi_Sales_Menu{
                             
                         </div>
                         <div class="col ">
+                        <?php do_action('pisol_sales_notification_dependency_install'); ?>
                         <?php do_action($this->plugin_name.'_tab_content'); ?>
                         </div>
                         <?php do_action($this->plugin_name.'_promotion'); ?>

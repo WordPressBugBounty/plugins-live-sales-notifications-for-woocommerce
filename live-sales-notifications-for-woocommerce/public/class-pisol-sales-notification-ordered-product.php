@@ -65,6 +65,14 @@ class pi_sn_ordered_products {
 				continue;
 			}
 
+			$required_tags = get_option('pi_sn_order_tags', array());
+			if(!empty($required_tags) && is_array($required_tags)){
+				$tag_ids = $order->get_meta('_aaot_order_tags', true);
+				if(empty($tag_ids) || !is_array($tag_ids) || empty(array_intersect($required_tags, $tag_ids))){
+					continue;
+				}
+			}
+
 			$items = $order->get_items();
 			
 			if(count($this->products) >= $this->max_popup ){

@@ -76,7 +76,7 @@ class pisol_sn_common{
             'link' => $link,
             'first_name' => $order->get_billing_first_name(),
             'city'=> $order->get_billing_city(),
-            'state' => isset(WC()->countries->countries[$order->get_billing_country()]) ? WC()->countries->get_states($order->get_billing_country())[$order->get_billing_state()] : $order->get_billing_state(),
+            'state' => isset(WC()->countries->countries[$order->get_billing_country()]) ? (isset(WC()->countries->get_states($order->get_billing_country())[$order->get_billing_state()]) ? WC()->countries->get_states($order->get_billing_country())[$order->get_billing_state()] : $order->get_billing_state()) : $order->get_billing_state(),
             'country' => isset(WC()->countries->countries[$order->get_billing_country()]) ? WC()->countries->countries[$order->get_billing_country()] : $order->get_billing_country(),
             'time'=> $order->get_date_created()->date(self::$pi_sn_time_format),
             'date'=> $order->get_date_created()->date(self::$pi_sn_date_format)

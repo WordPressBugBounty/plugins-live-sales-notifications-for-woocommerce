@@ -32,6 +32,7 @@ class Class_Pi_Sales_Notification_Product{
             array('field'=>'pi_sn_selected_product'),
             array('field'=>'pi_sn_selected_category'),
             array('field'=>'pi_sn_order_status'),
+            array('field'=>'pi_sn_order_tags'),
             array('field'=>'pi_sn_time_unit'),
             array('field'=>'pi_sn_time_value'),
             array('field'=>'pi_sn_max_product_show'),
@@ -93,6 +94,11 @@ class Class_Pi_Sales_Notification_Product{
        $pi_sn_time_unit = get_option("pi_sn_time_unit",'day');
        $pi_sn_time_value = get_option("pi_sn_time_value",1);
        $pi_sn_max_product_show = get_option("pi_sn_max_product_show",10);
+
+       $selected_tags = get_option('pi_sn_order_tags', array());
+       if(empty($selected_tags) || !is_array($selected_tags)){
+            $selected_tags = array();
+       }
        ?>
         <form method="post" action="options.php"  class="pisol-setting-form">
         <?php settings_fields( $this->setting_key ); ?>
@@ -120,6 +126,35 @@ class Class_Pi_Sales_Notification_Product{
                     </select>
                 </div>
             </div>
+
+            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
+                <div class="col-12">
+                <h2 class="mt-0 mb-0 text-light font-weight-light h4">Order tags</h2>
+                </div>
+            </div>
+            <?php do_action('pisol_sales_notification_dependency_install'); ?>
+            <div class="row py-4 border-bottom align-items-center ">
+                <div class="col-6">
+                    <label for="pi_sn_order_tags" class="h6">Order tags to consider</label><br>
+                    <small>Only order with these tags will be considered for the popup, leave blank if you want to consider all orders</small>
+                </div>
+                <div class="col-6">
+                    <?php 
+                        $tags = self::get_tags();
+                        if(empty($tags)){
+                            echo '<p>'.__('No order tag found, create order tags in WooCommerce > Order Tags ', 'live-sales-notifications-for-woocommerce').'</p>';
+                        }else{
+                    ?>
+                    <select id="pi_sn_order_tags" multiple name="pi_sn_order_tags[]" style="width:100%;" class="form-control">
+                        <?php 
+                            foreach($tags as $tag_id => $tag_name){
+                                echo '<option value="'.esc_attr($tag_id).'" '.(in_array($tag_id, $selected_tags) ? 'selected="selected"' : '').'>'.esc_html($tag_name).'</option>';
+                            }
+                        ?>
+                    </select>
+                    <?php } ?>
+                </div>
+            </div>               
             
         </div>
         
@@ -249,6 +284,19 @@ class Class_Pi_Sales_Notification_Product{
         </form>
        <?php
     }
+
+    static function get_tags(){
+        $tags_objs = get_posts( array(
+        'post_type'      => 'pisol_aaot_tags',
+        'numberposts'    => -1,
+        ));
+        $tags = [];
+        foreach($tags_objs as $tag_obj){
+            $tags[$tag_obj->ID] = $tag_obj->post_title;
+        }
+        return $tags;
+    }
+
 
     public function search_product( $x = '', $post_types = array( 'product' ) ) {
 

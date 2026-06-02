@@ -102,7 +102,7 @@
 			}
 		});
 
-		$("#pi_sn_order_status").selectWoo();
+		$("#pi_sn_order_status, #pi_sn_order_tags").selectWoo();
 		/* End product selection tab */
 
 	});

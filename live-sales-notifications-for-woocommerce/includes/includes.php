@@ -6,6 +6,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/pisol.class.prom
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/review.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/conflict-fixer.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/Pro_Warning.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/dependency.php';
 
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-pisol-sales-notification-menu.php';
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-pisol-sales-notification-option.php';

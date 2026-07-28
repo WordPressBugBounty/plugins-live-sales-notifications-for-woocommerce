@@ -140,7 +140,7 @@ class Pi_Sales_Menu{
                         <li class="h6">✓ Exclude out-of-stock</li>
                     </ul>
                     <br>
-                    <h4 class="pi-bottom-banner">💰 Only <?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?> <small>Billed yearly</small></h4>
+                    <h4 class="pi-bottom-banner"><?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?> <small>only</small></h4>
                     <div class="mt-2 text-center">
                         <a class="btn btn-primary" id="prime-button" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">🔓 Unlock Pro Now – Limited Time Price!</a>
                     </div>

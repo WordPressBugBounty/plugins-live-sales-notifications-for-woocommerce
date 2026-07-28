@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              piwebsolution.com
- * @since             2.3.66
+ * @since             2.3.67
  * @package           Pisol_Sales_Notification
  *
  * @wordpress-plugin
  * Plugin Name:       PiWeb Live sales notification for WooCommerce
  * Plugin URI:        https://www.piwebsolution.com/user-documentation-live-sales-notification-for-woocommerce/
  * Description:       Showing live sales notification, encourages your visitors to buy from you as they can see how others are also buying from you
- * Version:           2.3.66
+ * Version:           2.3.67
  * Author:            PI Websolution
  * Author URI:        https://piwebsolution.com
  * License:           GPL-2.0+
@@ -64,7 +64,7 @@ if(is_plugin_active( 'live-sales-notifications-for-woocommerce-pro/pisol-sales-n
 }else{
 
 define('PI_SALES_NOTIFICATION_BUY_URL', 'https://www.piwebsolution.com/checkout/?add-to-cart=1320&variation_id=1321&utm_campaign=live-sales-free-plugin&utm_source=website&utm_medium=direct-buy');
-define('PI_SALES_NOTIFICATION_PRICE', '$1.8 / month');
+define('PI_SALES_NOTIFICATION_PRICE', '$19');
 define('PI_SALES_NOTIFICATION_DELETE_SETTING', false);
 define( 'PISOL_SALES_NOTIFICATION_WOOCOMMERCE_PLUGIN_URL',  plugin_dir_url( __FILE__ )  );
 /**
@@ -72,7 +72,7 @@ define( 'PISOL_SALES_NOTIFICATION_WOOCOMMERCE_PLUGIN_URL',  plugin_dir_url( __FI
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PISOL_SALES_NOTIFICATION_VERSION', '2.3.66' );
+define( 'PISOL_SALES_NOTIFICATION_VERSION', '2.3.67' );
 
 /**
  * The code that runs during plugin activation.

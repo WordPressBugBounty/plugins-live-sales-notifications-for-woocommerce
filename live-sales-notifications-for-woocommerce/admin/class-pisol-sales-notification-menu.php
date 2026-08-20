@@ -37,6 +37,7 @@ class Pi_Sales_Menu{
     public function bootstrap_style() {
         
 		wp_enqueue_style( $this->plugin_name."_bootstrap", plugin_dir_url( __FILE__ ) . 'css/bootstrap.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name."_promotion", plugin_dir_url( __FILE__ ) . 'css/promotion.css', array(), $this->version, 'all' );
 
         wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pisol-sales-notification-admin.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'select2', WC()->plugin_url() . '/assets/css/select2.css', [], $this->version);
@@ -110,43 +111,103 @@ class Pi_Sales_Menu{
 
     function promotion(){
         ?>
-        <div class="col-3 border-left">
-           <div class="pi-shadow p-3 mt-3 rounded">
-            <h2 id="pi-banner-tagline" class="mb-0" style="color:#ccc !important;">⭐️⭐️⭐️⭐️⭐️ <br><br> Trusted by <span style="color:#fff;">60,000+</span> WooCommerce Stores <br> – Users love it</h2>
-                <div class="inside mt-2">
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
-                        <li class="h6 font-weight-bold"><b>✅ Privacy & Control</b></li>
-                        <li class="h6">✓ Hide specific orders</li>
-                        <li class="h6">✓ Customer opt-out</li>
-                        <li class="h6">✓ Page targeting</li>
-                        <li class="h6">✓ Dismiss option</li>
-                    </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
-                        <li class="h6 font-weight-bold"><b>🎨 Customization</b></li>
-                        <li class="h6">✓ Custom animation</li>
-                        <li class="h6">✓ Background image</li>
-                        <li class="h6">✓ Placeholder image</li>
-                        <li class="h6">✓ Audio alert</li>
-                    </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2">
-                        <li class="h6 font-weight-bold"><b>📈 Boost Sales</b></li>
-                        <li class="h6">✓ Show visitor country</li>
-                        <li class="h6">✓ Stock remaining alert</li>
-                        <li class="h6">✓ Time since order placed</li>
-                    </ul>
-                    <ul class="text-left pisol-pro-feature-list mb-3 mt-3 pl-2 mb-3">
-                        <li class="h6 font-weight-bold"><b>📅 Flexible Order Feed</b></li>
-                        <li class="h6">✓ Set order age</li>
-                        <li class="h6">✓ Exclude out-of-stock</li>
-                    </ul>
-                    <br>
-                    <h4 class="pi-bottom-banner"><?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?> <small>only</small></h4>
-                    <div class="mt-2 text-center">
-                        <a class="btn btn-primary" id="prime-button" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">🔓 Unlock Pro Now – Limited Time Price!</a>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-12 border-left">
+           <div class="pisol-sn-pro-banner">
+
+                <div class="pisol-sn-proof">
+
+                    <!-- Signature: a mockup of the live notification this plugin actually
+                        produces on the storefront. Swap the name/city/product/time for
+                        real (or better, rotating) example data before shipping — these
+                        three values are placeholders, not copied from anywhere. -->
+                    <div class="pisol-sn-toast">
+                    <span class="pisol-sn-toast-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/><path d="M2.5 3h2l2.3 11.4a2 2 0 002 1.6h7.7a2 2 0 002-1.6L20 7.5H6"/></svg>
+                    </span>
+                    <div class="pisol-sn-toast-copy">
+                        <strong>Someone in New York</strong>
+                        <span>just purchased a product</span>
+                        <em><span class="pisol-sn-live-dot"></span>2 minutes ago</em>
                     </div>
+                    </div>
+
+                    <div class="pisol-sn-stars" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.1 6.6L12 17.5 6.2 20.6l1.1-6.6-4.8-4.6 6.6-.9L12 2.5z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.1 6.6L12 17.5 6.2 20.6l1.1-6.6-4.8-4.6 6.6-.9L12 2.5z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.1 6.6L12 17.5 6.2 20.6l1.1-6.6-4.8-4.6 6.6-.9L12 2.5z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.1 6.6L12 17.5 6.2 20.6l1.1-6.6-4.8-4.6 6.6-.9L12 2.5z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.1 6.6L12 17.5 6.2 20.6l1.1-6.6-4.8-4.6 6.6-.9L12 2.5z"/></svg>
+                    </div>
+                    <p class="pisol-sn-trust-copy">Trusted by <strong>30,000+</strong> WooCommerce Stores &ndash; Users love it</p>
+
                 </div>
-            </div>
-    </div>
+
+                <div class="pisol-sn-body">
+
+                    <div class="pisol-sn-section">
+                    <h4 class="pisol-sn-section-title">
+                        <span class="pisol-sn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/></svg></span>
+                        Privacy &amp; Control
+                    </h4>
+                    <ul class="pisol-sn-list">
+                        <li>Hide specific orders</li>
+                        <li>Customer opt-out</li>
+                        <li>Page targeting</li>
+                        <li>Dismiss option</li>
+                    </ul>
+                    </div>
+
+                    <div class="pisol-sn-section">
+                    <h4 class="pisol-sn-section-title">
+                        <span class="pisol-sn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 100 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.9-.5-1.4 0-1.1.9-2 2-2h2.3A4.7 4.7 0 0021 9.7 9 9 0 0012 3z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/><circle cx="17" cy="11" r="1"/></svg></span>
+                        Customization
+                    </h4>
+                    <ul class="pisol-sn-list">
+                        <li>Custom animation</li>
+                        <li>Background image</li>
+                        <li>Placeholder image</li>
+                        <li>Audio alert</li>
+                    </ul>
+                    </div>
+
+                    <div class="pisol-sn-section">
+                    <h4 class="pisol-sn-section-title">
+                        <span class="pisol-sn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 6"/><polyline points="14 6 21 6 21 13"/></svg></span>
+                        Boost Sales
+                    </h4>
+                    <ul class="pisol-sn-list">
+                        <li>Show visitor country</li>
+                        <li>Stock remaining alert</li>
+                        <li>Time since order placed</li>
+                    </ul>
+                    </div>
+
+                    <div class="pisol-sn-section pisol-sn-section-last">
+                    <h4 class="pisol-sn-section-title">
+                        <span class="pisol-sn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span>
+                        Flexible Order Feed
+                    </h4>
+                    <ul class="pisol-sn-list">
+                        <li>Set order age</li>
+                        <li>Exclude out-of-stock</li>
+                    </ul>
+                    </div>
+
+                </div>
+
+                <div class="pisol-sn-price-block">
+                    <div class="pisol-sn-price">
+                    <span class="pisol-sn-price-amount"><?php echo esc_html(PI_SALES_NOTIFICATION_PRICE); ?></span>
+                    <span class="pisol-sn-price-suffix">only</span>
+                    </div>
+                    <a href="<?php echo esc_url(PI_SALES_NOTIFICATION_PRODUCT_PAGE_URL); ?>" target="_blank" class="pisol-sn-cta">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 018 0v3"/></svg>
+                    Unlock Pro Now &ndash; Limited Time Price!
+                    </a>
+                </div>
+
+          </div>
+        </div>
         <?php
     }
 

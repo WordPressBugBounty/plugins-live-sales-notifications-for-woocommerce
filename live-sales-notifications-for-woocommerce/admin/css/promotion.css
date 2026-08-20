@@ -1,0 +1,220 @@
+/* Optional — remove this line if you don't want an external font request.
+   Everything below already has a solid system-font fallback either way. */
+
+/* ==========================================================================
+   PISOL Sales Notification — Pro Upsell Sidebar Banner
+   Scoped entirely under .pisol-sn-pro-banner so it survives WP admin /
+   theme / other-plugin CSS on the same page. Paste this whole file into
+   your plugin's admin CSS file (or enqueue it on the settings page only).
+   ========================================================================== */
+
+/* --- Hard reset for everything inside the banner --- */
+.pisol-sn-pro-banner,
+.pisol-sn-pro-banner * {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  text-align: left !important;
+  list-style: none !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  line-height: 1.5 !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* --- Outer card --- */
+.pisol-sn-pro-banner {
+  --pisol-ink: #101828;
+  --pisol-ink-soft: #5b6472;
+  --pisol-accent: #ff5630;
+  --pisol-accent-dark: #e8481f;
+  --pisol-success: #12b76a;
+  --pisol-gold: #f79009;
+  --pisol-border: #e7eaee;
+  --pisol-surface: #ffffff;
+  --pisol-surface-tint: #fff6f2;
+
+  display: block !important;
+  max-width: 340px !important;
+  width: 100% !important;
+  background: var(--pisol-surface) !important;
+  border: 1px solid var(--pisol-border) !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.06) !important;
+  margin: 15px auto !important;
+}
+
+/* --- Proof header (soft tint) --- */
+.pisol-sn-proof {
+  display: block !important;
+  padding: 22px 20px 20px !important;
+  background: linear-gradient(180deg, var(--pisol-surface-tint) 0%, var(--pisol-surface) 100%) !important;
+  border-bottom: 1px solid var(--pisol-border) !important;
+}
+
+/* Signature element: floating live-notification mockup showing the
+   plugin's actual output, not just a checklist */
+.pisol-sn-toast {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  background: var(--pisol-surface) !important;
+  border: 1px solid var(--pisol-border) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 6px 16px rgba(16,24,40,.08) !important;
+  transform: rotate(-1.4deg) !important;
+  margin-bottom: 16px !important;
+}
+.pisol-sn-toast-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 9px !important;
+  background: var(--pisol-surface-tint) !important;
+  color: var(--pisol-accent) !important;
+}
+.pisol-sn-toast-icon svg { width: 18px !important; height: 18px !important; display: block !important; }
+.pisol-sn-toast-copy { display: block !important; min-width: 0 !important; }
+.pisol-sn-toast-copy strong {
+  display: block !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: var(--pisol-ink) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.pisol-sn-toast-copy span {
+  display: block !important;
+  font-size: 12px !important;
+  color: var(--pisol-ink-soft) !important;
+  margin-top: 1px !important;
+}
+.pisol-sn-toast-copy em {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-style: normal !important;
+  font-size: 11px !important;
+  color: var(--pisol-success) !important;
+  font-weight: 600 !important;
+  margin-top: 4px !important;
+}
+.pisol-sn-live-dot {
+  display: inline-block !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: var(--pisol-success) !important;
+  animation: pisol-pulse 1.6s ease-in-out infinite !important;
+}
+@keyframes pisol-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .4; transform: scale(.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pisol-sn-live-dot { animation: none !important; }
+}
+
+/* Stars + trust line */
+.pisol-sn-stars {
+  display: flex !important;
+  gap: 3px !important;
+  margin-bottom: 8px !important;
+}
+.pisol-sn-stars svg { width: 15px !important; height: 15px !important; color: var(--pisol-gold) !important; display: block !important; }
+.pisol-sn-trust-copy {
+  display: block !important;
+  font-size: 13px !important;
+  color: var(--pisol-ink-soft) !important;
+}
+.pisol-sn-trust-copy strong { color: var(--pisol-ink) !important; font-weight: 700 !important; }
+
+/* Feature sections */
+.pisol-sn-body { display: block !important; padding: 6px 20px 4px !important; }
+.pisol-sn-section { display: block !important; padding: 14px 0 !important; border-bottom: 1px solid var(--pisol-border) !important; }
+.pisol-sn-section-last { border-bottom: 0 !important; }
+
+.pisol-sn-section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  color: var(--pisol-ink) !important;
+  margin-bottom: 10px !important;
+}
+.pisol-sn-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 8px !important;
+  background: #f5f6f8 !important;
+  color: var(--pisol-ink) !important;
+  flex-shrink: 0 !important;
+}
+.pisol-sn-icon svg { width: 14px !important; height: 14px !important; display: block !important; }
+
+.pisol-sn-list { display: block !important; }
+.pisol-sn-list li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  font-size: 13px !important;
+  color: var(--pisol-ink-soft) !important;
+  padding: 4px 0 4px 1px !important;
+}
+.pisol-sn-list li::before {
+  content: '' !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  width: 15px !important;
+  height: 15px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='10' fill='%2312b76a'/%3E%3Cpath d='M6 10.3l2.4 2.4L14 7.3' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* Price + CTA footer — deliberately dark to contrast the light body
+   and pull the eye straight to the button */
+.pisol-sn-price-block {
+  display: block !important;
+  margin-top: 4px !important;
+  padding: 20px !important;
+  background: var(--pisol-ink) !important;
+  text-align: center !important;
+}
+.pisol-sn-price { display: flex !important; align-items: baseline !important; justify-content: center !important; gap: 6px !important; margin-bottom: 14px !important; }
+.pisol-sn-price-amount { font-family: 'Sora', 'Inter', sans-serif !important; font-size: 30px !important; font-weight: 700 !important; color: #ffffff !important; }
+.pisol-sn-price-suffix { font-size: 13px !important; color: #9aa2b1 !important; font-weight: 500 !important; }
+
+.pisol-sn-cta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 13px 14px !important;
+  background: var(--pisol-accent) !important;
+  color: #ffffff !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  border-radius: 11px !important;
+  cursor: pointer !important;
+  transition: background .15s ease, transform .15s ease !important;
+}
+.pisol-sn-cta:hover { background: var(--pisol-accent-dark) !important; transform: translateY(-1px) !important; color: #ffffff !important; }
+.pisol-sn-cta svg { width: 15px !important; height: 15px !important; flex-shrink: 0 !important; display: block !important; }
+
+@media (max-width: 300px) {
+  .pisol-sn-proof, .pisol-sn-body { padding-left: 14px !important; padding-right: 14px !important; }
+  .pisol-sn-price-block { padding: 16px !important; }
+}

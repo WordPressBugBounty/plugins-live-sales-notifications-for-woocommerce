@@ -23,7 +23,7 @@ class pisol_sales_notification_review{
         $this->activation_date = "pi_review_activation_date_{$this->slug}";
         $this->saved_value = "pi_review_saved_value_{$this->slug}";
         $this->review_url = "https://wordpress.org/support/plugin/{$this->slug}/reviews/?rate=5#new-post";
-        $this->review_after = 6;
+        $this->review_after = 14;
         $this->buy_url = $buy_url;
         $this->price = $price;
 
@@ -126,6 +126,7 @@ class pisol_sales_notification_review{
         
         .pi-active-btn {
             background-color: #00adb5;
+            color:#fff !important;
         }
         
         .pi-passive-btn {
@@ -134,6 +135,7 @@ class pisol_sales_notification_review{
 
         .pi-buy-now-btn {
             background-color: #ee6443;
+            color:#fff !important;
         }
 
         .pi-flex{
@@ -145,13 +147,16 @@ class pisol_sales_notification_review{
         $notice .= '<img style="max-width:90px; height:auto;" src="'.plugin_dir_url( __FILE__ ).'review-icon.svg" alt="pi web solution">';
         $notice .= '<div style="margin-left:20px;">';
         /* translators: Plugin title */
-        $notice .= '<p>'.sprintf(__("Are your sales notifications working as expected?", 'pisol-sales-notification'), $this->title).'</p>';
+        $notice .= '<p>'.sprintf(__("You've been using <strong>%s</strong> for a few weeks now <br>— hope it's been working well for you! Would you like to leave a review to help spread the word?", 'pisol-sales-notification'), $this->title).'</p>';
         $notice .= '<ul class="pi-flex" style="margin-top:15px;
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 20px;
         text-align: center;">';
-        $notice .= '<li><a  class="pi-active-btn pisol-review-btn" style="font-weight:bold;" val="given" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'now','_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'" target="_blank">'.__("Yes", 'pisol-sales-notification').'</a></li>';
-        $notice .= '<li><a val="later" class="pi-active-btn pisol-review-btn" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'later',  '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("No", 'pisol-sales-notification').'</a></li>';
+        $notice .= '<li><a  class="pi-active-btn pisol-review-btn" style="font-weight:bold; text-decoration:none;" val="given" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'now','_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'" target="_blank">'.__("Sure, I'll review",'pisol-sales-notification').'</a></li>';
+        
+        $notice .= '<li><a  class="pi-active-btn pisol-review-btn" style="font-weight:bold; text-decoration:none;" val="given" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'now','_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'" target="_blank">'.__("Want to suggest improvement",'pisol-sales-notification').'</a></li>';
+        
+        $notice .= '<li><a val="later" class="pi-active-btn pisol-review-btn" style="text-decoration:none;" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'later',  '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("No thanks",'pisol-sales-notification').'</a></li>';
         //$notice .= '<li><a  class="pi-passive-btn pisol-review-btn" val="never" href="'.add_query_arg(array('action' => "pi_save_review_preference_{$this->slug}", 'preference'=>'never', '_wpnonce'=>wp_create_nonce( "pi_save_review_preference_{$this->slug}" )), admin_url('admin-post.php')).'">'.__("I would not",'pisol-sales-notification').'</a></li>';	 
         if($this->buy_url && $this->price){   
             /* translators: Price */    

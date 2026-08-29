@@ -2,9 +2,9 @@
 Contributors: rajeshsingh520
 Tags: recent sales notification, fake notification, WooCommerce notification, sales notification, live sales feed, boost sales
 Requires at least: 3.0.1
-Tested up to: 7.0
+Tested up to: 7.1
 License: GPLv2 or later
-Stable tag: 2.3.70
+Stable tag: 2.3.71
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Fake sales alert for WooCommerce or Live sales notification for WooCommerce. Boost sales by encouraging your visitors to buy when they see your live new order notification popup.
@@ -31,6 +31,7 @@ Here are some of the important features of the Live sales notification for WooCo
 * **Select products from categories** to create virtual orders
 * Fast and lightweight.
 * Boosts sales and conversion rate.
+* 10 Prebuild theme for the notification popup; you can select any theme from the settings
 
 = Layout features =
 You can control the complete look and feel of the notification from the plugin settings
@@ -142,6 +143,9 @@ Yes, the Free version and PRO version both are HPOS compatible
 Yes, you can show the visitor's actual country in fake sales popups to create a sense of familiarity and trust, increasing the likelihood of their purchase. This is available in the PRO version.
 
 == Changelog ==
+
+= 2.3.71 =
+* 10 theme added and theme6 is default theme now, you can swith to your previous theme from setting by selecting custom theme 
 
 = 2.3.70 =
 * banner change

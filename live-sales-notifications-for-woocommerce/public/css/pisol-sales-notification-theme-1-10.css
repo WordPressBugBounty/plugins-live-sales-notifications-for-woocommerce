@@ -1,0 +1,993 @@
+/* ============================================================================
+   Live Sales Notifications — Popup Themes
+   Scope selectors: .pi-popup-theme-theme1 … .pi-popup-theme-theme6
+   Works with the existing markup unchanged:
+
+   <div class="animated pi-popup bounceIn pi-popup-theme-themeN">
+     <div class="pi-popup-image"><a href="..."><img src="..."></a></div>
+     <div class="pi-popup-content">
+       <a class="pi-product_link" href="...">Hoodie</a> was purchased by
+       <span class="pi-first_name">Dirk</span> from
+       <span class="pi-country">USA</span>.
+       <span class="pi-state">New York</span>
+       <a class="pi-popup-close" href="javascript:void(0)"><img src="close.png"></a>
+       <div class="pi-bottom-block">
+         <small class="time-elapsed">1 week ago</small>
+         <small class="stock-left">Only 1 left</small>
+       </div>
+     </div>
+   </div>
+
+   NOTE: this file intentionally does NOT set position / top / left / right /
+   bottom / z-index — you told me that's already handled elsewhere, so I've
+   left it alone. Everything below is visual (box, color, type, icons) plus
+   a mobile breakpoint for size/spacing only.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   Reusable icons (drawn as CSS masks so they can be recolored per theme with
+   nothing but `color`). No image assets required.
+   ------------------------------------------------------------------------ */
+:root {
+  --pi-icon-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpolyline points='12 7 12 12 15 14'/%3E%3C/svg%3E");
+  --pi-icon-cart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='21' r='1'/%3E%3Ccircle cx='20' cy='21' r='1'/%3E%3Cpath d='M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6'/%3E%3C/svg%3E");
+  --pi-corner-tl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M1 7V1H7' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --pi-corner-tr: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M13 1H19V7' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --pi-corner-bl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M1 13V19H7' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --pi-corner-br: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M19 13V19H13' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   Base structure — shared by all 6 themes. Each theme below only overrides
+   color / shape / spacing on top of this.
+   ------------------------------------------------------------------------ */
+.pi-popup,
+.pi-popup * {
+  box-sizing: border-box;
+}
+
+.pi-popup {
+  display: flex;
+  align-items: stretch;
+  width: 400px;
+  max-width: calc(100vw - 24px);
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15, 23, 42, 0.06);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  text-decoration: none;
+}
+
+.pi-popup-image {
+  flex-shrink: 0;
+  width: 92px;
+  background: #f1f2f4;
+}
+
+.pi-popup-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pi-popup-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pi-popup-content {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 16px 34px 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.pi-product_link {
+  font-weight: 700;
+  color: #16181d;
+  text-decoration: none;
+}
+
+.pi-popup-content .pi-first_name,
+.pi-popup-content .pi-country,
+.pi-popup-content .pi-state {
+  font-weight: 600;
+  color: #16181d;
+}
+
+.pi-popup-close {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+  text-decoration: none;
+}
+
+.pi-popup-close:hover {
+  opacity: 1;
+}
+
+.pi-popup-close img {
+  width: 9px;
+  height: 9px;
+  object-fit: contain;
+}
+
+.pi-bottom-block {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.pi-bottom-block .time-elapsed,
+.pi-bottom-block .stock-left {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.pi-bottom-block .time-elapsed {
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  color: #8b7fd1;
+  font-weight: 500;
+}
+
+.pi-bottom-block .time-elapsed::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  background-color: currentColor;
+  -webkit-mask-image: var(--pi-icon-clock);
+  mask-image: var(--pi-icon-clock);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.pi-bottom-block .stock-left {
+  color: #ef4770;
+}
+
+.pi-bottom-block .stock-left::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+
+/* ============================================================================
+   THEME 1 — Clean white card
+   ========================================================================== */
+.pi-popup-theme-theme1 {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.pi-popup-theme-theme1 .pi-popup-image {
+  background: #f1f2f4;
+}
+
+
+/* ============================================================================
+   THEME 2 — Warm cream, accent left edge, image on the right
+   ========================================================================== */
+.pi-popup-theme-theme2 {
+  position: relative;
+  flex-direction: row-reverse;
+  background: linear-gradient(135deg, #fdf6ec 0%, #f6e8d5 100%);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(120, 78, 30, 0.14), 0 2px 8px rgba(120, 78, 30, 0.08);
+}
+
+.pi-popup-theme-theme2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #cf9c5f 0%, #8a5a2a 100%);
+}
+
+.pi-popup-theme-theme2 .pi-popup-image {
+  background: #f2e3cd;
+}
+
+.pi-popup-theme-theme2 .pi-popup-content {
+  padding: 16px 16px 14px 20px;
+  color: #937b5f;
+}
+
+.pi-popup-theme-theme2 .pi-product_link {
+  color: #3a2a18;
+}
+
+.pi-popup-theme-theme2 .pi-first_name,
+.pi-popup-theme-theme2 .pi-country,
+.pi-popup-theme-theme2 .pi-state {
+  color: #3a2a18;
+}
+
+.pi-popup-theme-theme2 .time-elapsed {
+  color: #a9814f;
+  border-right-color: rgba(138, 90, 42, 0.2);
+}
+
+.pi-popup-theme-theme2 .stock-left {
+  color: #e07b39;
+}
+
+
+/* ============================================================================
+   THEME 3 — Full pill / capsule, circular avatar image
+   ========================================================================== */
+.pi-popup-theme-theme3 {
+  align-items: center;
+  padding: 8px 26px 8px 8px;
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15, 23, 42, 0.06);
+  overflow: visible;
+}
+
+.pi-popup-theme-theme3 .pi-popup-image {
+  width: 78px;
+  height: 78px;
+  margin-right: 16px;
+  border-radius: 50%;
+  background: #ececec;
+  overflow: hidden;
+}
+
+.pi-popup-theme-theme3 .pi-popup-content {
+  padding: 0;
+  color: #6b7280;
+}
+
+.pi-popup-theme-theme3 .pi-popup-close {
+  top: -6px;
+  right: 6px;
+}
+
+.pi-popup-theme-theme3 .time-elapsed {
+  color: #9aa0ab;
+  border-right-color: rgba(0, 0, 0, 0.1);
+}
+
+.pi-popup-theme-theme3 .stock-left {
+  color: #ec4d6b;
+}
+
+
+/* ============================================================================
+   THEME 4 — Dark, glowing purple edge
+   ========================================================================== */
+.pi-popup-theme-theme4 {
+  background: linear-gradient(135deg, #100b22 0%, #1c1332 100%);
+  border: 1px solid rgba(147, 51, 234, 0.45);
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.12),
+    0 10px 30px rgba(76, 29, 149, 0.5),
+    0 0 34px -6px rgba(168, 85, 247, 0.55);
+}
+
+.pi-popup-theme-theme4 .pi-popup-image {
+  background: radial-gradient(circle at 30% 20%, #2a1c47, #0c0818 75%);
+}
+
+.pi-popup-theme-theme4 .pi-popup-content {
+  color: #b7b0d6;
+}
+
+.pi-popup-theme-theme4 .pi-product_link {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme4 .pi-first_name,
+.pi-popup-theme-theme4 .pi-country,
+.pi-popup-theme-theme4 .pi-state {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme4 .pi-popup-close img {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.pi-popup-theme-theme4 .time-elapsed {
+  color: #b79bfa;
+  border-right-color: rgba(183, 155, 250, 0.2);
+}
+
+.pi-popup-theme-theme4 .stock-left {
+  color: #c084fc;
+}
+
+.pi-popup-theme-theme4 .stock-left::before {
+  box-shadow: 0 0 6px currentColor;
+}
+
+
+/* ============================================================================
+   THEME 5 — Dark green, angled cut, lime accents, image on the right
+   ========================================================================== */
+.pi-popup-theme-theme5 {
+  background: #f3efe3;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(10, 40, 20, 0.18), 0 2px 8px rgba(10, 40, 20, 0.10);
+  border-left: 6px solid #b6f24b;
+}
+
+.pi-popup-theme-theme5 .pi-popup-image {
+  background: #f3efe3;
+}
+
+.pi-popup-theme-theme5 .pi-popup-content {
+  position: relative;
+  z-index: 1;
+  margin-right: -14px;
+  padding: 16px 30px 14px 52px;
+  background: linear-gradient(135deg, #123a24 0%, #0d2818 100%);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.pi-popup-theme-theme5 .pi-popup-content::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #b6f24b;
+}
+
+.pi-popup-theme-theme5 .pi-popup-content::after {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 23px;
+  width: 12px;
+  height: 12px;
+  background-color: #0d2818;
+  -webkit-mask-image: var(--pi-icon-cart);
+  mask-image: var(--pi-icon-cart);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pi-popup-theme-theme5 .pi-product_link {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme5 .pi-first_name,
+.pi-popup-theme-theme5 .pi-country,
+.pi-popup-theme-theme5 .pi-state {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme5 .pi-popup-close img {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.pi-popup-theme-theme5 .pi-bottom-block {
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pi-popup-theme-theme5 .time-elapsed {
+  color: rgba(255, 255, 255, 0.85);
+  border-right-color: rgba(255, 255, 255, 0.18);
+}
+
+.pi-popup-theme-theme5 .stock-left {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: #b6f24b;
+  color: #0d2818;
+}
+
+.pi-popup-theme-theme5 .stock-left::before {
+  content: none;
+}
+
+
+/* ============================================================================
+   THEME 6 — White with lavender corner brackets, circular avatar
+   ========================================================================== */
+.pi-popup-theme-theme6 {
+  align-items: center;
+  padding: 8px 10px;
+  background-color: #ffffff;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(76, 29, 149, 0.10), 0 2px 8px rgba(76, 29, 149, 0.06);
+  background-image: var(--pi-corner-tl), var(--pi-corner-tr), var(--pi-corner-bl), var(--pi-corner-br);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: top 8px left 8px, top 8px right 8px, bottom 8px left 8px, bottom 8px right 8px;
+  background-size: 16px 16px, 16px 16px, 16px 16px, 16px 16px;
+}
+
+.pi-popup-theme-theme6 .pi-popup-image {
+  width: 76px;
+  height: 76px;
+  margin-right: 14px;
+  border-radius: 50%;
+  background: #ede9fe;
+  overflow: hidden;
+}
+
+.pi-popup-theme-theme6 .pi-popup-content {
+  padding: 4px 20px 4px 0;
+  color: #6b6280;
+}
+
+.pi-popup-theme-theme6 .pi-product_link {
+  color: #1f1147;
+}
+
+.pi-popup-theme-theme6 .pi-first_name,
+.pi-popup-theme-theme6 .pi-country,
+.pi-popup-theme-theme6 .pi-state {
+  color: #1f1147;
+}
+
+.pi-popup-theme-theme6 .pi-bottom-block {
+  position: relative;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(124, 58, 237, 0.18);
+}
+
+.pi-popup-theme-theme6 .pi-bottom-block::before {
+  content: "\2726";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 6px;
+  background: #ffffff;
+  color: #7c3aed;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.pi-popup-theme-theme6 .time-elapsed {
+  color: #8b7bb8;
+  border-right-color: rgba(124, 58, 237, 0.18);
+}
+
+.pi-popup-theme-theme6 .stock-left {
+  color: #7c3aed;
+}
+
+
+/* ============================================================================
+   Mobile — sizing/spacing only (positioning stays whatever you've already set)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .pi-popup {
+    width: calc(100vw - 20px);
+    max-width: 380px;
+  }
+
+  .pi-popup-image {
+    width: 64px;
+  }
+
+  .pi-popup-content {
+    padding: 12px 30px 12px 14px;
+    font-size: 12.5px;
+  }
+
+  .pi-product_link {
+    font-size: 14.5px;
+  }
+
+  .pi-bottom-block {
+    font-size: 11px;
+  }
+
+  .pi-bottom-block .time-elapsed,
+  .pi-bottom-block .stock-left {
+    font-size: 11px;
+  }
+
+  /* Theme 2 — image shrinks with the base rule above, nothing extra needed */
+
+  /* Theme 3 — pill */
+  .pi-popup-theme-theme3 {
+    padding: 6px 18px 6px 6px;
+  }
+
+  .pi-popup-theme-theme3 .pi-popup-image {
+    width: 56px;
+    height: 56px;
+    margin-right: 12px;
+  }
+
+  /* Theme 5 — angled cut + cart badge */
+  .pi-popup-theme-theme5 .pi-popup-content {
+    padding: 12px 20px 12px 44px;
+    clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+  }
+
+  .pi-popup-theme-theme5 .pi-popup-content::before {
+    left: 12px;
+    top: 12px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .pi-popup-theme-theme5 .pi-popup-content::after {
+    left: 18px;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Theme 6 — corner brackets + avatar */
+  .pi-popup-theme-theme6 .pi-popup-image {
+    width: 56px;
+    height: 56px;
+    margin-right: 10px;
+  }
+
+  .pi-popup-theme-theme6 {
+    background-size: 12px 12px, 12px 12px, 12px 12px, 12px 12px;
+    background-position: top 6px left 6px, top 6px right 6px, bottom 6px left 6px, bottom 6px right 6px;
+  }
+}
+
+/* ============================================================================
+   THEME 7 — Near-black, subtle diagonal texture, purple bag badge, bottom glow
+   ========================================================================== */
+.pi-popup-theme-theme7 {
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 26px
+    ),
+    linear-gradient(160deg, #101014 0%, #0a0a0d 100%);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 10px 24px -8px rgba(139, 92, 246, 0.55);
+}
+
+.pi-popup-theme-theme7 .pi-popup-image {
+  background: #0c0c10;
+}
+
+.pi-popup-theme-theme7 .pi-popup-content {
+  padding-left: 58px;
+  color: #a3a3ad;
+}
+
+.pi-popup-theme-theme7 .pi-popup-content::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9061f9 0%, #6d28d9 100%);
+  box-shadow: 0 4px 10px rgba(109, 40, 217, 0.5);
+}
+
+.pi-popup-theme-theme7 .pi-popup-content::after {
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 18px;
+  height: 18px;
+  background-color: #ffffff;
+  -webkit-mask-image: var(--pi-icon-bag);
+  mask-image: var(--pi-icon-bag);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pi-popup-theme-theme7 .pi-product_link {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme7 .pi-first_name,
+.pi-popup-theme-theme7 .pi-country,
+.pi-popup-theme-theme7 .pi-state {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme7 .pi-popup-close img {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.pi-popup-theme-theme7 .time-elapsed {
+  color: #d4d4de;
+  border-right-color: rgba(255, 255, 255, 0.15);
+}
+
+.pi-popup-theme-theme7 .stock-left {
+  color: #a78bfa;
+}
+
+.pi-popup-theme-theme7 .stock-left::before {
+  content: none;
+}
+
+
+/* ============================================================================
+   THEME 8 — Blush pink, dashed heart divider, soft blob + dot accents
+   ========================================================================== */
+.pi-popup-theme-theme8 {
+  background:
+    radial-gradient(circle 3px at calc(100% - 30px) 16px, #f4a6c1 98%, transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 18px) 24px, #f4a6c1 98%, transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 8px) 32px, #f4a6c1 98%, transparent 100%),
+    radial-gradient(circle 3px at 10px calc(100% - 8px), #f4a6c1 98%, transparent 100%),
+    radial-gradient(circle 3px at 20px calc(100% - 14px), #f4a6c1 98%, transparent 100%),
+    radial-gradient(ellipse 160px 220px at 115% 40%, rgba(244, 166, 193, 0.5), transparent 65%),
+    linear-gradient(135deg, #ffffff 0%, #fdeef2 100%);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(214, 90, 130, 0.14), 0 2px 8px rgba(214, 90, 130, 0.08);
+}
+
+.pi-popup-theme-theme8 .pi-popup-image {
+  background: #f7d9de;
+}
+
+.pi-popup-theme-theme8 .pi-popup-content {
+  color: #8a8f9c;
+}
+
+.pi-popup-theme-theme8 .pi-product_link {
+  color: #1f2430;
+}
+
+.pi-popup-theme-theme8 .pi-first_name,
+.pi-popup-theme-theme8 .pi-country,
+.pi-popup-theme-theme8 .pi-state {
+  color: #1f2430;
+}
+
+.pi-popup-theme-theme8 .pi-bottom-block {
+  position: relative;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(236, 111, 146, 0.45);
+}
+
+.pi-popup-theme-theme8 .pi-bottom-block::before {
+  content: "\2665";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 6px;
+  background: #fdeef2;
+  color: #ec6f92;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.pi-popup-theme-theme8 .time-elapsed {
+  color: #ec6f92;
+  border-right-color: rgba(236, 111, 146, 0.25);
+}
+
+.pi-popup-theme-theme8 .stock-left {
+  color: #ec6f92;
+}
+
+.pi-popup-theme-theme8 .stock-left::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 0;
+  background-color: currentColor;
+  -webkit-mask-image: var(--pi-icon-box);
+  mask-image: var(--pi-icon-box);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+
+/* ============================================================================
+   THEME 9 — White, blue accent edge, "Live Purchase" pill, ringed avatar
+   ========================================================================== */
+.pi-popup-theme-theme9 {
+  position: relative;
+  background: #ffffff;
+  border-left: 4px solid #2f6fed;
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.pi-popup-theme-theme9::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 34px;
+  width: 15px;
+  height: 15px;
+  background-color: #2f6fed;
+  opacity: 0.55;
+  -webkit-mask-image: var(--pi-icon-asterisk);
+  mask-image: var(--pi-icon-asterisk);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pi-popup-theme-theme9 .pi-popup-image {
+  width: 76px;
+  height: 76px;
+  align-self: center;
+  margin: 0 4px 0 12px;
+  border-radius: 50%;
+  border: 2px solid #2f6fed;
+  background: #ffffff;
+}
+
+.pi-popup-theme-theme9 .pi-popup-content {
+  color: #8a8f9c;
+}
+
+.pi-popup-theme-theme9 .pi-popup-content::before {
+  content: "Live Purchase";
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 4px 10px 4px 24px;
+  border-radius: 999px;
+  background-color: #2f6fed;
+  background-image: var(--pi-icon-bolt-white);
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 10px 10px;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.pi-popup-theme-theme9 .pi-product_link {
+  color: #1f2430;
+}
+
+.pi-popup-theme-theme9 .pi-first_name,
+.pi-popup-theme-theme9 .pi-country,
+.pi-popup-theme-theme9 .pi-state {
+  color: #1f2430;
+}
+
+.pi-popup-theme-theme9 .time-elapsed {
+  color: #2f6fed;
+  border-right-color: rgba(47, 111, 237, 0.2);
+}
+
+.pi-popup-theme-theme9 .stock-left {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eaf1ff;
+  color: #2f6fed;
+}
+
+.pi-popup-theme-theme9 .stock-left::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border-radius: 0;
+  background-color: currentColor;
+  -webkit-mask-image: var(--pi-icon-flame);
+  mask-image: var(--pi-icon-flame);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+
+/* ============================================================================
+   THEME 10 — Dark green, cream cart badge, leaf accents
+   ========================================================================== */
+.pi-popup-theme-theme10 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20 80 C20 40 50 15 85 15 C85 55 55 80 20 80 Z' fill='%2374a35c' fill-opacity='0.3'/%3E%3Cpath d='M22 78 C40 55 60 35 84 17' stroke='%2374a35c' stroke-opacity='0.45' stroke-width='2' fill='none'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #123a24 0%, #0d2818 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: top -10px right -10px, center;
+  background-size: 90px 90px, cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(10, 40, 20, 0.30), 0 2px 8px rgba(10, 40, 20, 0.16);
+}
+
+.pi-popup-theme-theme10 .pi-popup-image {
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.08), transparent 65%), #4b5d43;
+}
+
+.pi-popup-theme-theme10 .pi-popup-content {
+  padding-left: 58px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.pi-popup-theme-theme10 .pi-popup-content::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f3ecd1;
+}
+
+.pi-popup-theme-theme10 .pi-popup-content::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 18px;
+  height: 18px;
+  background-color: #123a24;
+  -webkit-mask-image: var(--pi-icon-cart);
+  mask-image: var(--pi-icon-cart);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pi-popup-theme-theme10 .pi-product_link {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme10 .pi-first_name,
+.pi-popup-theme-theme10 .pi-country,
+.pi-popup-theme-theme10 .pi-state {
+  color: #ffffff;
+}
+
+.pi-popup-theme-theme10 .pi-popup-close img {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.pi-popup-theme-theme10 .pi-bottom-block {
+  position: relative;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pi-popup-theme-theme10 .pi-bottom-block::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 65%;
+  width: 13px;
+  height: 13px;
+  background-color: #a9c48a;
+  -webkit-mask-image: var(--pi-icon-leaf);
+  mask-image: var(--pi-icon-leaf);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pi-popup-theme-theme10 .time-elapsed {
+  color: rgba(255, 255, 255, 0.85);
+  border-right-color: rgba(255, 255, 255, 0.18);
+}
+
+.pi-popup-theme-theme10 .stock-left {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: #e9e3c4;
+  color: #123a24;
+}
+
+.pi-popup-theme-theme10 .stock-left::before {
+  content: none;
+}
+
+
+/* ============================================================================
+   Mobile — sizing/spacing only
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* Theme 7 */
+  .pi-popup-theme-theme7 .pi-popup-content {
+    padding-left: 48px;
+  }
+
+  .pi-popup-theme-theme7 .pi-popup-content::before {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pi-popup-theme-theme7 .pi-popup-content::after {
+    left: 21px;
+    top: 21px;
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Theme 9 */
+  .pi-popup-theme-theme9 .pi-popup-image {
+    width: 56px;
+    height: 56px;
+  }
+
+  .pi-popup-theme-theme9 .pi-popup-content::before {
+    font-size: 9.5px;
+    padding: 3px 8px 3px 20px;
+    background-size: 9px 9px;
+  }
+
+  .pi-popup-theme-theme9::after {
+    top: 10px;
+    right: 30px;
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Theme 10 */
+  .pi-popup-theme-theme10 {
+    background-size: 60px 60px, cover;
+  }
+
+  .pi-popup-theme-theme10 .pi-popup-content {
+    padding-left: 48px;
+  }
+
+  .pi-popup-theme-theme10 .pi-popup-content::before {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pi-popup-theme-theme10 .pi-popup-content::after {
+    left: 20px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+  }
+}

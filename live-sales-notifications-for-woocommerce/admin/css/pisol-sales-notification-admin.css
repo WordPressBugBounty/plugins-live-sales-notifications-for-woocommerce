@@ -101,3 +101,13 @@ h2#pi-banner-tagline{
     justify-content: space-between;
     margin-top:10px;
 }
+
+#preview{
+    bottom:20px !important;
+    left:20px !important;
+    top:auto !important;
+    right:auto !important;
+    position:fixed;
+    display:flex !important;
+    z-index:999999;
+}

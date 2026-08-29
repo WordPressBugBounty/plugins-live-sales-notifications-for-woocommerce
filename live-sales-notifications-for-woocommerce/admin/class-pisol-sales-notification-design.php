@@ -89,13 +89,17 @@ class Class_Pi_Sales_Notification_Design{
         $this->animation = $this->creatingArray($this->animation);
         $this->close_animation = $this->creatingArray($this->close_animation);
         $this->settings = array(
+            array('field'=>'title', 'class'=> 'bg-primary text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>"Popup theme", 'type'=>"setting_category"),
+
+            array('field'=>'pi_sn_theme', 'label'=>__('Popup theme'),'type'=>'select', 'default'=> 'default', 'value'=>array('default'=>__('Custom design'), 'theme1'=>__('Theme 1'), 'theme2'=>__('Theme 2'), 'theme3'=>__('Theme 3'), 'theme4'=>__('Theme 4'), 'theme5'=>__('Theme 5'), 'theme6'=>__('Theme 6'), 'theme7'=>__('Theme 7'), 'theme8'=>__('Theme 8'), 'theme9'=>__('Theme 9'), 'theme10'=>__('Theme 10')),  'desc'=>'Set popup theme, if you select custom design then only you can modify color and shape of the popup, if you select any theme then it will override your custom design settings'),
+
             array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Positions",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_popup_position', 'label'=>__('Popup position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-right-bottom', 'value'=>array('pi-left-bottom'=>__('Left Bottom','pisol-sales-notification'), 'pi-right-bottom'=>__('Right Bottom','pisol-sales-notification'),'pi-left-top'=>__('Left Top','pisol-sales-notification'), 'pi-right-top'=>__('Right Top','pisol-sales-notification')),  'desc'=>__('Set popup position on the page','pisol-sales-notification')),
 
             array('field'=>'pi_sn_image_position', 'label'=>__('Image position','pisol-sales-notification'),'type'=>'select', 'default'=> 'pi-image-left', 'value'=>array('pi-image-left'=>__('Left','pisol-sales-notification'), 'pi-image-right'=>__('Right','pisol-sales-notification')),  'desc'=>__('Set image position on left or right of description','pisol-sales-notification')),
 
-            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Background color",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'pi_sn_setting_section_label_background_color', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Background color",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_background_color', 'label'=>__('Background color','pisol-sales-notification'),'type'=>'color', 'default'=>"#ffffff",   'desc'=>__('Background color of the popup','pisol-sales-notification')),
 

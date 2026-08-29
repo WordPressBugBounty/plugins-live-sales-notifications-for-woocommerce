@@ -139,5 +139,38 @@
 		}
 	}
 
+	jQuery(document).ready(function ($) {
+		preview_theme_css_loader();
+		$("#pi_sn_theme").on('change', function(){
+			preview_theme_css_loader();
+		});
+
+		function preview_theme_css_loader(){
+			if(!$("#pi_sn_theme")) return;
+
+			var theme_selected = $("#pi_sn_theme option:selected").val();
+			removeThemeClasses($("#preview.pi-popup"));
+			if(theme_selected !== 'default'){
+				$("#preview.pi-popup").addClass('pi-popup-theme-'+theme_selected);
+				$("#live_sales_preview_default-css").prop('disabled', true);
+				$("#live_sales_preview_default-inline-css").prop('disabled', true);
+				$("#live_sales_preview_theme-css").prop('disabled', false);
+			}else{
+				$("#preview.pi-popup").addClass('pi-popup-theme-default');
+				$("#live_sales_preview_default-css").prop('disabled', false);
+				$("#live_sales_preview_default-inline-css").prop('disabled', false);
+				$("#live_sales_preview_theme-css").prop('disabled', true);
+			}
+		}
+
+		function removeThemeClasses($el) {
+			var classes = $el.attr('class') ? $el.attr('class').split(/\s+/) : [];
+			var toRemove = classes.filter(function(cls) {
+				return /^pi-popup-theme-theme\d+$/.test(cls);
+			});
+			$el.removeClass(toRemove.join(' '));
+		}
+	});
+
 
 })(jQuery);

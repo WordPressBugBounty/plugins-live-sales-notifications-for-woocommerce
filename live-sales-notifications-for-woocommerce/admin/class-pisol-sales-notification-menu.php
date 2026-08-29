@@ -85,14 +85,6 @@ class Pi_Sales_Menu{
                                 <span class="dashicons dashicons-media-document"></span> Documentation
                                 </a>
                             </div>
-                            <div class="promotion mt-4">
-                                <div class="bg-dark2 text-light text-center mb-3">
-                                    <a class="" href="<?php echo esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">
-                                    <?php new pisol_promotion('live_sales_notification_installation_date'); ?>
-                                    </a>
-                                </div>
-                            </div>
-                            
                         </div>
                         <div class="col ">
                         <?php do_action('pisol_sales_notification_dependency_install'); ?>

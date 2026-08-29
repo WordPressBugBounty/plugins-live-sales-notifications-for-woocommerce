@@ -22,7 +22,8 @@
         link_in_tab: false,
         audio_alert_enabled: false,
         audio_url: "",
-        max_notification_count:0
+        max_notification_count:0,
+        theme: 'theme6'
       },
       options
     );
@@ -50,6 +51,7 @@
     this.close_button = function (obj) {
       var obj = obj;
       $(document).on("click", ".pi-popup-close", { obj: obj }, function (event) {
+        event.preventDefault();
         event.data.obj.close(event.data.obj);
       });
     }
@@ -63,7 +65,7 @@
 
       var html =
         '<div class="animated pi-popup ' +
-        settings.animation +
+        settings.animation + ' pi-popup-theme-' + settings.theme +
         ' ">' +
         (settings.content.image != "" ? '<div class="pi-popup-image">' +
           (settings.link_image != "" ? '<a' +
@@ -76,8 +78,8 @@
           "</div>" : "") +
         '<div class="pi-popup-content">' +
         (settings.content.desc != undefined ? settings.content.desc : "") +
-        ((settings.close && settings.close_image != "") ? '<a class="pi-popup-close" href="javascript:void(0)"><img src="' + settings.close_image + '"></a>' : '') +
         "</div>" +
+        ((settings.close && settings.close_image != "") ? '<a class="pi-popup-close" href="#"><img src="' + settings.close_image + '"></a>' : '') +
         "</div>";
       obj.close_button(obj);
       obj.alert();

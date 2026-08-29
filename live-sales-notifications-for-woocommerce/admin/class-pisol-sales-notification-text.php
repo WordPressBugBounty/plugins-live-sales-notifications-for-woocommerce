@@ -35,7 +35,7 @@ class Class_Pi_Sales_Notification_Text{
 
             array('field'=>'pi_sn_time_format', 'label'=>__('Time format for {time} ','pisol-sales-notification'),'type'=>'select', 'default'=>"G:i", 'value'=>$this->time_format,  'desc'=>__('Time format for {time} shortcode','pisol-sales-notification'),'pro'=>true),
 
-            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Text colors",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'pi_sn_setting_section_label_title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Text colors",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_text_color', 'label'=>__('Normal text color','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for other text in the popup','pisol-sales-notification')),
 
@@ -54,7 +54,7 @@ class Class_Pi_Sales_Notification_Text{
 
             array('field'=>'pi_sn_first_name_color', 'label'=>__('First name text color {first_name}','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for the First name that shows up using {first_name} shortcode','pisol-sales-notification')),
             
-            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Font size in (PX)",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'pi_sn_setting_section_label_font_size', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Font size in (PX)",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_text_font_size', 'label'=>__('Normal text font size','pisol-sales-notification'),'type'=>'number','min'=>0, 'step'=>1, 'default'=>"16",   'desc'=>__('This is the font size used for other text in the popup','pisol-sales-notification')),
 
@@ -74,7 +74,7 @@ class Class_Pi_Sales_Notification_Text{
 
             array('field'=>'pi_sn_first_name_font_size', 'label'=>__('First name font size {first_name}','pisol-sales-notification'),'type'=>'number','min'=>0, 'step'=>1, 'default'=>"16",   'desc'=>__('This is the font size used for the First name that shows up using {first_name} shortcode','pisol-sales-notification')),
             
-            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Font weight",'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'pi_sn_setting_section_label_font_weight', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Font weight",'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_text_font_weight', 'label'=>__('Normal text font weight','pisol-sales-notification'),'type'=>'select','value'=>array('normal'=>'Normal','bold'=>'Bold','lighter'=>'Lighter'),   'desc'=>__('This is the font weight used for other text in the popup','pisol-sales-notification')),
 

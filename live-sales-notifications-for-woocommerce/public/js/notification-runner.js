@@ -14,7 +14,8 @@
             loop: true,
             counter: 0,
             mobile: true,
-            max_notification_count:0
+            max_notification_count:0,
+            theme:'theme6'
         }, window.pi_notification_runner_setting);
 
         this.maxNotificationReached = function () {

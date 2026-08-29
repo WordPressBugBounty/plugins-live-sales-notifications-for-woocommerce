@@ -25,13 +25,99 @@ class Pi_Sales_Notification_Preview extends stdClass{
     function enqueue_scripts() {
         if((isset($_GET['page']) && $_GET['page'] == 'pisol-sales-notification')){
 
-            wp_enqueue_style( "live_sales_preview", PISOL_SALES_NOTIFICATION_WOOCOMMERCE_PLUGIN_URL . 'public/css/pisol-sales-notification-public.css', array(), PISOL_SALES_NOTIFICATION_VERSION, 'all' );
+            wp_enqueue_style( "live_sales_preview_default", PISOL_SALES_NOTIFICATION_WOOCOMMERCE_PLUGIN_URL . 'public/css/pisol-sales-notification-public.css', array(), PISOL_SALES_NOTIFICATION_VERSION, 'all' );
 
-            $css = Pisol_Sales_Notification_Public::inlineStyle();
-            wp_add_inline_style( "live_sales_preview", $css );
+            $theme_file_initial = 'theme-1-10';
+            wp_enqueue_style( "live_sales_preview_theme", PISOL_SALES_NOTIFICATION_WOOCOMMERCE_PLUGIN_URL . 'public/css/pisol-sales-notification-'.$theme_file_initial.'.css', array(), PISOL_SALES_NOTIFICATION_VERSION, 'all' );
+
+            $css = Pisol_Sales_Notification_Public::inlineStyle([], 'default');
+            
+            wp_add_inline_style( "live_sales_preview_default", $css );
+
+            $css_setting = $this->css_to_hide_non_theme_fields();
+            wp_add_inline_style( "live_sales_preview_theme", $css_setting );
 
         }
     }
+
+    function css_to_hide_non_theme_fields() {
+        $fields = $this->field_to_hide_when_theme_used();
+        $css = '';
+        if(!empty($fields)){
+            foreach($fields as $field){
+                $css .= '.pisol-setting-form:not(:has(#pi_sn_theme option[value="default"]:checked)) #row_'.$field.'{display:none !important;}';
+            }
+        }
+
+        $other_fields = $this->other_page_field_to_hide_when_theme_used();
+        if(!empty($other_fields)){
+            foreach($other_fields as $field){
+                $css .= '#row_'.$field.'{display:none !important;}';
+            }
+        }
+        return $css;
+    }
+
+    /**
+     * this works on the theme selection setting page itself
+     */
+    function field_to_hide_when_theme_used() {
+
+        return [
+            'pi_sn_image_position',
+            'pi_sn_background_color',
+            'pi_sn_background_image',
+            'pi_sn_popup_width',
+            'pi_sn_image_width',
+            'pi_sn_image_width_mobile',
+            'pi_sn_border_radius',
+            'pi_sn_border_radius_image',
+            'pi_sn_image_padding',
+            'pi_sn_setting_section_label_background_color'
+        ];
+    }
+
+    function other_page_field_to_hide_when_theme_used() {
+        $theme = get_option('pi_sn_theme', 'default');
+        if($theme == 'default' || empty($theme)){
+            return [];
+        }
+
+        return [
+            'pi_sn_text_color',
+            'pi_sn_product_color',
+            'pi_sn_product_link_color',
+            'pi_sn_time_color',
+            'pi_sn_date_color',
+            'pi_sn_country_color',
+            'pi_sn_state_color',
+            'pi_sn_city_color',
+            'pi_sn_first_name_color',
+            'pi_sn_text_font_size',
+            'pi_sn_product_font_size',
+            'pi_sn_product_link_font_size',
+            'pi_sn_time_font_size',
+            'pi_sn_date_font_size',
+            'pi_sn_country_font_size',
+            'pi_sn_state_font_size',
+            'pi_sn_city_font_size',
+            'pi_sn_first_name_font_size',
+            'pi_sn_text_font_weight',
+            'pi_sn_product_font_weight',
+            'pi_sn_product_link_font_weight',
+            'pi_sn_time_font_weight',
+            'pi_sn_date_font_weight',
+            'pi_sn_country_font_weight',
+            'pi_sn_state_font_weight',
+            'pi_sn_city_font_weight',
+            'pi_sn_first_name_font_weight',
+            'pi_sn_setting_section_label_title',
+            'pi_sn_setting_section_label_font_size',
+            'pi_sn_setting_section_label_font_weight'
+
+        ];
+    }
+
 
     function render_preview() {
         $message = $this->formattedMessage();

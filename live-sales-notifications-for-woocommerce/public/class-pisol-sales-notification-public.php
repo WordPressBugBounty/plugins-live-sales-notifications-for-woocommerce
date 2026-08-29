@@ -83,11 +83,7 @@ class Pisol_Sales_Notification_Public extends stdClass{
 	}
 
 	public static function getSettings(){
-		$key = 'pi_sn_settings_cache';
-		$message_cache = get_transient($key);
-		if ( false !== $message_cache ) {
-			return $message_cache;
-		}
+		
 
 		$settings = array();
 
@@ -96,7 +92,7 @@ class Pisol_Sales_Notification_Public extends stdClass{
 		 */
 		$settings['pi_sn_enabled'] = get_option('pi_sn_enabled', 1);
 		$settings['pi_sn_enable_mobile'] = get_option('pi_sn_enabled_mobile', 1);
-
+		$settings['theme'] = get_option('pi_sn_theme', 'default');
 		/**
 		 * Desing
 		 */
@@ -178,19 +174,48 @@ class Pisol_Sales_Notification_Public extends stdClass{
 		/* Audio */
 		$settings['pi_sn_enable_audio_alert'] = get_option('pi_sn_enable_audio_alert',0);
 
-		set_transient('pi_sn_settings_cache', $settings, 24 * HOUR_IN_SECONDS);
+		// set_transient('pi_sn_settings_cache', $settings, 24 * HOUR_IN_SECONDS);
 		return $settings;
 	}
 
-	public static function inlineStyle($settings = array()){
+	public static function inlineStyle($settings = array(), $theme = null){
 		if(empty($settings)){
 			$settings = self::getSettings();
+		}
+
+		if($settings['theme'] != 'default' && $theme == null){
+			$return = '.pi-popup{
+				'.self::popupPosition(20, 20, $settings).'
+				
+				position:fixed;
+				z-index:999999;
+			}
+				
+			@media (max-width:420px){
+				.pi-popup{
+				bottom:0px !important;
+				left:0px !important;
+				top:auto !important;
+				width:100% !important;
+				border-radius:0 !important;
+				}
+			
+				.pi-popup-image{
+					width: '.($settings['pi_sn_image_width_mobile'] == "" ? 50 : $settings['pi_sn_image_width_mobile']).'% !important;
+				}
+
+				.pi-popup-close{
+					right:10px;
+				}
+			}
+			';
+			return $return;
 		}
 		
 		$return = '
 		.pi-popup{
 			background-color:'.$settings['pi_sn_background_color'].';
-			'.self::popupPosition($settings).'
+			'.self::popupPosition(20, 20, $settings).'
 			width:'.$settings['pi_sn_popup_width'].'vw;
 			border-radius:'.$settings['pi_sn_border_radius'].'px;
 			background-image: none !important;
@@ -285,7 +310,7 @@ class Pisol_Sales_Notification_Public extends stdClass{
 	/**
 	 * $x and $y are distance from x and y axis
 	 */
-	public static function popupPosition($settings, $x = 20, $y = 20){
+	public static function popupPosition($x = 20, $y = 20, $settings = array()){
 		$return = "";
 		switch($settings['pi_sn_popup_position']){
 			case "pi-left-bottom":
@@ -315,8 +340,13 @@ class Pisol_Sales_Notification_Public extends stdClass{
 	public function enqueue_styles() {
 
 		
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pisol-sales-notification-public.css', array(), $this->version, 'all' );
+		$theme = get_option('pi_sn_theme', 'default');
+		if($theme == 'default' || empty($theme)){		
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pisol-sales-notification-public.css', array(), $this->version, 'all' );
+		}elseif(in_array($theme, array('theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6', 'theme7', 'theme8', 'theme9', 'theme10'))){
+			$theme_file_initial = 'theme-1-10';
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pisol-sales-notification-'.$theme_file_initial.'.css', array(), $this->version, 'all' );
+		}
 		wp_enqueue_style( $this->plugin_name.'-animate', plugin_dir_url( __FILE__ ) . 'css/animate.css', array(), $this->version, 'all' );
 		wp_add_inline_style($this->plugin_name.'-animate', self::inlineStyle( $this->settings ) );
 	}
@@ -390,6 +420,7 @@ class Pisol_Sales_Notification_Public extends stdClass{
 				'ajax_url'=>admin_url( 'admin-ajax.php' ),
 				'max_notification_count'=> (int)get_option('pi_max_notification_count', ''),
 				'_nonce'=> wp_create_nonce('pi_sn_live_orders_nonce'),
+				'theme' => get_option('pi_sn_theme', 'default')
 			);
 			return $setting;
 	}

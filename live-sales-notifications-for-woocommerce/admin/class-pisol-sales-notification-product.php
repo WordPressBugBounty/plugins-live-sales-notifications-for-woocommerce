@@ -79,7 +79,7 @@ class Class_Pi_Sales_Notification_Product{
 
     function tab(){
         ?>
-        <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+        <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-products"></span> <?php echo esc_html( $this->tab_name ); ?>
         </a>
         <?php
@@ -108,14 +108,16 @@ class Class_Pi_Sales_Notification_Product{
             }
         ?>
         <div id="orders">
-            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-                <div class="col-12">
-                <h2 class="mt-0 mb-0 text-light font-weight-light h4">Order related options</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">Order related options</h2>
                 </div>
             </div>
-            <div class="row py-4 border-bottom align-items-center ">
-                <div class="col-12">
-                    <label for="pi_sn_order_status" class="h6">Based on the order status orders will be selected</label>
+            <div class="pisol-form-element-row field-type-select_multiple">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_order_status" class="pisol-field-label">Based on the order status orders will be selected</label>
+                </div>
+                <div class="pisol-form-setting-col">
                     <select id="pi_sn_order_status" name="pi_sn_order_status[]" multiple="multiple" style="width:100%;">
                         <?php 
                             $order_status = wc_get_order_statuses(); 
@@ -127,18 +129,19 @@ class Class_Pi_Sales_Notification_Product{
                 </div>
             </div>
 
-            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-                <div class="col-12">
-                <h2 class="mt-0 mb-0 text-light font-weight-light h4">Order tags</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">Order tags</h2>
                 </div>
             </div>
-            <?php do_action('pisol_sales_notification_dependency_install'); ?>
-            <div class="row py-4 border-bottom align-items-center ">
-                <div class="col-6">
-                    <label for="pi_sn_order_tags" class="h6">Order tags to consider</label><br>
-                    <small>Only order with these tags will be considered for the popup, leave blank if you want to consider all orders</small>
+
+            <div class="pisol-form-element-row field-type-select_multiple">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_order_tags" class="pisol-field-label">Order tags to consider</label>
+                    <div class="pisol-field-description"><small>Only order with these tags will be considered for the popup, leave blank if you want to consider all orders</small></div>
                 </div>
-                <div class="col-6">
+                <div class="pisol-form-setting-col">
+                    <?php do_action('pisol_sales_notification_dependency_install'); ?>
                     <?php 
                         $tags = self::get_tags();
                         if(empty($tags)){
@@ -154,19 +157,20 @@ class Class_Pi_Sales_Notification_Product{
                     </select>
                     <?php } ?>
                 </div>
-            </div>               
-            
+            </div>        
         </div>
         
         <div id="selected-products">
-            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-                <div class="col-12">
-                <h2 class="mt-0 mb-0 text-light font-weight-light h4">Select product to show in popup</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">Select product to show in popup</h2>
                 </div>
             </div>
-            <div class="row py-4 border-bottom align-items-center ">
-                <div class="col-12">
-                    <label for="pi_sn_selected_product" class="h6">Select product</label><br>
+            <div class="pisol-form-element-row field-type-select_multiple">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_selected_product" class="pisol-field-label">Select product</label>
+                </div>
+                <div class="pisol-form-setting-col">
                     <select type="text" id="pi_sn_selected_product" name="pi_sn_selected_product[]" class="pi_add_product" style="width:100%;" multiple="multiple">
                         <?php
                         if(is_array($selected_products)):
@@ -180,14 +184,16 @@ class Class_Pi_Sales_Notification_Product{
             </div>
         </div>
         <div id="selected-categories">
-            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-                <div class="col-12">
-                <h2 class="mt-0 mb-0 text-light font-weight-light h4">Select category to show product</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">Select category to show product</h2>
                 </div>
             </div>
-            <div class="row py-4 border-bottom align-items-center ">
-                <div class="col-12">
-                    <label for="pi_sn_selected_category" class="h6">Select category</label><br>
+            <div class="pisol-form-element-row field-type-select_multiple">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_selected_category" class="pisol-field-label">Select category</label>
+                </div>
+                <div class="pisol-form-setting-col">
                     <select id="pi_sn_selected_category" name="pi_sn_selected_category[]" class="pi_add_category" style="width:100%;" multiple="multiple">
                         <?php
                         if(is_array($selected_categories)):
@@ -203,81 +209,83 @@ class Class_Pi_Sales_Notification_Product{
             </div>
         </div>
         <div id="virtual-name-location">
-        <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-            <div class="col-12">
-            <h2 class="mt-0 mb-0 text-light font-weight-light h4">Virtual First name and Location</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">Virtual First name and Location</h2>
+                </div>
             </div>
-        </div>
-        <div class="row py-4 border-bottom align-items-center ">
-            <div class="col-12">
-                
-                    <label for="pi_sn_custom_first_name" class="h6">Virtual first name</label><br>
-                    <small class="font-italic" >This name will be used, when you decide to show virtual sales, Enter one name on one line</small>
+            <div class="pisol-form-element-row field-type-textarea">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_custom_first_name" class="pisol-field-label">Virtual first name</label>
+                    <div class="pisol-field-description"><small>This name will be used, when you decide to show virtual sales, Enter one name on one line</small></div>
+                </div>
+                <div class="pisol-form-setting-col">
                     <textarea name="pi_sn_custom_first_name" id="pi_sn_custom_first_name" class="form-control" style="height:200px !important;" placeholder="John&#10;Smith&#10;Adrianus&#10;Dirk&#10;Aldert"><?php echo esc_html($vname); ?></textarea>
-                
+                </div>
             </div>
-        </div>
-        <div class="row py-4 border-bottom align-items-center free-version">
-            <div class="col-6">
-                
-                    <label for="pi_sn_use_geolocation" class="h6">Use visitor country in the fake sales popup instead of random virtual location (So visitor will think people from his location also buy this product and they are more likely to buy)</label><br>
-                    <small class="font-italic">In the fake sales notification customer location will be shown as the visitors country</small><br>
-                    <small class="font-italic">If you use this option then you can only use short code {country} and {state} in the message, {city} short code will not work</small>
-                    
-                
-            </div>
-            <div class="col-6">
-                <div class="custom-control custom-switch">
+            
+            <div class="pisol-form-element-row field-type-switch free-version">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_use_geolocation" class="pisol-field-label">Use visitor country</label>
+                    <div class="pisol-field-description"><small>In the fake sales notification customer location will be shown as the visitors country<br>If you use this option then you can only use short code {country} and {state} in the message, {city} short code will not work</small></div>
+                </div>
+                <div class="pisol-form-setting-col">
+                    <div class="custom-control custom-switch">
                     <input type="checkbox" value="1" class="custom-control-input" name="pi_sn_use_geolocation" id="pi_sn_use_geolocation" >
                     <label class="custom-control-label" for="pi_sn_use_geolocation"></label>
-                </div>            
+                    </div>  
+                </div>
             </div>
-        </div>
-        <div class="row py-4 border-bottom align-items-center ">
-            <div class="col-12">
-                
-                    <label for="pi_sn_custom_location" class="h6">Virtual location</label><br>
-                    <small  class="font-italic">One location on one line eg: city, state, country if you dont have state then this will be like this <br>e.g: city , , country, if you dont have city then e.g: , state, country</small>
-                    <textarea name="pi_sn_custom_location" id="pi_sn_custom_location" class="form-control" style="height:200px !important;" placeholder="City, State, Country&#10;New York City, New York, USA&#10;Bernau, Freistaat Bayern, Germany"><?php echo esc_html($vlocation); ?></textarea>
-                
+            
+            <div class="pisol-form-element-row field-type-textarea">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_custom_location" class="pisol-field-label">Virtual location</label>
+                    <div class="pisol-field-description"><small>One location on one line eg: city, state, country if you dont have state then this will be like this <br>e.g: city , , country, if you dont have city then e.g: , state, country</small></div>
+                </div>
+                <div class="pisol-form-setting-col">
+                    <textarea name="pi_sn_custom_location" id="pi_sn_custom_location" class="form-control" style="height:200px !important;" placeholder="City, State, Country&#10;New York City, New York, USA&#10;Bernau, Freistaat Bayern, Germany"><?php echo esc_html($vlocation); ?></textarea> 
+                </div>
             </div>
-        </div>
         </div>
         <div id="order-timing">
-            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-                <div class="col-12">
-                <h2 class="mt-0 mb-0 text-light font-weight-light h4">How much old order should be shown</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">How much old order should be shown</h2>
                 </div>
             </div>
-            <div class="row py-4 border-bottom align-items-center">
-                <div class="col-12">
-                    <label for="pi_sn_order_status" class="h6">Show orders placed in last<br> e.g: 1 day: will show order placed in last one day <br>e.g: 1 hour: will show order placed in last one hour</label>
+
+            <div class="pisol-form-element-row field-type-textarea">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_time_value" class="pisol-field-label">Show orders placed in last X time</label>
+                    <div class="pisol-field-description"><small>e.g: 1 day: will show order placed in last one day <br>e.g: 1 hour: will show order placed in last one hour</small></div>
                 </div>
-                <div class="col-12 col-md-10">
-                    <input type="number" min="1" step="1" name="pi_sn_time_value" value="<?php echo esc_attr( $pi_sn_time_value ); ?>"  class="form-control">
-                </div>
-                <div class="col-12 col-md-2">
-                    <select name="pi_sn_time_unit" value="<?php echo esc_attr( $pi_sn_time_unit ); ?>" class="form-control">
-                        <option value="hour" <?php echo $pi_sn_time_unit == "hour" ? " selected='selected' ": ""; ?>>Hour</option>
-                        <option value="day" <?php echo $pi_sn_time_unit == "day" ? " selected='selected' ": ""; ?>>Day</option>
-                        <option value="week" <?php echo $pi_sn_time_unit == "week" ? " selected='selected' ": ""; ?>>Week</option>
-                    </select>
+                <div class="pisol-form-setting-col">
+                    <div style="display:flex; grid-gap:20px;">
+                        <input type="number" min="1" step="1" name="pi_sn_time_value" value="<?php echo esc_attr( $pi_sn_time_value ); ?>"  class="form-control" id="pi_sn_time_value">
+                        <select name="pi_sn_time_unit" value="<?php echo esc_attr( $pi_sn_time_unit ); ?>" class="form-control">
+                            <option value="hour" <?php echo $pi_sn_time_unit == "hour" ? " selected='selected' ": ""; ?>>Hour</option>
+                            <option value="day" <?php echo $pi_sn_time_unit == "day" ? " selected='selected' ": ""; ?>>Day</option>
+                            <option value="week" <?php echo $pi_sn_time_unit == "week" ? " selected='selected' ": ""; ?>>Week</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="max-notification">
-            <div class="row py-4 border-bottom align-items-center bg-dark2 text-light">
-                <div class="col-12">
-                <h2 class="mt-0 mb-0 text-light font-weight-light h4">How many notification to show on one page</h2>
+            <div class="pisol-form-element-row field-type-setting_category">
+                <div class="pisol-form-label-col">
+                <h2 class="pisol-field-title">How many notification to show on one page</h2>
                 </div>
             </div>
-            <div class="row py-4 border-bottom align-items-center ">
-                <div class="col-12 col-md-12">
-                    <label for="pi_sn_order_status" class="h6">How many notification to show (make sure number is grater then 1)</label>
-                    <input type="number" min="1" step="1" id="pi_sn_max_product_show" name="pi_sn_max_product_show" value="<?php echo esc_attr( $pi_sn_max_product_show ); ?>"  class="form-control">
-                    <small class="font-italic">For virtual orders this many notification will be created, but for original orders if it is less then this number no virtual order will be created</small>
+
+            <div class="pisol-form-element-row field-type-textarea">
+                <div class="pisol-form-label-col">
+                    <label for="pi_sn_max_product_show" class="pisol-field-label">How many notification to show (make sure number is grater then 1)</label>
+                    <div class="pisol-field-description"><small>For virtual orders this many notification will be created, but for original orders if it is less then this number no virtual order will be created</small></div>
                 </div>
-                
+                <div class="pisol-form-setting-col">
+                    <input type="number" min="1" step="1" id="pi_sn_max_product_show" name="pi_sn_max_product_show" value="<?php echo esc_attr( $pi_sn_max_product_show ); ?>"  class="form-control">
+                </div>
             </div>
         </div>
         <input type="submit" class="my-3 btn btn-primary btn-md" value="Save Option" />

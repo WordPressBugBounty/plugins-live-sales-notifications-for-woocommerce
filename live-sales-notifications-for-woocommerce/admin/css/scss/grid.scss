@@ -1,0 +1,168 @@
+:root {
+    --pisol-primary-color: #ee6443;
+    --pisol-white-color: #fff;
+    --pisol-black-color: #1e1e1e;
+    --pisol-gray-color: #cccccc;
+
+    --pisol-left-sidebar-width: 340px;
+    --pisol-right-sidebar-width: 250px;
+
+    --pisol-header-bgcolor: var(--pisol-black-color);
+    --pisol-content-bgcolor: var(--pisol-white-color);
+    --pisol-left-sidebar-bgcolor: var(--pisol-white-color);
+    --pisol-right-sidebar-bgcolor: var(--pisol-white-color);
+
+    --pisol-header-padding: 10px;
+    --pisol-left-sidebar-padding: 20px;
+    --pisol-right-sidebar-padding: 20px;
+    --pisol-content-padding: 20px;
+
+    --bottom-border-color: #ccc;
+    --field-y-padding: 20px;
+}
+
+// Breakpoints as SCSS variables (compile-time only, fine for media queries)
+$pisol-tablet-breakpoint: 992px;
+$pisol-mobile-breakpoint: 768px;
+
+.pisol-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .pisol-header {
+        width: 100%;
+        flex: 0 0 100%;
+        background-color: var(--pisol-header-bgcolor);
+        padding: var(--pisol-header-padding);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom:1px solid var(--pisol-white-color);
+
+        .pi-logo,
+        #pi-logo {
+            width: 170px;
+            height: auto;
+        }
+    }
+
+    .pisol-left-sidebar {
+        width: var(--pisol-left-sidebar-width);
+        flex: 0 0 var(--pisol-left-sidebar-width);
+        background-color: var(--pisol-left-sidebar-bgcolor);
+        padding: var(--pisol-left-sidebar-padding);
+        box-sizing: border-box;
+        border-right: 1px solid #ccc;
+
+        // Tablet
+        @media (max-width: $pisol-tablet-breakpoint) {
+            width: var(--pisol-left-sidebar-width);
+            flex-basis: var(--pisol-left-sidebar-width);
+        }
+
+        // Mobile
+        @media (max-width: $pisol-mobile-breakpoint) {
+            width: 100%;
+            flex-basis: 100%;
+        }
+    }
+
+    .pisol-content {
+        flex: 1 1 0;
+        min-width: 0;
+        background-color: var(--pisol-content-bgcolor);
+        padding: 0;
+        box-sizing: border-box;
+
+        // Mobile
+        @media (max-width: $pisol-mobile-breakpoint) {
+            width: 100%;
+            flex-basis: 100%;
+        }
+    }
+
+    .pisol-right-sidebar {
+        width: var(--pisol-right-sidebar-width);
+        flex: 0 0 var(--pisol-right-sidebar-width);
+        background-color: var(--pisol-right-sidebar-bgcolor);
+        padding: var(--pisol-right-sidebar-padding);
+
+        // Tablet
+        @media (max-width: $pisol-tablet-breakpoint) {
+            display: none;
+        }
+    }
+}
+
+.pisol-img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+// =============================================================================
+// PISOL Grid System (SCSS)
+// Simple Bootstrap-style 12-column flexbox grid.
+// All col-* classes only apply as a DIRECT CHILD of .pisol-grid-row —
+// they have zero effect anywhere else on the page.
+//
+// Usage:
+//   <div class="pisol-grid-row">
+//     <div class="col-12 col-md-6 col-lg-4">...</div>
+//   </div>
+//
+// Compile with Dart Sass / node-sass to get pisol-grid.css
+// =============================================================================
+
+$pisol-gutter: 15px;
+$pisol-columns: 12;
+
+// breakpoint map: prefix => min-width (empty prefix = base, no media query)
+$pisol-breakpoints: (
+    "": null,
+    "md": 768px,
+    "lg": 992px,
+    "xl": 1200px
+);
+
+:root {
+    --pisol-gutter: #{$pisol-gutter};
+}
+
+.pisol-grid-row {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin-left: calc(var(--pisol-gutter) * -1);
+    margin-right: calc(var(--pisol-gutter) * -1);
+
+    // shared gutter/box-sizing for any direct-child col-* — still scoped
+    // under .pisol-grid-row so it can never leak outside the grid
+    > [class*="col-"] {
+        box-sizing: border-box;
+        padding-left: var(--pisol-gutter);
+        padding-right: var(--pisol-gutter);
+        width: 100%;
+    }
+
+    @each $prefix, $min-width in $pisol-breakpoints {
+        @if $min-width == null {
+            @for $i from 1 through $pisol-columns {
+                > .col-#{$i} {
+                    width: percentage($i / $pisol-columns);
+                }
+            }
+        } @else {
+            @media (min-width: $min-width) {
+                @for $i from 1 through $pisol-columns {
+                    > .col-#{$prefix}-#{$i} {
+                        width: percentage($i / $pisol-columns);
+                    }
+                }
+            }
+        }
+    }
+}

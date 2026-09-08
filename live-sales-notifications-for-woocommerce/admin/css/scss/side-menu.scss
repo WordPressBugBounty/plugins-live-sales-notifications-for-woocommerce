@@ -1,0 +1,237 @@
+/* ===== Modern Sidebar Menu — PIWebSolution — Themeable ===== */
+
+// Reusable across the plugin — same icon used for both mask props
+$pisol-key-icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/%3E%3C/svg%3E";
+
+// Shared base look for any menu-item-style link (side menu items + license link)
+@mixin pisol-menu-item-base {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--pisol-dtt-item-text) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    text-decoration: none !important;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+@mixin pisol-menu-item-hover {
+    background: var(--pisol-dtt-item-hover-bg) !important;
+    color: var(--pisol-dtt-item-hover-text) !important;
+    transform: translateX(2px);
+}
+
+@mixin pisol-menu-item-active {
+    background: var(--pisol-dtt-item-active-bg) !important;
+    color: var(--pisol-dtt-item-active-text) !important;
+    font-weight: 600;
+    border-color: var(--pisol-dtt-item-active-border);
+    box-shadow: inset 3px 0 0 var(--pisol-dtt-item-active-accent);
+}
+
+#pisol-side-menu {
+    /* Container */
+    --pisol-dtt-menu-bg: #ffffff;
+    --pisol-dtt-menu-border: #e5e7eb;
+
+    /* Default (inactive) menu item */
+    --pisol-dtt-item-text: #1e1e1e;
+    --pisol-dtt-item-icon-opacity: 0.75;
+
+    /* Hover state */
+    --pisol-dtt-item-hover-bg: #f3f4f6;
+    --pisol-dtt-item-hover-text: #111827;
+
+    /* Active tab */
+    --pisol-dtt-item-active-bg: #eef2ff;
+    --pisol-dtt-item-active-text: #ee6443;
+    --pisol-dtt-item-active-border: #e0e7ff;
+    --pisol-dtt-item-active-accent: #ee6443;
+
+    /* Documentation (footer) link */
+    --pisol-dtt-item-doc-text: #b45309;
+    --pisol-dtt-item-doc-text-hover: #92400e;
+    --pisol-dtt-item-doc-divider: #e5e7eb;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    /*
+    padding: 12px !important;
+    background: var(--pisol-dtt-menu-bg);
+    border: 1px solid var(--pisol-dtt-menu-border);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+    */
+
+    // Base link style — targets any direct anchor child, no .pi-side-menu class in this markup
+    > a {
+        @include pisol-menu-item-base;
+        box-sizing: border-box;
+
+        .dashicons {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            flex-shrink: 0;
+            opacity: var(--pisol-dtt-item-icon-opacity);
+            transition: opacity 0.15s ease;
+        }
+
+        &:hover {
+            @include pisol-menu-item-hover;
+
+            .dashicons {
+                opacity: 1;
+            }
+        }
+
+        // Active tab
+        &.bg-primary {
+            @include pisol-menu-item-active;
+
+            .dashicons {
+                opacity: 1;
+                color: var(--pisol-dtt-item-active-accent);
+            }
+        }
+
+        // Inactive tabs
+        &.bg-secondary {
+            background: transparent !important;
+            color: var(--pisol-dtt-item-text) !important;
+        }
+
+        // Documentation link — no dedicated class in this markup, so hooked via title.
+        // Ask for a real class (e.g. pi-side-menu-doc) if this component is reused elsewhere.
+        &[title="Documentation"] {
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--pisol-dtt-item-doc-divider);
+            border-radius: 0;
+            background: transparent !important;
+            color: var(--pisol-dtt-item-doc-text) !important;
+            font-weight: 600;
+
+            &:hover {
+                color: var(--pisol-dtt-item-doc-text-hover) !important;
+                transform: none;
+            }
+        }
+    }
+
+    --pisol-dtt-submenu-border: #e5e7eb;
+    --pisol-dtt-submenu-text: #4b5563;
+    --pisol-dtt-submenu-hover-bg: #f3f4f6;
+    --pisol-dtt-submenu-hover-text: #111827;
+    --pisol-dtt-submenu-active-bg: #eef2ff;
+    --pisol-dtt-submenu-active-text: #ee6443;
+    --pisol-dtt-submenu-active-accent: #ee6443;
+
+    .pi-sub-menu {
+        display: flex !important;
+        flex-direction: column;
+        gap: 2px;
+        margin: 2px 0 6px 0;
+        padding: 4px 0 4px 10px;
+        border-left: 2px solid var(--pisol-dtt-submenu-border);
+    }
+
+    .pi-sub-menu a {
+        display: block !important;
+        width: auto !important;
+        text-align: left !important;
+        padding: 8px 12px !important;
+        border: none !important;
+        border-radius: 6px;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--pisol-dtt-submenu-text) !important;
+        background: transparent !important;
+        text-decoration: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .pi-sub-menu a:hover {
+        background: var(--pisol-dtt-submenu-hover-bg) !important;
+        color: var(--pisol-dtt-submenu-hover-text) !important;
+    }
+
+    /* Active sub-item (marked with .sub-active in your markup) */
+    .pi-sub-menu a.bg-primary {
+        background: var(--pisol-dtt-submenu-active-bg) !important;
+        color: var(--pisol-dtt-submenu-active-text) !important;
+        font-weight: 600;
+        box-shadow: inset 2px 0 0 var(--pisol-dtt-submenu-active-accent);
+    }
+}
+
+
+// Sticky offset spacing
+.pi-sticky {
+    top: 32px;
+}
+
+/* ===== License link (no native dashicon → inline SVG key icon) ===== */
+#pisol-license-menu {
+    @include pisol-menu-item-base;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        background-color: currentColor;
+        -webkit-mask: url("#{$pisol-key-icon}") center / contain no-repeat;
+        mask: url("#{$pisol-key-icon}") center / contain no-repeat;
+        opacity: var(--pisol-dtt-item-icon-opacity);
+        transition: opacity 0.15s ease;
+    }
+
+    &.bg-primary {
+        @include pisol-menu-item-active;
+    }
+
+    &:hover {
+        @include pisol-menu-item-hover;
+
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #pisol-side-menu {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px 10px;
+        align-items: stretch;
+
+        > a {
+            width: 100%;
+            justify-content: flex-start;
+            min-height: 48px;
+            padding: 10px 12px;
+
+            &[title="Documentation"] {
+                grid-column: 1 / -1;
+                margin-top: 0;
+                border-top: 1px dashed var(--pisol-dtt-item-doc-divider);
+                border-radius: 8px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    #pisol-side-menu {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

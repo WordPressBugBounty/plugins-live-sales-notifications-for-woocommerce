@@ -192,7 +192,7 @@ class Class_Pi_Sales_Notification_Design{
 
     function tab(){
         ?>
-        <a class="  <?php echo ($this->active_tab == $this->this_tab ? 'active' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+        <a class="  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-art"></span> <?php echo esc_html( $this->tab_name ); ?>
         </a>
         <?php

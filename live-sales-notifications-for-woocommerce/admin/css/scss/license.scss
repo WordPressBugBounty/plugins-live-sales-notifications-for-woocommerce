@@ -1,0 +1,374 @@
+#pisol-license-page-content {
+    padding: 20px;
+
+    h3 {
+        font-size: 2rem;
+        margin:20px 0;
+        line-height: 1;
+    }
+
+    input[type="submit"]{
+        margin-left:0px;
+    }
+
+    .alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+
+        margin: 15px 0;
+        padding: 14px 16px;
+
+        border: 1px solid transparent;
+        border-radius: 8px;
+
+        font-size: 14px;
+        line-height: 1.5;
+
+        box-sizing: border-box;
+
+        p{
+            margin:0;
+        }
+
+        &::before {
+            font-family: dashicons;
+            font-size: 20px;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        &.alert-info {
+            background: #f0f7ff;
+            border-color: #c9e2ff;
+            border-left: 4px solid #2271b1;
+            color: #1e3a5f;
+
+            &::before {
+                content: "\f348";
+                color: #2271b1;
+            }
+        }
+
+        &.alert-danger {
+            background: #fff5f5;
+            border-color: #f3c6c6;
+            border-left: 4px solid #d63638;
+            color: #6b2223;
+
+            &::before {
+                content: "\f534";
+                color: #d63638;
+            }
+        }
+    }
+}
+
+#pisol-license-page-content {
+
+    #row_activation_key {
+        padding: 24px 0 !important;
+        margin: 0;
+        border-bottom: 1px solid #e5e7eb !important;
+
+        > div {
+            &:first-child {
+                label {
+                    display: block;
+                    margin-bottom: 6px !important;
+
+                    color: #1f2937;
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+
+                small {
+                    display: block;
+                    color: #6b7280;
+                    font-size: 12px;
+                    line-height: 1.5;
+
+                    a {
+                        color: var(--pisol-primary-color);
+                        font-weight: 500;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+
+                        &::before {
+                            content: "\f103";
+                            font-family: dashicons;
+                            margin-right: 3px;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                textarea {
+                    width: 100%;
+                    min-height: 120px !important;
+                    padding: 12px 14px;
+
+                    box-sizing: border-box;
+                    resize: vertical;
+
+                    border: 1px solid #d9dee7;
+                    border-radius: 8px;
+                    background: #f9fafb;
+
+                    color: #374151;
+                    font-family: monospace;
+                    font-size: 13px;
+                    line-height: 1.5;
+
+                    transition:
+                        border-color 0.15s ease,
+                        box-shadow 0.15s ease,
+                        background-color 0.15s ease;
+
+                    &:hover {
+                        border-color: #b8c0cc;
+                        background: #fff;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-color: var(--pisol-primary-color);
+                        background: #fff;
+
+                        box-shadow: 0 0 0 3px color-mix(
+                            in srgb,
+                            var(--pisol-primary-color) 15%,
+                            transparent
+                        );
+                    }
+                }
+            }
+        }
+    }
+}
+
+#pisol-license-page-content {
+
+    .upload-license {
+        max-width: 850px;
+        margin: 25px 0 !important;
+        padding: 22px 24px;
+
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+        p {
+            margin: 0 0 12px;
+            color: #4b5563;
+            font-size: 14px;
+            line-height: 1.6;
+
+            &:first-child {
+                padding-bottom: 14px;
+                margin-bottom: 16px;
+                border-bottom: 1px solid #eef0f3;
+            }
+
+            b {
+                color: #1f2937;
+                font-weight: 600;
+            }
+
+            a {
+                color: var(--pisol-primary-color);
+                font-weight: 500;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            margin: 0 3px;
+            padding: 4px 8px;
+
+            border-radius: 5px;
+            background: color-mix(
+                in srgb,
+                var(--pisol-primary-color) 10%,
+                #fff
+            );
+            color: var(--pisol-primary-color);
+
+            font-family: monospace;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        form {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #eef0f3;
+
+            .row {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin: 0;
+
+                .col-6 {
+                    width: auto;
+                    padding: 0;
+
+                    &:first-child {
+                        flex: 1;
+                    }
+
+                    &:last-child {
+                        flex: 0 0 auto;
+                    }
+                }
+            }
+
+            input[type="file"] {
+                width: 100%;
+                min-height: 42px;
+                padding: 7px 10px;
+
+                box-sizing: border-box;
+
+                border: 1px solid #d9dee7;
+                border-radius: 7px;
+                background: #f9fafb;
+
+                color: #6b7280;
+                font-size: 13px;
+                cursor: pointer;
+
+                &:hover {
+                    border-color: #b8c0cc;
+                    background: #fff;
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--pisol-primary-color);
+
+                    box-shadow: 0 0 0 3px color-mix(
+                        in srgb,
+                        var(--pisol-primary-color) 15%,
+                        transparent
+                    );
+                }
+            }
+
+            input[type="submit"] {
+                min-height: 42px;
+                padding: 0 20px;
+
+                border: 1px solid var(--pisol-primary-color);
+                border-radius: 7px;
+
+                background: var(--pisol-primary-color);
+                color: #fff;
+
+                font-size: 14px;
+                font-weight: 600;
+
+                cursor: pointer;
+
+                transition:
+                    transform 0.15s ease,
+                    box-shadow 0.15s ease,
+                    filter 0.15s ease;
+
+                &:hover {
+                    filter: brightness(0.94);
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    #pisol-license-page-content {
+
+        .upload-license {
+            padding: 18px;
+
+            form {
+                .row {
+                    flex-direction: column;
+                    align-items: stretch;
+
+                    .col-6 {
+                        width: 100%;
+                    }
+
+                    input[type="submit"] {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#pisol-license-page-content {
+
+    .toggle-activate-manually {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-left: 10px !important;
+        padding: 7px 14px;
+
+        border: 1px solid var(--pisol-primary-color);
+        border-radius: 6px;
+
+        background: var(--pisol-primary-color);
+        color: #fff;
+
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.2;
+
+        cursor: pointer;
+
+        transition:
+            background-color 0.15s ease,
+            box-shadow 0.15s ease,
+            transform 0.15s ease;
+
+        &:hover {
+            filter: brightness(0.94);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px color-mix(
+                in srgb,
+                var(--pisol-primary-color) 15%,
+                transparent
+            );
+        }
+    }
+}

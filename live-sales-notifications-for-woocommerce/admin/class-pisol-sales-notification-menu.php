@@ -36,10 +36,9 @@ class Pi_Sales_Menu{
 
     public function bootstrap_style() {
         
-		wp_enqueue_style( $this->plugin_name."_bootstrap", plugin_dir_url( __FILE__ ) . 'css/bootstrap.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->plugin_name."_promotion", plugin_dir_url( __FILE__ ) . 'css/promotion.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name."_admin", plugin_dir_url( __FILE__ ) . 'css/admin.css', array(), $this->version, 'all' );
 
-        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pisol-sales-notification-admin.css', array(), $this->version, 'all' );
+        //wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/pisol-sales-notification-admin.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'select2', WC()->plugin_url() . '/assets/css/select2.css', [], $this->version);
 
         wp_enqueue_script( 'selectWoo', WC()->plugin_url() . '/assets/js/selectWoo/selectWoo.full.min.js', array( 'jquery' ), '1.0.4', true );
@@ -58,44 +57,23 @@ class Pi_Sales_Menu{
             settings_errors();
         }
         ?>
-        <div id="bootstrap-wrapper" class="pisol-setting-wrapper pisol-container-wrapper">
-        <div class="pisol-container mt-2">
-            <div class="pisol-row">
-                    <div class="col-12">
-                        <div class='bg-dark'>
-                        <div class="pisol-row">
-                            <div class="col-12 col-sm-2 py-2">
-                                    <a href="https://www.piwebsolution.com/" target="_blank"><img class="img-fluid ml-2" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>img/pi-web-solution.svg"></a>
-                            </div>
-                            <div class="col-12 col-sm-10 text-right small d-flex align-items-center justify-content-end">
-                                <a id="pi-special-button" href="<?php echo  esc_url( PI_SALES_NOTIFICATION_BUY_URL ); ?>" target="_blank">GET PRO VERSION</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="pisol-row">
-                <div class="col-12">
-                <div class="bg-light border pl-3 pr-3 pt-0">
-                    <div class="pisol-row">
-                        <div class="col-12 col-md-4  col-lg-2 border-right">
-                            <div id="pisol-side-menu" class="rounded">
-                                <?php do_action($this->plugin_name.'_tab'); ?>
-                                <a class="" href="https://www.piwebsolution.com/user-documentation-live-sales-notification-for-woocommerce/" target="_blank">
-                                <span class="dashicons dashicons-media-document"></span> Documentation
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col ">
-                        <?php do_action('pisol_sales_notification_dependency_install'); ?>
-                        <?php do_action($this->plugin_name.'_tab_content'); ?>
-                        </div>
-                        <?php do_action($this->plugin_name.'_promotion'); ?>
-                    </div>
-                </div>
+        <div class="pisol-container">
+            <div class="pisol-header">
+                <div id="pisol-header-bar">
+                    <a href="https://www.piwebsolution.com/" target="_blank"><img id="pi-logo" class="pisol-img-fluid" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>img/pi-web-solution.svg"></a>
                 </div>
             </div>
-        </div>
+
+            <div class="pisol-left-sidebar">
+                <div id="pisol-side-menu" class="mb-4 rounded py-3 ">
+                    <?php do_action($this->plugin_name.'_tab'); ?>
+                </div>
+                <?php do_action($this->plugin_name.'_promotion'); ?>
+            </div>
+
+            <div class="pisol-content">
+                <?php do_action($this->plugin_name.'_tab_content'); ?>
+            </div>
         </div>
         <?php
         $this->support();

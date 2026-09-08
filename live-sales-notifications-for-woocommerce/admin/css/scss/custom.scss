@@ -1,0 +1,43 @@
+.tab-icon{
+    width:18px;
+}
+
+#preview{
+    bottom:20px !important;
+    left:20px !important;
+    top:auto !important;
+    right:auto !important;
+    position:fixed;
+    display:flex !important;
+    z-index:999999;
+}
+
+#plugin-filter{
+    margin:20px;
+
+    .plugin-card{
+        width:100%;
+        margin-bottom:15px;
+    }
+}
+
+#pi_translation_container{
+    .row{
+        display:flex;
+        grid-gap:20px;
+        align-items:center;
+        margin-bottom:20px;
+    }
+
+    .btn-remove{
+        background:#ff0000;
+        border:0;
+        color:#ffff;
+        padding:10px;
+        border-radius:6px;
+        cursor:pointer;
+        &:hover{
+            transform:translateY(-1px);
+        }
+    }
+}

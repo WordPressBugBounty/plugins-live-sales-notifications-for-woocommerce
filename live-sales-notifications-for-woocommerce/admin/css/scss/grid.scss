@@ -1,3 +1,5 @@
+@use "sass:math";
+
 :root {
     --pisol-primary-color: #ee6443;
     --pisol-white-color: #fff;
@@ -71,13 +73,22 @@ $pisol-mobile-breakpoint: 768px;
         }
     }
 
+    .pisol-main {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .pisol-content {
         flex: 1 1 0;
+        // Allow the flex item to shrink below its content width so a wide
+        // table scrolls inside .pisol-content instead of expanding it and
+        // pushing the layout under the left sidebar.
         min-width: 0;
         background-color: var(--pisol-content-bgcolor);
         padding: 0;
         box-sizing: border-box;
-
+        position: relative;
         // Mobile
         @media (max-width: $pisol-mobile-breakpoint) {
             width: 100%;
@@ -139,8 +150,6 @@ $pisol-breakpoints: (
     margin-left: calc(var(--pisol-gutter) * -1);
     margin-right: calc(var(--pisol-gutter) * -1);
 
-    // shared gutter/box-sizing for any direct-child col-* — still scoped
-    // under .pisol-grid-row so it can never leak outside the grid
     > [class*="col-"] {
         box-sizing: border-box;
         padding-left: var(--pisol-gutter);
@@ -152,17 +161,69 @@ $pisol-breakpoints: (
         @if $min-width == null {
             @for $i from 1 through $pisol-columns {
                 > .col-#{$i} {
-                    width: percentage($i / $pisol-columns);
+                    width: math.div($i * 100%, $pisol-columns);
                 }
             }
         } @else {
             @media (min-width: $min-width) {
                 @for $i from 1 through $pisol-columns {
                     > .col-#{$prefix}-#{$i} {
-                        width: percentage($i / $pisol-columns);
+                        width: math.div($i * 100%, $pisol-columns);
                     }
                 }
             }
         }
     }
+
+    &.align-items-center {
+        align-items: center;
+    }
 }
+
+/** Left sidebar closing circle */
+.pi-left-sidebar-closing-circle{
+    width:40px;
+    height:40px;
+    border-radius:40px;
+    background:var(--pisol-primary-color);
+    border:2px solid #fff;
+
+    position: absolute;
+    top:-20px;
+    left:-20px;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+    z-index: 999;
+
+    &::before {
+        font-family: dashicons;
+        content: "\f341";
+        color: #fff;
+        font-size: 20px;
+    }
+
+    #pi-left-sidebar-controller{
+        display: none;
+    }
+
+}
+
+body:has(#pi-left-sidebar-controller:checked) .pisol-left-sidebar{
+    display:none;
+}
+
+body:has(#pi-left-sidebar-controller:checked)
+.pi-left-sidebar-closing-circle::before {
+    content: "\f345";
+}
+
+@media (max-width: 768px) {
+    .pi-left-sidebar-closing-circle::before {
+        content: "\f333" !important;
+    }
+}
+
+/* End */

@@ -29,7 +29,7 @@ class Class_Pi_Sales_Notification_Text{
         $this->settings = array(
             array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__('Message in popup','pisol-sales-notification'), 'type'=>"setting_category"),
 
-            array('field'=>'pi_sn_sales_message', 'label'=>__('Sales message format ','pisol-sales-notification'),'type'=>'textarea', 'default'=>'{product_link} was purchased by {first_name} from {country}',   'desc'=>__('Set the format of the description shown on the sales popup using the shortcodes<br> {product} = Product title <br> {product_link} = Product title linked to product page or affiliate page (for external WooCommerce product type)<br> {time} = Time of purchase<br>{date} => Date of purchase <br>{country} = Customers Country<br>{state} = Customers State<br> {city} = Customers City<br>{first_name} = Customers first name<br> {price} = show product price (available in PRO)<br>{time_passed} => how long back order was placed (PRO)<br>{stock_left} => stock left for the product (PRO)','pisol-sales-notification')),
+            array('field'=>'pi_sn_sales_message', 'label'=>__('Sales message format ','pisol-sales-notification'),'type'=>'textarea', 'default'=>'{product_link} was purchased by {first_name} from {country}',   'desc'=>__('Set the format of the description shown on the sales popup using the shortcodes<br> {product} = Product title <br> {product_link} = Product title linked to product page or affiliate page (for external WooCommerce product type)<br> {time} = Time of purchase<br>{date} => Date of purchase <br>{country} = Customer\'s Country<br>{state} = Customer\'s State<br> {city} = Customer\'s City<br>{first_name} = Customer\'s first name<br> {price} = show product price (available in PRO)<br>{time_passed} => how long back the order was placed (PRO)<br>{stock_left} => stock left for the product (PRO)','pisol-sales-notification')),
 
             array('field'=>'pi_sn_date_format', 'label'=>__('Date format for {date} ','pisol-sales-notification'),'type'=>'select', 'default'=>"Y/m/d", 'value'=>$this->date_format,  'desc'=>__('Date format for {date} shortcode','pisol-sales-notification'),'pro'=>true),
 
@@ -41,7 +41,7 @@ class Class_Pi_Sales_Notification_Text{
 
             array('field'=>'pi_sn_product_color', 'label'=>__('Product title color {product}','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for the product name that shows up using {product} shortcode','pisol-sales-notification')),
 
-            array('field'=>'pi_sn_product_link_color', 'label'=>__('Product link color {product_link}','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for the product link name that shows up using {product_link} short code','pisol-sales-notification')),
+            array('field'=>'pi_sn_product_link_color', 'label'=>__('Product link color {product_link}','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for the product link name that shows up using {product_link} shortcode','pisol-sales-notification')),
             array('field'=>'pi_sn_time_color', 'label'=>__('Time text color {time}','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for the Time that shows up using {time} shortcode','pisol-sales-notification')),
 
             array('field'=>'pi_sn_date_color', 'label'=>__('Date text color {date}','pisol-sales-notification'),'type'=>'color', 'default'=>"#000000",   'desc'=>__('This is the text color used for the Date that shows up using {date} shortcode','pisol-sales-notification')),
@@ -168,6 +168,7 @@ class Class_Pi_Sales_Notification_Text{
     }
 
     function tab(){
+        $this->tab_name = __("Message text", 'pisol-sales-notification');
         ?>
         <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field(wp_unslash($_GET['page'])).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-buddicons-pm"></span> <?php echo esc_html( $this->tab_name); ?> 
@@ -185,7 +186,7 @@ class Class_Pi_Sales_Notification_Text{
                 new pisol_class_form_sn_v3_7($setting, $this->setting_key);
             }
         ?>
-        <input type="submit" class="my-3 btn btn-primary btn-md" value="Save Option" />
+        <input type="submit" class="my-3 btn btn-primary btn-md" value="<?php esc_attr_e('Save Changes','pisol-sales-notification'); ?>" />
         </form>
        <?php
     }

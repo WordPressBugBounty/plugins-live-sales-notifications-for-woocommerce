@@ -61,12 +61,18 @@
     flex-basis: 100%;
   }
 }
+.pisol-container .pisol-main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 .pisol-container .pisol-content {
   flex: 1 1 0;
   min-width: 0;
   background-color: var(--pisol-content-bgcolor);
   padding: 0;
   box-sizing: border-box;
+  position: relative;
 }
 @media (max-width: 768px) {
   .pisol-container .pisol-content {
@@ -258,7 +264,50 @@
     width: 100%;
   }
 }
+.pisol-grid-row.align-items-center {
+  align-items: center;
+}
 
+/** Left sidebar closing circle */
+.pi-left-sidebar-closing-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background: var(--pisol-primary-color);
+  border: 2px solid #fff;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+}
+.pi-left-sidebar-closing-circle::before {
+  font-family: dashicons;
+  content: "\f341";
+  color: #fff;
+  font-size: 20px;
+}
+.pi-left-sidebar-closing-circle #pi-left-sidebar-controller {
+  display: none;
+}
+
+body:has(#pi-left-sidebar-controller:checked) .pisol-left-sidebar {
+  display: none;
+}
+
+body:has(#pi-left-sidebar-controller:checked) .pi-left-sidebar-closing-circle::before {
+  content: "\f345";
+}
+
+@media (max-width: 768px) {
+  .pi-left-sidebar-closing-circle::before {
+    content: "\f333" !important;
+  }
+}
+/* End */
 /* ===== Modern Sidebar Menu — PIWebSolution — Themeable ===== */
 #pisol-side-menu {
   /* Container */
@@ -1004,8 +1053,17 @@
   min-height: 100px;
   resize: vertical;
 }
-.pisol-container select {
+.pisol-container select, .pisol-container select.pisol-field-select,
+.pisol-container select.pisol-field-multiselect {
   cursor: pointer;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%23555" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>') !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 12px 8px !important;
+  padding-right: 32px !important; /* room for arrow so text doesn't overlap it */
 }
 .pisol-container input[type=checkbox],
 .pisol-container input[type=radio] {

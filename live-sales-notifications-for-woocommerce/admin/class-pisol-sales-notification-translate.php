@@ -64,6 +64,7 @@ class Class_Pi_Sales_Notification_Translate{
     }
 
     function tab(){
+        $this->tab_name = __("Translate (PRO)", 'pisol-sales-notification');
         ?>
         <a class=" <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-translation"></span> <?php echo esc_html( $this->tab_name); ?> 
@@ -101,16 +102,16 @@ class Class_Pi_Sales_Notification_Translate{
         <?php settings_fields( $this->setting_key ); ?>
             <div id="row_title" class="pisol-form-element-row row py-4 border-bottom align-items-center  bg-dark2 text-light field-type-setting_category">
             <div class="pisol-form-label-col col-md-12">
-                <h2 class="pisol-field-title mt-0 mb-0 text-light font-weight-light h4">Add translation for popup message <strong>(Only Works in PRO)</strong></h2>
+                <h2 class="pisol-field-title mt-0 mb-0 text-light font-weight-light h4">Add translation for popup message <strong>(Only works in PRO)</strong></h2>
             </div>
             </div>
             <div style="padding:20px;">
                 <div class="row py-2 border-bottom">
                     <div class="col-12 col-md-6">
-                    {product} = Product title <br> {product_link} = Product title linked to product page or affiliate page<br> {time} = Time of purchase<br>{date} => Date of purchase <br>{price} = show product price (available in PRO)
+                    {product} = Product title <br> {product_link} = Product title linked to product page or affiliate page<br> {time} = Time of purchase<br>{date} = Date of purchase <br>{price} = show product price (available in PRO)
                     </div>
                     <div class="col-12 col-md-6">
-                    {country} = Customers Country<br>{state} = Customers State<br> {city} = Customers City<br>{first_name} = Customers first name
+                    {country} = Customer's Country<br>{state} = Customer's State<br> {city} = Customer's City<br>{first_name} = Customer's first name
                     </div>
                 </div>
                 <div id="pi_translation_container">

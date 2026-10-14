@@ -1,6 +1,6 @@
 <?php
 /**
-* version 3.10 (custom)
+* version 4.6
 * work with bootstrap there are some extra customization
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
@@ -63,6 +63,7 @@ class pisol_class_form_sn_v3_7{
             'textarea'        => 'textarea_box',
             'multiselect'     => 'multiselect_box',
             'color'           => 'color_box',
+            'gradient'        => 'gradient_box',
             'hidden'          => 'hidden_box',
             'switch'          => 'switch_display',
             'switch_category' => 'switch_category_display',
@@ -363,6 +364,80 @@ class pisol_class_form_sn_v3_7{
         $this->bootstrap($field);
     }
 
+    function gradient_box(){
+        $field_name = $this->setting['field'];
+
+        $v = self::normalize_gradient(
+            $this->saved_value,
+            isset($this->setting['default']) ? $this->setting['default'] : null
+        );
+
+        $color1    = $v['color1'];
+        $color2    = $v['color2'];
+        $direction = $v['direction'];
+
+        $extra = (isset($this->setting['required']) ? ' required="'.esc_attr($this->setting['required']).'"' : '')
+            . (isset($this->setting['readonly']) ? ' readonly="'.esc_attr($this->setting['readonly']).'"' : '');
+
+        // first input keeps the original id so the row's <label for="field"> still works
+        $field1 = '<input type="color" class="pisol-field-gradient form-control '.esc_attr($this->pro).'"'
+            .' name="'.esc_attr($field_name).'[color1]"'
+            .' id="'.esc_attr($field_name).'"'
+            .' value="'.esc_attr($color1).'"'.$extra.'>';
+
+        $field2 = '<input type="color" class="pisol-field-gradient form-control '.esc_attr($this->pro).'"'
+            .' name="'.esc_attr($field_name).'[color2]"'
+            .' id="'.esc_attr($field_name).'_color2"'
+            .' value="'.esc_attr($color2).'"'.$extra.'>';
+
+        $field3 = '<select class="pisol-field-select pisol-field-gradient form-control '.esc_attr($this->pro).'"'
+            .' name="'.esc_attr($field_name).'[direction]"'
+            .' id="'.esc_attr($field_name).'_direction">';
+
+        foreach([0, 45, 90, 135, 180, 225, 270, 315] as $deg){
+            $field3 .= '<option value="'.esc_attr($deg).'" '.selected($direction, $deg, false).'>'.esc_html($deg).' degrees</option>';
+        }
+        $field3 .= '</select>';
+
+        $field = '<div style="display:flex; gap:10px; align-items:center;">'.$field1.$field2.$field3.'</div>';
+
+        $this->bootstrap($field);
+    }
+
+    static function gradient_helper($saved_value){
+        $v = self::normalize_gradient($saved_value);
+        return "linear-gradient({$v['direction']}deg, {$v['color1']}, {$v['color2']})";
+    }
+
+    static function normalize_gradient($value, $default = null){
+        $fallback = '#ee6443';
+
+        if(is_string($value) && $value !== ''){
+            $c = sanitize_hex_color($value) ?: $fallback;
+            return ['color1' => $c, 'color2' => $c, 'direction' => 90];
+        }
+
+        if(!is_array($value)){
+            // empty / missing: use the field's default if it has one
+            if($default !== null && $default !== $value){
+                return self::normalize_gradient($default);
+            }
+            return ['color1' => $fallback, 'color2' => $fallback, 'direction' => 90];
+        }
+
+        return [
+            'color1'    => sanitize_hex_color($value['color1'] ?? '') ?: $fallback,
+            'color2'    => sanitize_hex_color($value['color2'] ?? '') ?: $fallback,
+            'direction' => in_array((int)($value['direction'] ?? 90), [0,45,90,135,180,225,270,315], true)
+                            ? (int)$value['direction'] : 90,
+        ];
+    }
+
+    // sanitize callback (also add 'gradient' to getValidationFunction)
+    static function sanitize_gradient($input){
+        return self::normalize_gradient($input);
+    }
+
     function hidden_box(){
         $field ='<input type="hidden" class="pisol-field-hidden form-control '.esc_attr($this->pro).'" name="'.esc_attr($this->setting['field']).'" id="'.esc_attr($this->setting['field']).'" value="'.esc_attr($this->saved_value).'"'
         .(isset($this->setting['required']) ? ' required="'.esc_attr($this->setting['required']).'"': '')
@@ -562,6 +637,10 @@ class pisol_class_form_sn_v3_7{
             return 'sanitize_text_allow_basic_html';
         }
 
+        if(isset($setting['type']) && $setting['type'] === 'gradient'){
+            return 'sanitize_gradient';
+        }
+
         return false;
             
     }
@@ -597,7 +676,7 @@ class pisol_class_form_sn_v3_7{
     // Sanitize numeric input (supports both integer and float)
     static function sanitize_numeric_values($input) {
         if (is_numeric($input)) {
-            if (ctype_digit($input)) {
+            if (ctype_digit((string)$input)) {
                 $sanitized_input = intval($input);
             } else {
                 $sanitized_input = floatval($input);

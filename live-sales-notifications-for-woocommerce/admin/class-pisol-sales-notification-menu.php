@@ -63,7 +63,7 @@ class Pi_Sales_Menu{
                     <a href="https://www.piwebsolution.com/" target="_blank"><img id="pi-logo" class="pisol-img-fluid" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) ); ?>img/pi-web-solution.svg"></a>
                 </div>
             </div>
-
+            <div class="pisol-main">
             <div class="pisol-left-sidebar">
                 <div id="pisol-side-menu" class="mb-4 rounded py-3 ">
                     <?php do_action($this->plugin_name.'_tab'); ?>
@@ -72,7 +72,9 @@ class Pi_Sales_Menu{
             </div>
 
             <div class="pisol-content">
+                <label for="pi-left-sidebar-controller" class="pi-left-sidebar-closing-circle"><input id="pi-left-sidebar-controller" type="checkbox"/></label>
                 <?php do_action($this->plugin_name.'_tab_content'); ?>
+            </div>
             </div>
         </div>
         <?php

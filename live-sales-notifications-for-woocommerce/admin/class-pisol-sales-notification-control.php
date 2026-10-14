@@ -24,9 +24,9 @@ class Class_Pi_Sales_Notification_Control{
 
         $this->settings = array(
 
-            array('field'=>'pi_sn_show_all', 'label'=>__('Show popup on all pages of website', 'pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>'', 'pro'=>true),
+            array('field'=>'pi_sn_show_all', 'label'=>__('Show popup on all pages of the website', 'pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>'', 'pro'=>true),
 
-            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Show popup on selected page", 'pisol-sales-notification'), 'type'=>"setting_category"),
+            array('field'=>'title', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Show popup on the selected page", 'pisol-sales-notification'), 'type'=>"setting_category"),
 
             array('field'=>'pi_sn_show_front_page', 'label'=>__('Show on front page of the site (is_front_page)', 'pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>'', 'pro'=>true),
 
@@ -44,7 +44,7 @@ class Class_Pi_Sales_Notification_Control{
 
             array('field'=>'title2', 'class'=> 'bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__('Disable notification on this page', 'pisol-sales-notification'), 'type'=>'setting_category'),
 
-            array('field'=>'pi_sn_disable_for_page_pro', 'label'=>__('Disable the notification on page', 'pisol-sales-notification'),'type'=>'text', 'default'=>'',   'desc'=>__('Add ID of the pages separated by comma E.g: 23, 33,44', 'pisol-sales-notification'), 'pro'=>true),
+            array('field'=>'pi_sn_disable_for_page_pro', 'label'=>__('Disable the notification on page', 'pisol-sales-notification'),'type'=>'text', 'default'=>'',   'desc'=>__('Add ID of the pages separated by commas, e.g., 23, 33, 44', 'pisol-sales-notification'), 'pro'=>true),
             
         );
         
@@ -85,6 +85,7 @@ class Class_Pi_Sales_Notification_Control{
     }
 
     function tab(){
+        $this->tab_name = __("Control (PRO)", 'pisol-sales-notification');
         ?>
         <a class="   <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-dashboard"></span> <?php echo esc_html( $this->tab_name ); ?> 
@@ -104,7 +105,7 @@ class Class_Pi_Sales_Notification_Control{
             }
         ?>
         </div>
-        <input type="submit" class="my-3 btn btn-primary btn-md" value="Save Option" />
+        <input type="submit" class="my-3 btn btn-primary btn-md" value="<?php esc_attr_e('Save Changes','pisol-sales-notification'); ?>" />
         </form>
        <?php
     }

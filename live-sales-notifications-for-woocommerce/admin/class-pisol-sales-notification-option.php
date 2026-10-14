@@ -30,17 +30,17 @@ class Class_Pi_Sales_Notification_Option{
 
             array('field'=>'pi_sn_enabled_mobile', 'label'=>__('Enable sales notification on mobile','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Enable sales notification or disable it for mobile','pisol-sales-notification')),
 
-            array('field'=>'pi_sn_exclusion_option', 'label'=>__('Give Option to customer to exclude there info from live feed','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('This will enable an option in your checkout page, using that buyer can make sure there info is not shown in the live sales feed on your site','pisol-sales-notification')),
+            array('field'=>'pi_sn_exclusion_option', 'label'=>__('Give option to customer to exclude their info from live feed','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('This will enable an option in your checkout page, using that buyer can make sure their info is not shown in the live sales feed on your site','pisol-sales-notification')),
 
             array('field'=>'pi_sn_exclusion_option_message', 'label'=>__('Message shown to customer on checkout page','pisol-sales-notification'),'type'=>'text', 'default'=>"Don't show my information in live sales feed",   'desc'=>__('This message will be shown next to exclude info checkbox', 'pisol-sales-notification')),
 
-            array('field'=>'pi_sn_mobile_breakpoint', 'label'=>__('Mobile breakpoint width','pisol-sales-notification'),'type'=>'number', 'default'=>767, 'min'=>1, 'step'=>1,   'desc'=>__('Define what width will be consider as mobile breakpoint','pisol-sales-notification'), 'pro'=>true),
+            array('field'=>'pi_sn_mobile_breakpoint', 'label'=>__('Mobile breakpoint width','pisol-sales-notification'),'type'=>'number', 'default'=>767, 'min'=>1, 'step'=>1,   'desc'=>__('Define what width will be considered as mobile breakpoint','pisol-sales-notification'), 'pro'=>true),
 
-            array('field'=>'pi_show_dismiss_option', 'label'=>__('Dismiss notification option','pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>__('Once user dismiss the notification, he will not see any live sales notification on your site for next X number of  days set by you','pisol-sales-notification'), 'pro'=>true),
+            array('field'=>'pi_show_dismiss_option', 'label'=>__('Dismiss notification option','pisol-sales-notification'),'type'=>'switch', 'default'=>0,   'desc'=>__('Once a user dismisses the notification, he will not see any live sales notification on your site for the next X number of days set by you','pisol-sales-notification'), 'pro'=>true),
 
             array('field'=>'pi_dismiss_for', 'label'=>__('Dismiss the popup for','pisol-sales-notification'),'type'=>'number', 'default'=>30, 'min'=>1, 'step'=>1,   'desc'=>__('Set the number of days for which the popup will not show to the visitor who has dismissed it','pisol-sales-notification'), 'pro'=>true),
 
-            array('field'=>'pi_show_elapsed_time', 'label'=>__('Show elapsed time on the popup','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Once enable it will show like this order was placed: 1 min ago, 1 week ago, 2 minute ago','pisol-sales-notification'), 'pro'=>true),
+            array('field'=>'pi_show_elapsed_time', 'label'=>__('Show elapsed time on the popup','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Once enabled it will show like this order was placed: 1 min ago, 1 week ago, 2 minutes ago','pisol-sales-notification'), 'pro'=>true),
             
             array('field'=>'pi_show_stock_left', 'label'=>__('Show stock left for the product to create urgency','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Show stock left for the product to create urgency to purchase','pisol-sales-notification'), 'pro'=>true),
 
@@ -51,18 +51,18 @@ class Class_Pi_Sales_Notification_Option{
 
             array('field'=>'pi_sn_popup_loop', 'label'=>__('Loop through ','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Repeat popup once all loaded popups are shown once','pisol-sales-notification')),
 
-            array('field'=>'pi_sn_first_popup', 'label'=>__('When to start showing popup (milliseconds)','pisol-sales-notification'),'type'=>'number', 'default'=>6000, 'min'=>1000, 'step'=>50,   'desc'=>__('Once a person comes to page, when to start showing popup','pisol-sales-notification')),
+            array('field'=>'pi_sn_first_popup', 'label'=>__('When to start showing popup (milliseconds)','pisol-sales-notification'),'type'=>'number', 'default'=>6000, 'min'=>1000, 'step'=>50,   'desc'=>__('Once a person comes to the page, when to start showing popup','pisol-sales-notification')),
 
             array('field'=>'pi_sn_how_long_to_show', 'label'=>__('How long to keep the popup opened (milliseconds)','pisol-sales-notification'),'type'=>'number', 'default'=>6000, 'min'=>1000, 'step'=>50,   'desc'=>__('How long to keep the popup open','pisol-sales-notification')),
 
-            array('field'=>'pi_sn_interval_between_popup', 'label'=>__('Time gap between showing of 2 popups (milliseconds)','pisol-sales-notification'),'type'=>'number', 'default'=>6000, 'min'=>1000, 'step'=>50,   'desc'=>__('Once a popup closes then after how much time new popup should open','pisol-sales-notification')),
+            array('field'=>'pi_sn_interval_between_popup', 'label'=>__('Time gap between showing of 2 popups (milliseconds)','pisol-sales-notification'),'type'=>'number', 'default'=>6000, 'min'=>1000, 'step'=>50,   'desc'=>__('Once a popup closes then after how much time a new popup should open','pisol-sales-notification')),
 
-            array('field'=>'pi_max_notification_count', 'label'=>__('Number of times a popup will be shown to customer in single session','pisol-sales-notification'),'type'=>'number', 'default'=> '', 'min'=>0, 'step'=>1,   'desc'=>__('It keeps the count of popup shown to a customer in a single session, if you want to show popup only 3 times then set it to 3, if you want to show it unlimited time then leave it empty, session of the customer end when they close the browser tab','pisol-sales-notification')),
+            array('field'=>'pi_max_notification_count', 'label'=>__('Number of times a popup will be shown to customer in a single session','pisol-sales-notification'),'type'=>'number', 'default'=> '', 'min'=>0, 'step'=>1,   'desc'=>__('It keeps the count of popups shown to a customer in a single session, if you want to show popup only 3 times then set it to 3, if you want to show it unlimited times then leave it empty, session of the customer ends when they close the browser tab','pisol-sales-notification')),
 
             
             array('field'=>'title', 'class'=> 'hide-pro bg-dark2 text-light', 'class_title'=>'text-light font-weight-light h4', 'label'=>__("Other settings",'pisol-sales-notification'), 'type'=>"setting_category"),
 
-            array('field'=>'pi_sn_remove_out_of_stock', 'label'=>__('Don\'t show out of stock product in popup','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Using this you can remove out of stock product from coming in popup','pisol-sales-notification'), 'pro'=>true),
+            array('field'=>'pi_sn_remove_out_of_stock', 'label'=>__('Don\'t show out-of-stock product in the popup','pisol-sales-notification'),'type'=>'switch', 'default'=>1,   'desc'=>__('Using this you can remove out-of-stock product from coming in the popup','pisol-sales-notification'), 'pro'=>true),
 
         );
         
@@ -103,6 +103,7 @@ class Class_Pi_Sales_Notification_Option{
     }
 
     function tab(){
+        $this->tab_name = __("Popup setting", 'pisol-sales-notification');
         ?>
         <a class="  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : ''); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
         <span class="dashicons dashicons-admin-home"></span> <?php echo esc_html( $this->tab_name ); ?>
@@ -120,7 +121,7 @@ class Class_Pi_Sales_Notification_Option{
                 new pisol_class_form_sn_v3_7($setting, $this->setting_key);
             }
         ?>
-        <input type="submit" class="my-3 btn btn-primary btn-md" value="Save Option" />
+        <input type="submit" class="my-3 btn btn-primary btn-md" value="<?php esc_attr_e('Save Changes','pisol-sales-notification'); ?>" />
         </form>
        <?php
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * v1.0.0
+ * v2.0
  */
 
 
@@ -48,6 +48,10 @@ class Pi_Sales_Notification_Analytics{
     }
 
     public function show_tracker_notice() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
         $activation_time = $this->getInstallationDate();
         if(current_time('timestamp') < strtotime($activation_time." +{$this->show_after_this_days} days")) {
             return;
@@ -59,20 +63,20 @@ class Pi_Sales_Notification_Analytics{
 
         $notice = '<div class="notice notice-error is-dismissible">';
         $notice .= '<h4>Help to Improve ' . esc_html($this->plugin_name) . ' plugin</h4>';
-        $notice .= '<p>'.esc_html__("Hi, your support can make a big difference!", 'pisol-sales-notification').'</p>';
-        $notice .= '<p>'.esc_html__("We collect only technical data — including the plugin version, WordPress version, WooCommerce version, and site url — solely to improve compatibility and enhance plugin features.", 'pisol-sales-notification').'</p>';
+        $notice .= '<p>'.esc_html__("Hi, your support can make a big difference!").'</p>';
+        $notice .= '<p>'.esc_html__("We collect only technical data — including the plugin version, WordPress version, WooCommerce version, and site url — solely to improve compatibility and enhance plugin features.").'</p>';
 
         $notice .= '<p style="display: flex; justify-content: space-between; margin-top: 10px;">';
 
         $notice .= sprintf(
             '<a href="%s" class="button">%s</a>',
-            esc_url(admin_url('admin-post.php?enable=0&action=' . $this->enable_tracking_action)),
-            esc_html__('I Don\'t Help', 'pisol-sales-notification')
+            esc_url(wp_nonce_url(admin_url('admin-post.php?enable=0&action=' . $this->enable_tracking_action), $this->enable_tracking_action)),
+            esc_html__('I Don\'t Help')
         );
         $notice .= sprintf(
             '<a href="%s" class="button button-primary" style="margin-right:20px; padding-left:30px; padding-right:30px;">%s</a>',
-            esc_url(admin_url('admin-post.php?enable=1&action=' . $this->enable_tracking_action)),
-            esc_html__('I Will Help', 'pisol-sales-notification')
+            esc_url(wp_nonce_url(admin_url('admin-post.php?enable=1&action=' . $this->enable_tracking_action), $this->enable_tracking_action)),
+            esc_html__('I Will Help')
         );
         
         $notice .= '</p>';
@@ -83,10 +87,16 @@ class Pi_Sales_Notification_Analytics{
     }
 
     public function handle_tracker_action() {
-        if (isset($_GET['enable']) && in_array($_GET['enable'], array('1', '0'))) {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to perform this action.'));
+        }
+
+        check_admin_referer($this->enable_tracking_action);
+
+        if (isset($_GET['enable']) && in_array($_GET['enable'], array('1', '0'), true)) {
             $enable = $_GET['enable'] === '1' ? 'enable' : 'disable';
             update_option($this->enable_tracking, $enable);
-            $redirect_url = isset($_SERVER['HTTP_REFERER']) ? esc_url_raw($_SERVER['HTTP_REFERER']) : admin_url();
+            $redirect_url = isset($_SERVER['HTTP_REFERER']) ? esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])) : admin_url();
 
             if ($enable === 'enable') {
                 $this->send_activation_data('enable');
@@ -224,7 +234,11 @@ class Pi_Sales_Notification_Analytics{
 
     public function handle_deactivation_form() {
         if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'pi_deactivate_nonce_' . $this->plugin_slug)) {
-            wp_die(esc_html__('Security check failed', 'pisol-sales-notification'));
+            wp_die(esc_html__('Security check failed'));
+        }
+
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            wp_die( esc_html__( 'You do not have permission to deactivate plugins.' ) );
         }
 
         $plugin_slug = sanitize_text_field(wp_unslash($_POST['plugin_slug'] ?? ''));
@@ -243,7 +257,7 @@ class Pi_Sales_Notification_Analytics{
             if (is_super_admin()) {
                 deactivate_plugins($this->plugin_path, false, true); // network-wide
             } else {
-                wp_die(esc_html__('You do not have permission to deactivate a network plugin.', 'pisol-sales-notification'));
+                wp_die(esc_html__('You do not have permission to deactivate a network plugin.'));
             }
         } else {
             deactivate_plugins($this->plugin_path); // normal
